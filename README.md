@@ -1,16 +1,19 @@
-Quick documentation goes here
+### Temp documentation goes here...
 
+####Dataset
 
-
-
-
-Data from Matvaretabellen.no
+###### Data from Matvaretabellen.no
 @include attribution ```"Matvaretabellen 2019. Mattilsynet. www.matvaretabellen.no"```
 
+Base URL
+```javascript
+"https://www.matvaretabellen.no/api"
 ```
-Base URL    "https://www.matvaretabellen.no/api"
-Paths:      "/foods"
-            "/data"
-Query:      "?language=no&version=73"
+Paths 
+```javascript
+"/foods", "/data"
 ```
-
+Query:
+```javascript
+"?language=no&version=73"
+```
