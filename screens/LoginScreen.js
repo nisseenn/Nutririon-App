@@ -5,6 +5,8 @@ import firebase from 'firebase';
 import { login } from '../store/actions/auth'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+//Importing the colors we are going to use
+import Colors from '../constants/Colors'
 //Importing our customized, amazing component, which can be used in multiple other components
 import Input from '../components/Input'
 
@@ -113,7 +115,7 @@ const LoginScreen = (props) => {
       keyboardVerticalOffset={-200}
       style={styles.screen}>
       <LinearGradient
-          colors={['#ff6e55', '#FF416C']}
+          colors={[Colors.primaryColor, '#70ffe1']}
           style={{
             position: 'absolute',
             left: 0,
@@ -141,7 +143,7 @@ const LoginScreen = (props) => {
           <Text style={styles.inputTitle}>Email</Text>
           <View style={styles.inputcontainer}>
             <View style={styles.iconcont}>
-              <MaterialIcons name="person-outline" size={30} color="#3c8b80"/>
+              <MaterialIcons name="person-outline" size={30} color={Colors.iconColor}/>
             </View>
             <Input
               id="email"
@@ -165,7 +167,7 @@ const LoginScreen = (props) => {
             </View>
             <View style={styles.inputcontainer}>
               <View style={styles.iconcont}>
-                <MaterialIcons name="lock-outline" size={30} color="#198599"/>
+                <MaterialIcons name="lock-outline" size={30} color={Colors.iconColor}/>
               </View>
                 <Input
                   id="password"
@@ -185,14 +187,14 @@ const LoginScreen = (props) => {
             {isLoading ? (
               <TouchableOpacity
                 onPress={authHandler}
-                style={{...styles.button, backgroundColor: '#22b2cc', flexDirection: 'row', justifyContent: 'center'}}>
+                style={{...styles.button, backgroundColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
                 <ActivityIndicator size="small" color="white"/>
               </TouchableOpacity>
             )
             : (
             <TouchableOpacity
               onPress={authHandler}
-              style={{...styles.button, backgroundColor: '#22b2cc', flexDirection: 'row', justifyContent: 'center'}}>
+              style={{...styles.button, backgroundColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
               <Text style={{fontSize: 20, fontWeight: 'bold', color: 'white'}}>Log in</Text>
               <MaterialIcons name="navigate-next" size={26} color="white"/>
             </TouchableOpacity>
@@ -204,12 +206,12 @@ const LoginScreen = (props) => {
               <View>
                 <TouchableOpacity
                   style={{
-                    ...styles.button2, borderColor: '#e56767', borderWidth: 1, flexDirection: 'row', justifyContent: 'center'
+                    ...styles.button2, borderColor: Colors.buttonColor, borderWidth: 1, flexDirection: 'row', justifyContent: 'center'
                   }}
                   onPress={() => {
                     props.navigation.navigate("signup")
                   }}>
-                  <Text style={{fontSize: 20, fontWeight: 'bold', color: 'black'}}>
+                  <Text style={{fontSize: 20, fontWeight: 'bold', color: Colors.buttonColor}}>
                     Sign up
                   </Text>
                 </TouchableOpacity>
@@ -229,7 +231,7 @@ const LoginScreen = (props) => {
               <View>
                 <Button
                 title='Sign Up'
-                color="#e56767"
+                color={Colors.iconColor}
                 onPress={() => {
                   props.navigation.navigate("signup")
                 }}/>
@@ -303,7 +305,7 @@ headerText:{
   inputTitle:{
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#198599',
+    color: '#093170',
     top: 15
   },
   button:{

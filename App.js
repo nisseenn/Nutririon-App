@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
@@ -19,9 +19,16 @@ const rootReducer = combineReducers({
 
 //Creating the redux store with the rootReducer and defining to use redux thunk to dispatch
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
-
 //Exporting the component with Redux provider wrapping the navigation
 export default function App() {
+  const getPictures = async() => {
+    const startimage = await require('./assets/startimg.jpg')
+  }
+
+  //Getting pictures for the StartScreen
+  useEffect(() => {
+    getPictures()
+  })
   return (
     <Provider store={store}>
       <MainNavigator />

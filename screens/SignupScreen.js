@@ -6,6 +6,8 @@ import { useDispatch } from 'react-redux'
 import Input from '../components/Input'
 import * as firebase from 'firebase'
 import { signup } from '../store/actions/auth'
+//Importing colors
+import Colors from '../constants/Colors'
 //Getting height of screen
 const {width,height} = Dimensions.get('window')
 //Checking if andriod
@@ -130,7 +132,7 @@ const inputChangeHandler = useCallback(
       keyboardVerticalOffset={-200}
       style={styles.screen}>
       <LinearGradient
-          colors={['#ffc3a0', '#ffafbd']}
+          colors={[Colors.primaryColor, '#ffafbd']}
           style={{
             position: 'absolute',
             left: 0,
@@ -174,7 +176,7 @@ const inputChangeHandler = useCallback(
             </View>
             <View style={styles.inputcontainer}>
               <View style={styles.iconcont}>
-                <MaterialIcons name="person-outline" size={30} color="#3c8b80"/>
+                <MaterialIcons name="person-outline" size={30} color={Colors.iconColor}/>
               </View>
               <Input
                 id="name"
@@ -194,7 +196,7 @@ const inputChangeHandler = useCallback(
             </View>
             <View style={styles.inputcontainer}>
               <View style={styles.iconcont}>
-                <MaterialIcons name="person-outline" size={30} color="#3c8b80"/>
+                <MaterialIcons name="person-outline" size={30} color={Colors.iconColor}/>
               </View>
               <Input
                 id="email"
@@ -219,7 +221,7 @@ const inputChangeHandler = useCallback(
             </View>
             <View style={styles.inputcontainer}>
               <View style={styles.iconcont}>
-                <MaterialIcons name="lock-outline" size={30} color="#3c8b80"/>
+                <MaterialIcons name="lock-outline" size={30} color={Colors.iconColor}/>
               </View>
               <Input
                 id="password"
@@ -244,7 +246,7 @@ const inputChangeHandler = useCallback(
             </View>
             <View style={styles.formControl}>
               <View style={styles.iconcont}>
-                <MaterialIcons name="lock-outline" size={30} color="#3c8b80"/>
+                <MaterialIcons name="lock-outline" size={30} color={Colors.iconColor}/>
               </View>
               <TextInput
                 placeholder='Confirm Password'
@@ -265,14 +267,14 @@ const inputChangeHandler = useCallback(
             {isLoading ? (
               <TouchableOpacity
                 onPress={authHandler}
-                style={{...styles.button, backgroundColor: '#e56767', flexDirection: 'row', justifyContent: 'center'}}>
+                style={{...styles.button, backgroundColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
                 <ActivityIndicator size="small" color="white"/>
               </TouchableOpacity>
             )
             : (
             <TouchableOpacity
               onPress={authHandler}
-              style={{...styles.button, backgroundColor: '#e56767', flexDirection: 'row', justifyContent: 'center'}}>
+              style={{...styles.button, backgroundColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
               <Text style={{fontSize: 20, fontWeight: 'bold', color: 'white'}}>Sign up</Text>
               <MaterialIcons name="navigate-next" size={26} color="white"/>
             </TouchableOpacity>
@@ -334,7 +336,7 @@ const styles = StyleSheet.create({
   inputTitle:{
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#3c8b80',
+    color: Colors.iconColor,
     top: 15,
   },
   avatar:{
@@ -355,7 +357,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#3c8b80',
+    color: Colors.iconColor,
   },
   iconcont:{
     flexDirection: 'column',
@@ -385,7 +387,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
     paddingVertical: 5,
     borderBottomColor: '#ccc',
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
   }
 })
 
