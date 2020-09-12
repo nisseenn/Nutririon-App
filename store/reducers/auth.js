@@ -5,7 +5,7 @@ import { EMAIL_VERIFY } from '../actions/auth'
 const initialState = {
   token: null,
   userId: null,
-  verified: false
+  verified: false,
 }
 
 export default (state= initialState, action) => {

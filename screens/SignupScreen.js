@@ -49,6 +49,13 @@ const formReducer = (state, action) => {
 };
 //Defining the component with props as parameter
 const SignupScreen = (props) => {
+  //Getting params from the navigation passed in prev component in stack
+  const gender = props.navigation.getParam("gender")
+  const age = props.navigation.getParam("age")
+  const weight = props.navigation.getParam("weight")
+  const userHeight = props.navigation.getParam("height")
+  const preference = props.navigation.getParam("preference")
+
   //defining some state to be used to check if we are loading
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState()
@@ -87,6 +94,11 @@ const authHandler = async () => {
         formState.inputValues.email,
         formState.inputValues.password,
         formState.inputValues.name,
+        gender,
+        age,
+        weight,
+        userHeight,
+        preference
       );
     //We set the state of error to null
     setError(null)
@@ -144,7 +156,7 @@ const inputChangeHandler = useCallback(
       <View style={{flex:1, justifyContent: 'flex-end'}}>
 
         <View style={styles.arrowWrap}>
-          <MaterialIcons onPress={() => {props.navigation.navigate("start")}} name="navigate-before" color="white" size={35}/>
+          <MaterialIcons onPress={() => {props.navigation.navigate("preferences")}} name="navigate-before" color="white" size={35}/>
         </View>
 
         <View style={styles.header}>
@@ -275,8 +287,8 @@ const inputChangeHandler = useCallback(
             <TouchableOpacity
               onPress={authHandler}
               style={{...styles.button, backgroundColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
-              <Text style={{fontSize: 20, fontWeight: 'bold', color: 'white'}}>Sign up</Text>
-              <MaterialIcons name="navigate-next" size={26} color="white"/>
+              <Text style={{fontSize: 20, fontWeight: 'bold', color: 'black'}}>Sign up</Text>
+              <MaterialIcons name="navigate-next" size={26} color="black"/>
             </TouchableOpacity>
             )}
           </View>
@@ -307,8 +319,10 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   arrowWrap:{
-    top: height / 20,
-    flex:1,
+    position: 'absolute',
+    top: 50,
+    left: 10
+    // flex:1,
   },
   cont:{
     flex:1,
@@ -375,7 +389,8 @@ const styles = StyleSheet.create({
   },
   button:{
     backgroundColor: 'white',
-    height: 60,
+    // height: 60,
+    paddingVertical: 15,
     marginHorizontal: 20,
     borderRadius: 35,
     alignItems: 'center',

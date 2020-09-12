@@ -10,7 +10,11 @@ import Svg, { Path } from 'react-native-svg';
 
 import Colors from '../constants/Colors'
 
+
 const StartScreen = (props) => {
+
+  const frontimage = require('../assets/startimg.jpg')
+
   return(
     <View style={{flex:1, justifyContent: 'flex-start'}}>
         <View style={{flex:1, backgroundColor: 'white', justifyContent: 'flex-end'}}>
@@ -21,10 +25,10 @@ const StartScreen = (props) => {
             </Text>
           </View>
             <View style={{position: 'absolute',top: 120 ,bottom: 0,left: 0,right: 0, width: width, height: 200}}>
-              <Image
-                source={require('../assets/startimg.jpg')}
-                style={styles.bgImg}
-              />
+                <Image
+                  source={frontimage}
+                  style={styles.bgImg}
+                />
             </View>
             <View style={{position: 'absolute', top: -50, width: width}}>
               <View

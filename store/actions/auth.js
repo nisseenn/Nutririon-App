@@ -15,7 +15,7 @@ let app = firebase.initializeApp(config);
 
 export const LOGOUT = "LOGOUT"
 export const AUTHENTICATE = "AUTHENTICATE"
-export const EMAIL_VERIFY = "EMAIL_VERIFY"
+// export const EMAIL_VERIFY = "EMAIL_VERIFY"
 
 export const authenticate = (userId, token) => {
   return dispatch => {
@@ -30,18 +30,35 @@ export const verifyEmail = (verified) => {
   }
 }
 
-export const signup = (email, password) => {
+export const signup = (email, password, name, gender, age, weight, userHeight, preference) => {
   return async dispatch => {
     const response = await firebase.auth().createUserWithEmailAndPassword(email, password)
     const user = await firebase.auth().currentUser;
 
     const idToken = await user.getIdToken()
 
-    user.sendEmailVerification().then(function() {
-      // dispatch(verifyEmail(false))
-    }).catch(function(error) {
+    const updateUser = await user.updateProfile({
+      displayName: name,
+    })
 
-    });
+    let updates = {}
+
+    let userData = {
+      gender: gender,
+      age: age,
+      weight: weight,
+      userHeight: userHeight,
+      preference: preference
+    }
+
+    updates['users/'+user.uid] = userData;
+    await firebase.database().ref().update(updates)
+
+    // user.sendEmailVerification().then(function() {
+    //   // dispatch(verifyEmail(false))
+    // }).catch(function(error) {
+    //
+    // });
 
     dispatch(authenticate(user.uid, idToken))
     saveDataToStorage(idToken, user.uid)
@@ -58,6 +75,12 @@ export const login = (email, password) => {
     dispatch(authenticate(user.uid, idToken))
     saveDataToStorage(idToken, user.uid)
   }
+}
+
+export const logout = () => {
+  //clearing the token and user data from local storage on phone
+  AsyncStorage.removeItem('userData')
+  return { type: LOGOUT }
 }
 
 const saveDataToStorage = (token, userId) => {

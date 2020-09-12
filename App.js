@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import { AppLoading } from 'expo';
 //Importing redux Thunk, which will be used as middleware in Redux
 import ReduxThunk from 'redux-thunk'
 
@@ -21,14 +22,32 @@ const rootReducer = combineReducers({
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 //Exporting the component with Redux provider wrapping the navigation
 export default function App() {
+  //Creating a state which is changed when we have loaded the photos
+  const [pictureLoaded, setPictureLoaded] = useState(false)
+
+  //Creating a function to get the frontpage picture
   const getPictures = async() => {
     const startimage = await require('./assets/startimg.jpg')
+    return startimage
   }
 
-  //Getting pictures for the StartScreen
+  //Getting pictures for the StartScreen before it is rendered
   useEffect(() => {
     getPictures()
   })
+  //If the pictures is yet not loaded and the app is loading
+  if (!pictureLoaded) {
+    return (
+      <AppLoading
+        //Get the pictures loaded fast af
+        startAsync={getPictures}
+        //Set state to true once we retrieved the photos
+        onFinish={() => {
+          setPictureLoaded(true)
+        }}
+      />
+    );
+  }
   return (
     <Provider store={store}>
       <MainNavigator />

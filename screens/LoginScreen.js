@@ -109,6 +109,13 @@ const LoginScreen = (props) => {
     [dispatchFormState]
   );
 
+  //Added message to user if something fails on login
+  useEffect(() => {
+    if(error){
+      Alert.alert('An error occured', error, [{text: 'Okay'}])
+    }
+  }, [error])
+
   return(
     <KeyboardAvoidingView
       behavior={behavior}
