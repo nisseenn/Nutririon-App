@@ -6,7 +6,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 //Importing iconsetß
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, AntDesign } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors'
 
@@ -22,6 +22,8 @@ import PersonalInfoScreen from '../screens/PersonalInfoScreen'
 import PreferencesScreen from '../screens/PreferencesScreen'
 import SignUpMethodScreen from '../screens/SignUpMethodScreen'
 import StartUpScreen from '../screens/StartUpScreen'
+import AddButton from '../components/AddButton'
+
 //Creating the content for the bottom tab navigator
 const tabScreenConfig = {
     //Defining a tab in the bottom
@@ -33,7 +35,7 @@ const tabScreenConfig = {
         //Put a nice icon in there, we also give color as parameter
         //This allows us to use tintColor when icon is pressed. Eg. the icon changes color on press
         tabBarIcon: (color) => {
-            return <Ionicons name="ios-home" size={24} color={color.tintColor}/>
+            return <AntDesign name="home" size={24} color={color.tintColor}/>
           },
           //Setting the color
           tabBarColor: '#45b993'
@@ -44,8 +46,10 @@ const tabScreenConfig = {
       screen: NewMeal,
       navigationOptions:{
         tabBarIcon: (color) => {
-            return <Ionicons name="ios-add" size={30} color={color.tintColor}/>
+            //Rendering our new sexy add button
+            return <AddButton color={color.tintColor}/>
           },
+          title: '',
       }
     },
     //repeat
@@ -53,7 +57,7 @@ const tabScreenConfig = {
       screen: ProfileScreen,
       navigationOptions:{
         tabBarIcon: (color) => {
-          return <Ionicons name="ios-person" size={24} color={color.tintColor}/>
+          return <AntDesign name="user" size={24} color={color.tintColor}/>
         },
       }
     },

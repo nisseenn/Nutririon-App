@@ -29,7 +29,7 @@ const StartupScreen = props => {
       dispatch(authenticate(userId, token));
     };
 
-    tryLogin();
+    tryLogin()
   }, [dispatch]);
 
   return (
