@@ -23,23 +23,30 @@ const ProfileScreen = (props) => {
 
   //state for the modal to pop up when pressing change preferences
   const [toggleDrop, setToggleDrop] = useState(false)
+  //state for modal to pop up when pressing change activity details
+  const [toggleActivity, setToggleActivity] = useState(false)
+  //State to handle modal animation
   const [animation, setAnimation] = useState("fadeInUpBig")
   const [isLoading, setIsLoading] = useState(false)
   const [saveLoad, setSaveLoad] = useState(false)
   //For the single choice
   const [checked, setChecked] = useState(null);
+  //For the activity details
+  const [work, setWork] = useState(null)
+  const [freetime, setFreetime] = useState(null)
 
   const dispatch = useDispatch()
-  //Getting the Redux state for the preference
+  //Getting the Redux state for the preference, work and freetime
   //the "auth" is connected to out App.js file, where we define the Redux Reducer key value
   const userPreference = useSelector(state => state.auth.preference)
+  const userWork = useSelector(state => state.auth.work)
+  const userFreetime = useSelector(state => state.auth.freetime)
 
-  // console.log(checked);
-
+  //Function to handle submit of preferences
   const submitHandler = async() => {
     try {
       setSaveLoad(true)
-      let objectReturn = await editPreference(checked)
+      let objectReturn = await editPreference(checked, userWork, userFreetime)
       await dispatch(objectReturn)
       setSaveLoad(false)
       setToggleDrop(false)
@@ -48,6 +55,19 @@ const ProfileScreen = (props) => {
     }
   }
 
+  //Function to handle change of activity from user
+  const submitActivityHandler = async() => {
+    try{
+      setSaveLoad(true)
+      let objectReturn = await editPreference(userPreference, work, freetime)
+      await dispatch(objectReturn)
+      setSaveLoad(false)
+      setToggleActivity(false)
+    }catch (err){
+
+    }
+  }
+  //Getting the info before component is rendered
   useEffect(() => {
     const getDisplayName = async () => {
       const userData = await AsyncStorage.getItem('userData');
@@ -79,7 +99,9 @@ const ProfileScreen = (props) => {
       gender: null,
       preference: null,
       userHeight: null,
-      weight: null
+      weight: null,
+      freetime: null,
+      work: null
     }
     //Updating RTDB with the new message, using userId ofc
     firebase.database().ref('users').child(user.uid).update(message)
@@ -117,7 +139,9 @@ const ProfileScreen = (props) => {
   <View style={{...styles.preferences, bottom: 340}}>
     <TouchableOpacity
       onPress={async() => {
+        //Setting the state to the userPreference, so that it is checked when user loads modal
         setChecked(userPreference)
+        //Setting state of toggleDrop to true to activate the modal pop up
         setToggleDrop(true)
       }}
       style={styles.preferencesButton}>
@@ -129,9 +153,17 @@ const ProfileScreen = (props) => {
   </View>
 
   <View style={{...styles.preferences, bottom: 270}}>
-    <TouchableOpacity style={styles.preferencesButton}>
+    <TouchableOpacity
+      onPress={() => {
+        //Setting state of work and userFreetime to info got from Redux so user gets info on modal pop up
+        setWork(userWork)
+        setFreetime(userFreetime)
+        //Activating the modal pop up
+        setToggleActivity(true)
+      }}
+      style={styles.preferencesButton}>
       <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-        CHANGE EMAIL
+        CHANGE ACTIVITY DETAILS
       </Text>
       <MaterialIcons name="navigate-next" size={26} color="#000"/>
     </TouchableOpacity>
@@ -211,6 +243,7 @@ const ProfileScreen = (props) => {
     </TouchableOpacity>
   </View>
 
+{/* If toggleDrop is true, show this */}
   {toggleDrop ? (
     <Animatable.View
       useNativeDriver
@@ -266,9 +299,7 @@ const ProfileScreen = (props) => {
             value="pesc"
             status={ checked === 'pesc' ? 'checked' : 'unchecked' }
             color={Colors.primaryColor}
-            onPress={() => {
-              setChecked('pesc')
-            }}
+            onPress={() => setChecked('pesc')}
           />
         </View>
       </View>
@@ -292,9 +323,7 @@ const ProfileScreen = (props) => {
         )}
 
       <TouchableOpacity
-        onPress={async() => {
-          setToggleDrop(false)
-        }}
+        onPress={() => setToggleDrop(false)}
         style={styles.modalButton}>
         <Text style={{fontSize: 16, fontWeight: '700'}}>
           CANCEL
@@ -307,6 +336,183 @@ const ProfileScreen = (props) => {
 
     </View>
   )}
+
+{/* If activittoggle is true, show this*/}
+  {toggleActivity ? (
+    <Animatable.View
+      useNativeDriver
+      duration={200}
+      animation={animation}
+      style={styles.modal}>
+
+    <Animatable.View
+      style={{width: '100%', justifyContent: 'center', alignItems: 'center', position: 'absolute', top: 20}}>
+
+      <Text style={{marginBottom: 5, fontWeight: 'bold', fontSize: 20}}>
+        Level of activity at work
+      </Text>
+
+      <View style={{flexDirection: 'column'}}>
+        <View style={{flexDirection: 'row'}}>
+          {/* If state variable work is equal to sitting this will render */}
+          {work == 'sitting' ? (
+            <TouchableOpacity style={{...styles.button2, backgroundColor: Colors.primaryColor}} onPress={() => {setWork('sitting')}}>
+              <Text style={{...styles.buttonText2, color: "#fff"}}>
+                SITTING
+              </Text>
+            </TouchableOpacity>
+            // ELSE, this will render (E.g not another backgroundColor)
+          ) : (
+            <TouchableOpacity style={styles.button2} onPress={() => setWork('sitting')}>
+              <Text style={styles.buttonText2}>
+                SITTING
+              </Text>
+            </TouchableOpacity>
+          )}
+          {/* If state variable work is equal to standing this will render */}
+          {work == 'standing' ? (
+            <TouchableOpacity style={{...styles.button2, backgroundColor: Colors.primaryColor}} onPress={() => setWork('standing')}>
+              <Text style={{...styles.buttonText2, color: "#fff"}}>
+                STANDING
+              </Text>
+            </TouchableOpacity>
+          // ELSE, this will render (E.g not another backgroundColor)
+          ) : (
+            <TouchableOpacity style={styles.button2} onPress={() => setWork('standing')}>
+              <Text style={styles.buttonText2}>
+                STANDING
+              </Text>
+            </TouchableOpacity>
+          )}
+
+        </View>
+        <View style={{flexDirection: 'row'}}>
+          {/* If state variable work is equal to physical this will render */}
+          {work == 'physical' ? (
+            <TouchableOpacity style={{...styles.button2, backgroundColor: Colors.primaryColor}} onPress={() => setWork('physical')}>
+              <Text style={{...styles.buttonText2, color: "#fff"}}>
+                PHYSICAL HARD
+              </Text>
+            </TouchableOpacity>
+          // ELSE, this will render (E.g not another backgroundColor)
+          ) : (
+            <TouchableOpacity style={styles.button2} onPress={() => setWork('physical')}>
+              <Text style={styles.buttonText2}>
+                PHYSICAL HARD
+              </Text>
+            </TouchableOpacity>
+          )}
+          {/* If state variable work is equal to beddriven this will render */}
+          {work == 'beddriven' ? (
+            <TouchableOpacity style={{...styles.button2, backgroundColor: Colors.primaryColor}} onPress={() => setWork('beddriven')}>
+              <Text style={{...styles.buttonText2, color: "#fff"}}>
+                BEDDRIVEN
+              </Text>
+            </TouchableOpacity>
+          // ELSE, this will render (E.g not another backgroundColor)
+          ) : (
+            <TouchableOpacity style={styles.button2} onPress={() => setWork('beddriven')}>
+              <Text style={styles.buttonText2}>
+                BEDDRIVEN
+              </Text>
+            </TouchableOpacity>
+          )}
+
+        </View>
+      </View>
+
+      <Text style={{marginTop: 30, fontWeight: 'bold', fontSize: 20}}>
+        Level of activity at work
+      </Text>
+
+      <View style={{flexDirection: 'column', marginTop: 10}}>
+        <View style={{flexDirection: 'row'}}>
+          {/* If state variable freetime is equal to lessactive this will render */}
+          {freetime == 'lessactive' ? (
+            <TouchableOpacity style={{...styles.button2, backgroundColor: Colors.primaryColor}} onPress={() => setFreetime('lessactive')}>
+              <Text style={{...styles.buttonText2, color: "#fff"}}>
+                LESS ACTIVE
+              </Text>
+            </TouchableOpacity>
+          // ELSE, this will render (E.g not another backgroundColor)
+          ) : (
+            <TouchableOpacity style={styles.button2} onPress={() => setFreetime('lessactive')}>
+              <Text style={styles.buttonText2}>
+                LESS ACTIVE
+              </Text>
+            </TouchableOpacity>
+          )}
+          {/* If state variable freetime is equal to active this will render */}
+          {freetime == 'active' ? (
+            <TouchableOpacity style={{...styles.button2, backgroundColor: Colors.primaryColor}} onPress={() => setFreetime('active')}>
+              <Text style={{...styles.buttonText2, color:"#fff"}}>
+                ACTIVE
+              </Text>
+            </TouchableOpacity>
+          // ELSE, this will render (E.g not another backgroundColor)
+          ) : (
+            <TouchableOpacity style={styles.button2} onPress={() => setFreetime('active')}>
+              <Text style={styles.buttonText2}>
+                ACTIVE
+              </Text>
+            </TouchableOpacity>
+          )}
+
+        </View>
+        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+          {/* If state variable freetime is equal to veryactive this will render */}
+          {freetime == 'veryactive' ? (
+            <TouchableOpacity style={{...styles.button2, backgroundColor: Colors.primaryColor}} onPress={() => setFreetime('veryactive')}>
+              <Text style={{...styles.buttonText2, color: "#fff"}}>
+                VERY ACTIVE
+              </Text>
+            </TouchableOpacity>
+          // ELSE, this will render (E.g not another backgroundColor)
+          ) : (
+            <TouchableOpacity style={styles.button2} onPress={() => setFreetime('veryactive')}>
+              <Text style={styles.buttonText2}>
+                VERY ACTIVE
+              </Text>
+            </TouchableOpacity>
+          )}
+
+        </View>
+      </View>
+
+      <View style={{width: '100%', flexDirection: 'row', marginTop: 30, justifyContent: 'center', alignItems: 'center'}}>
+        <TouchableOpacity
+          onPress={() => setToggleActivity(false)}
+          style={styles.modalButton2}>
+          <Text style={{fontSize: 16, fontWeight: '700'}}>
+            CANCEL
+          </Text>
+        </TouchableOpacity>
+        {/* IF save button is pressed, ActivityIndicator will replace the text */}
+        {saveLoad ? (
+          <TouchableOpacity
+            onPress={submitActivityHandler}
+            style={{...styles.modalButton2, borderColor: Colors.buttonColor}}>
+          <ActivityIndicator size="small" color="black"/>
+        </TouchableOpacity>
+        // Else it will show the text
+        ) : (
+          <TouchableOpacity
+            onPress={submitActivityHandler}
+            style={{...styles.modalButton2, borderColor: Colors.buttonColor}}>
+            <Text style={{fontSize: 16, fontWeight: '700', color: "black"}}>
+              SAVE
+            </Text>
+          </TouchableOpacity>
+        )}
+      </View>
+    </Animatable.View>
+  </Animatable.View>
+  ) : (
+    <View>
+
+    </View>
+  )}
+
    </View>
   )
 }
@@ -347,6 +553,16 @@ modalButton:{
   borderRadius: 30,
   marginVertical: 10
 },
+modalButton2:{
+  paddingVertical: 15,
+  borderWidth: 1.5,
+  borderRadius: 30,
+  width: '48%',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderColor: "#e56767",
+  marginHorizontal: 5
+},
 preferencesButton:{
     justifyContent: 'center',
     alignItems: 'center',
@@ -372,6 +588,22 @@ textWrap:{
 boxText:{
   fontSize: 24,
   fontWeight: '500',
+},
+button2:{
+  backgroundColor: Colors.buttonColor,
+  // paddingHorizontal: 40,
+  paddingVertical: 15,
+  borderRadius: 30,
+  width: width / 2.2,
+  // height: 30,
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginHorizontal: 5,
+  marginVertical: 8
+},
+buttonText2:{
+  fontSize: 16,
+  fontWeight: 'bold'
 },
 })
 

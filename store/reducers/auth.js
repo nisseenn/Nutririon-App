@@ -7,7 +7,9 @@ const initialState = {
   token: null,
   userId: null,
   verified: false,
-  preference: null
+  preference: null,
+  freetime: null,
+  work: null
 }
 
 export default (state= initialState, action) => {
@@ -22,7 +24,7 @@ export default (state= initialState, action) => {
       // console.log(action.verified);
     //To set the preferences when app loads
     case SET_PREFERENCE:
-      return { preference: action.preference }
+      return { preference: action.preference, freetime: action.freetime, work: action.work }
 
     default:
       return state;

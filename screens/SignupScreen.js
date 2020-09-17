@@ -51,6 +51,8 @@ const formReducer = (state, action) => {
 const SignupScreen = (props) => {
   //Getting params from the navigation passed in prev component in stack
   const gender = props.navigation.getParam("gender")
+  const userWork = props.navigation.getParam("work")
+  const userFreetime = props.navigation.getParam("freetime")
   const age = props.navigation.getParam("age")
   const weight = props.navigation.getParam("weight")
   const userHeight = props.navigation.getParam("height")
@@ -98,7 +100,9 @@ const authHandler = async () => {
         age,
         weight,
         userHeight,
-        preference
+        preference,
+        userWork,
+        userFreetime
       );
     //We set the state of error to null
     setError(null)

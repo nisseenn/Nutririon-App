@@ -8,6 +8,8 @@ const {width,height} = Dimensions.get('window')
 const SignUpMethodScreen = (props) => {
   //Getting params from the navigation passed in prev component in stack
   const gender = props.navigation.getParam("gender")
+  const userWork = props.navigation.getParam("work")
+  const userFreetime = props.navigation.getParam("freetime")
   const age = props.navigation.getParam("age")
   const weight = props.navigation.getParam("weight")
   const userHeight = props.navigation.getParam("height")
@@ -34,6 +36,8 @@ const SignUpMethodScreen = (props) => {
             //Passing props via navigation
             props.navigation.navigate("start", {
               gender: gender,
+              work: userWork,
+              freetime: userFreetime,
               age: age,
               height: userHeight,
               weight: weight,
@@ -60,6 +64,8 @@ const SignUpMethodScreen = (props) => {
             //Passing props via navigation
             props.navigation.navigate("start", {
               gender: gender,
+              work: userWork,
+              freetime: userFreetime,
               age: age,
               height: userHeight,
               weight: weight,
@@ -84,6 +90,8 @@ const SignUpMethodScreen = (props) => {
             //Passing props via navigation
             props.navigation.navigate("start", {
               gender: gender,
+              work: userWork,
+              freetime: userFreetime,
               age: age,
               height: userHeight,
               weight: weight,

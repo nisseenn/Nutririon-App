@@ -8,8 +8,10 @@ import * as Animatable from 'react-native-animatable';
 const {width,height} = Dimensions.get('window')
 //Defining HomeScreen functional component
 const PersonalInfoScreen = (props) => {
-  //Getting the gender the user pressed
+  //Getting the gender, userwork and free time activity the user pressed
   const gender = props.navigation.getParam("gender")
+  const userWork = props.navigation.getParam("work")
+  const userFreetime = props.navigation.getParam("freetime")
 
   const [age, setAge] = useState(null)
   const [userHeight, setHeight] = useState(null)
@@ -154,6 +156,8 @@ const PersonalInfoScreen = (props) => {
       onPress={() => {
         props.navigation.navigate("preferences", {
           gender: gender,
+          work: userWork,
+          freetime: userFreetime,
           age: age,
           height: userHeight,
           weight: weight

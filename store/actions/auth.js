@@ -34,16 +34,17 @@ export const fetchUserData = () => {
       //transforming data from response
       const resData = await response.json();
       //Dispatching the preference to the Redux Store
-      dispatch({ type: SET_PREFERENCE, preference: resData.preference })
+      dispatch({ type: SET_PREFERENCE, preference: resData.preference, freetime: resData.freetime, work: resData.work })
 
     } catch (err) {
       throw err;
     }
   }
 }
-
-export const editPreference = (preference, token, userId) => {
+//Creating a function to handle editing of the preference and activitylevel
+export const editPreference = (preference, work, freetime, token, userId) => {
   return async (dispatch, getState) => {
+    //Getting necesseary info
     const user = await firebase.auth().currentUser;
     const userId = user.uid
     const token = await user.getIdToken()
@@ -55,7 +56,9 @@ export const editPreference = (preference, token, userId) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          preference: preference
+          preference: preference,
+          work: work,
+          freetime: freetime
         })
       });
 
@@ -64,12 +67,12 @@ export const editPreference = (preference, token, userId) => {
     }
     //transforming data from response
     const resData = await response.json();
-    console.log(resData);
 
   } catch (err) {
     throw err;
   }
-    dispatch({ type: SET_PREFERENCE, preference: preference })
+    //Dispatching the new state to Redux
+    dispatch({ type: SET_PREFERENCE, preference: preference, work: work, freetime: freetime })
   }
 }
 
@@ -86,27 +89,28 @@ export const verifyEmail = (verified) => {
   }
 }
 
-export const signup = (email, password, name, gender, age, weight, userHeight, preference) => {
+export const signup = (email, password, name, gender, age, weight, userHeight, preference, userWork, userFreetime) => {
   return async dispatch => {
     const response = await firebase.auth().createUserWithEmailAndPassword(email, password)
     const user = await firebase.auth().currentUser;
 
     const idToken = await user.getIdToken()
-
+    //Updating user displayName with firebase method updateProfile
     const updateUser = await user.updateProfile({
       displayName: name,
     })
-
+    //Creating an empty object
     let updates = {}
-
+    //Creating the obj to push to DB
     let userData = {
       gender: gender,
       age: age,
       weight: weight,
       userHeight: userHeight,
-      preference: preference
+      preference: preference,
+      work: userWork,
+      freetime: userFreetime
     }
-
     updates['users/'+user.uid] = userData;
     await firebase.database().ref().update(updates)
 
@@ -117,7 +121,7 @@ export const signup = (email, password, name, gender, age, weight, userHeight, p
     // });
 
     dispatch(authenticate(user.uid, idToken))
-    dispatch({ type: SET_PREFERENCE, preference: preference })
+    dispatch({ type: SET_PREFERENCE, preference: preference, work: userWork, freetime: userFreetime })
     saveDataToStorage(idToken, user.uid, name)
   }
 }

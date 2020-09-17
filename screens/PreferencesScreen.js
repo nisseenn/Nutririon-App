@@ -10,6 +10,8 @@ const {width,height} = Dimensions.get('window')
 const PreferencesScreen = (props) => {
   //Getting params from the navigation passed in prev component in stack
   const gender = props.navigation.getParam("gender")
+  const userWork = props.navigation.getParam("work")
+  const userFreetime = props.navigation.getParam("freetime")
   const age = props.navigation.getParam("age")
   const weight = props.navigation.getParam("weight")
   const userHeight = props.navigation.getParam("height")
@@ -92,6 +94,8 @@ const PreferencesScreen = (props) => {
             //Passing props via navigation
             props.navigation.navigate("method", {
               gender: gender,
+              work: userWork,
+              freetime: userFreetime,
               age: age,
               height: userHeight,
               weight: weight,
