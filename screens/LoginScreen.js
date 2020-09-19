@@ -1,10 +1,12 @@
 import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
-import { ScrollView, View, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
+import { ScrollView, View, TextInput, Keyboard, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
 import { useDispatch } from 'react-redux'
 import firebase from 'firebase';
 import { login } from '../store/actions/auth'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import * as Animatable from 'react-native-animatable';
+import Animated from 'react-native-reanimated';
 //Importing the colors we are going to use
 import Colors from '../constants/Colors'
 //Importing our customized, amazing component, which can be used in multiple other components
@@ -57,6 +59,17 @@ const formReducer = (state, action) => {
 const LoginScreen = (props) => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState()
+  //Toggle drop handle the modal for forgot password
+  const [toggleDrop, setToggleDrop] = useState(false)
+  //State for the modal animation
+  const [animation, setAnimation] = useState("fadeInUp")
+  //State to handle email reset
+  const [emailHolder2, setEmailHolder2] = useState(null)
+  //State to handle email reset sent animation
+  const [emailAnimation, setEmailAnimation] = useState(false)
+  //ref to create a reference to the picture in the render section
+  const imageRef = useRef(null);
+
   //Defining dispatch to more easily write dispatch code
   const dispatch = useDispatch()
   //Defining formstate (which holds a value) and dispatch with is going to be called whenever we want
@@ -94,6 +107,38 @@ const LoginScreen = (props) => {
      setIsLoading(false)
    }
   };
+
+  //Creating a function to handle reset password
+  const resetPassword = async () => {
+  //Calling the firebase method to sendPasswordResetEmail with argument, which is the user email
+  firebase.auth().sendPasswordResetEmail(emailHolder2).then(function() {
+
+  }).catch(function(error) {
+    Alert.alert(
+    'Email not found',
+    '',
+    [
+      {
+        text: 'Okay',
+      },
+    ],
+    { cancelable: true }
+  );
+  });
+  //Creating the bouncy "email sent" animation
+  await setEmailAnimation(true)
+  //bounce in image
+  await imageRef.current.bounceIn(1000)
+  //Waiting 3 sek before it bounces out again
+  const startAnimation = await setTimeout(() => {
+    imageRef.current.bounceOut(500)
+  }, 3000)
+  const endanimation = await setTimeout(() => {
+    setEmailAnimation(false)
+  }, 3600)
+  //Moving the modal out of the way
+  setToggleDrop(false)
+}
 
   //Using the useCallback function to run a function only when dispatchFormState is called
   //or when inputChangeHandler is called spesifically
@@ -195,15 +240,15 @@ const LoginScreen = (props) => {
               <TouchableOpacity
                 onPress={authHandler}
                 style={{...styles.button, backgroundColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
-                <ActivityIndicator size="small" color="white"/>
+                <ActivityIndicator size="small" color="black"/>
               </TouchableOpacity>
             )
             : (
             <TouchableOpacity
               onPress={authHandler}
               style={{...styles.button, backgroundColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
-              <Text style={{fontSize: 20, fontWeight: 'bold', color: 'white'}}>Log in</Text>
-              <MaterialIcons name="navigate-next" size={26} color="white"/>
+              <Text style={{fontSize: 20, fontWeight: 'bold', color: '#000'}}>Log in</Text>
+              <MaterialIcons name="navigate-next" size={26} color="#000"/>
             </TouchableOpacity>
             )}
           </View>
@@ -222,17 +267,17 @@ const LoginScreen = (props) => {
                     Sign up
                   </Text>
                 </TouchableOpacity>
-                {/* <TouchableOpacity
+                <TouchableOpacity
                   style={{
                     ...styles.button2, borderColor: '#e56767', borderWidth: 1, flexDirection: 'row', justifyContent: 'center'
                   }}
                   onPress={() => {
-
+                    setToggleDrop(true)
                   }}>
                   <Text style={{fontSize: 20, fontWeight: 'bold', color: 'black'}}>
                     Forgot password?
                   </Text>
-                </TouchableOpacity> */}
+                </TouchableOpacity>
               </View>
             ) : (
               <View>
@@ -242,35 +287,92 @@ const LoginScreen = (props) => {
                 onPress={() => {
                   props.navigation.navigate("signup")
                 }}/>
-                {/* <View style={{marginTop: height / 50}}>
+                <View style={{marginTop: height / 50}}>
                   <Button
                   title='Forgot password?'
                   color="#e56767"
                   onPress={() => {
-
+                    setToggleDrop(true)
                   }}/>
-                </View> */}
+                </View>
               </View>
             )}
           </View>
 
-          {/* {emailAnimation ? (
+          {emailAnimation ? (
             <View style={{flex:1, width: '100%', height: '100%',justifyContent: 'center', alignItems: 'center', position: 'absolute', zIndex: 7000}}>
-              <View
+              <Animatable.View
                 style={{backgroundColor: "#80d0c7", width: width / 2, height: width / 2, borderRadius: 30, justifyContent: 'center', alignItems: 'center'}}
                 ref={imageRef}
                 >
                 <Text style={{color:"#fff", fontWeight: '600', fontSize: 20}}>Email sent</Text>
                 <Text style={{color:"#fff", fontWeight: '600', fontSize: 16, marginTop: 5, marginBottom: 5}}>Check junk mail</Text>
                 <MaterialIcons name="check" size={50} color="#fff"/>
-              </View>
+              </Animatable.View>
             </View>
           ) : (
             <View>
 
             </View>
-          )} */}
+          )}
+          {toggleDrop ? (
+            <Animatable.View
+              duration={200}
+              animation={animation}
+              style={{...styles.buttonWrapper2, position: 'absolute', zIndex: 3000, width: '100%'}}>
+              <Text style={{fontSize: 30, fontWeight: '500', position: 'absolute', top: 20, left: 40}}>
+                Reset Password
+              </Text>
+            <TouchableOpacity
+              onPress={() => {
 
+              }}
+              style={{}} />
+            <Animatable.View
+              style={{borderRadius: 20}}>
+              <TouchableOpacity
+                style={{padding: 20}}>
+                <Text style={{fontSize: 16, fontWeight: '500', marginTop: 50, opacity: .7}}>
+                  Email
+                </Text>
+                <TextInput
+                   style = {styles.input}
+                   onChangeText={text => setEmailHolder2(text)}
+                   selectionColor = "#9a73ef"
+                   maxLength={60}
+                   returnKeyType="done"
+                   placeholder="example@ex.com"
+                   onSubmitEditing={Keyboard.dismiss}
+                   textAlign="left"
+                   keyboardType="email-address"
+                 />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  resetPassword()
+                }}
+                style={{paddingVertical: 15, backgroundColor: "#ffc360", justifyContent: 'center', alignItems: 'center', borderRadius: 30, marginTop: 30}}>
+                <Text style={{fontSize: 16, fontWeight: '700', color: "black"}}>
+                  Send reset email
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={async() => {
+                  setToggleDrop(false)
+                }}
+                style={{paddingVertical: 15, borderWidth: 1.5, borderColor: "#e56767", justifyContent: 'center', alignItems: 'center', borderRadius: 30, marginTop: 30}}>
+                <Text style={{fontSize: 16, fontWeight: '700'}}>
+                  Cancel
+                </Text>
+              </TouchableOpacity>
+            </Animatable.View>
+          </Animatable.View>
+          ) : (
+            <View>
+
+            </View>
+          )}
         </ScrollView>
         </View>
       </View>
@@ -343,6 +445,15 @@ headerText:{
    borderBottomWidth: 1,
    color:"black"
   },
+  buttonWrapper2:{
+  height: height / 1.5,
+  borderTopLeftRadius: 30,
+  borderTopRightRadius: 30,
+  opacity: 1,
+  paddingVertical: 35,
+  paddingHorizontal: 20,
+  backgroundColor: "#fff"
+},
 })
 
 export default LoginScreen

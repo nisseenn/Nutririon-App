@@ -98,8 +98,8 @@ const StartScreen = (props) => {
                   props.navigation.navigate("login")
                 }}
                 style={{...styles.button, backgroundColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
-                <Text style={{fontSize: 20, fontWeight: 'bold', color: 'white'}}>Log in</Text>
-                <MaterialIcons name="navigate-next" size={26} color="white"/>
+                <Text style={{fontSize: 20, fontWeight: 'bold', color: 'black'}}>Log in</Text>
+                <MaterialIcons name="navigate-next" size={26} color="black"/>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {

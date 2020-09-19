@@ -55,6 +55,15 @@ const ProfileScreen = (props) => {
     }
   }
 
+  const deletePreferenceHandler = async() => {
+    try {
+      let objectReturn = await editPreference(null, userWork, userFreetime)
+      await dispatch(objectReturn)
+    } catch (error) {
+
+    }
+  }
+
   //Function to handle change of activity from user
   const submitActivityHandler = async() => {
     try{
@@ -220,7 +229,7 @@ const ProfileScreen = (props) => {
         //Asking user to verify deleting account
         Alert.alert(
         'Are you sure you want to delete your account?',
-        '',
+        'All data about you will be deleted',
         [
           {
             text: 'Cancel',
@@ -304,7 +313,7 @@ const ProfileScreen = (props) => {
         </View>
       </View>
 
-      <View style={{height: 40}}>
+      <View style={{height: 10}}>
       </View>
         {saveLoad ? (
           <TouchableOpacity
@@ -329,6 +338,34 @@ const ProfileScreen = (props) => {
           CANCEL
         </Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => {
+          Alert.alert(
+          'Are you sure you want to delete preferences?',
+          '',
+          [
+            {
+              text: 'Cancel',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel'
+            },
+            {
+              text: 'Yes',
+              onPress: () => {
+                deletePreferenceHandler()
+              }
+            },
+          ],
+          { cancelable: true }
+          );
+        }}
+        style={{marginBottom: 10, marginTop: 20}}>
+        <Text style={{fontWeight: 'bold', color: "#da2626" }}>
+          Delete preferences
+        </Text>
+      </TouchableOpacity>
+
     </Animatable.View>
   </Animatable.View>
   ) : (
@@ -422,7 +459,7 @@ const ProfileScreen = (props) => {
       </View>
 
       <Text style={{marginTop: 30, fontWeight: 'bold', fontSize: 20}}>
-        Level of activity at work
+        Level of activity in freetime
       </Text>
 
       <View style={{flexDirection: 'column', marginTop: 10}}>
@@ -547,7 +584,7 @@ modalButton:{
   paddingVertical: 15,
   borderWidth: 1.5,
   width: '90%',
-  borderColor: "#e56767",
+  borderColor: "#da2626",
   justifyContent: 'center',
   alignItems: 'center',
   borderRadius: 30,
