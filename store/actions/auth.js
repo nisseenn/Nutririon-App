@@ -24,9 +24,10 @@ export const fetchUserData = () => {
       //Getting userid and token
       const userId = getState().auth.userId
       const token = getState().auth.token
+
       try {
         //Requesting data from Firebase with token and userid
-        const response = await fetch(`https://nutrition-1cf49.firebaseio.com/users/${userId}.json?auth=${token}`);
+      const response = await fetch(`https://nutrition-1cf49.firebaseio.com/users/${userId}.json?auth=${token}`);
       if (!response.ok) {
         console.log('not ok');
         throw new Error('Something went wrong');

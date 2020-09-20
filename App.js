@@ -9,12 +9,15 @@ import ReduxThunk from 'redux-thunk'
 
 //Importing the authreducer (not active yet)
 import authReducer from './store/reducers/auth'
+//Importing nutritionReducer
+import nutritionReducer from './store/reducers/nutrition'
 //importing our main navigator
 import MainNavigator from './navigation/MainNavigation'
 
 //Creating a root reducer, where we use combine reducers to be able to have multiple reducers.
 //We will also have a reducer for all the rest
 const rootReducer = combineReducers({
+  nutrition: nutritionReducer,
   auth: authReducer
 });
 

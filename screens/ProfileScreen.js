@@ -54,10 +54,13 @@ const ProfileScreen = (props) => {
       // setError(err.message)
     }
   }
-
+  //Creating a funciton to delete the preferences
   const deletePreferenceHandler = async() => {
     try {
+      //Calling Redux function to handle edit of the preference.
+      //We pass null as the parameter for preference. It will therefore be deleted in Firebase
       let objectReturn = await editPreference(null, userWork, userFreetime)
+      //Dispatching the obj from redux function to redux state
       await dispatch(objectReturn)
     } catch (error) {
 
@@ -67,9 +70,13 @@ const ProfileScreen = (props) => {
   //Function to handle change of activity from user
   const submitActivityHandler = async() => {
     try{
+      //Setting state for the loader to work
       setSaveLoad(true)
+      //Calling Redux funtion to handle the edit of preference in acitivity
       let objectReturn = await editPreference(userPreference, work, freetime)
+      //Dispatching the Object which is created in Redux. Dispatching it to the Redux store
       await dispatch(objectReturn)
+      //Setting the loading to false
       setSaveLoad(false)
       setToggleActivity(false)
     }catch (err){
@@ -79,17 +86,29 @@ const ProfileScreen = (props) => {
   //Getting the info before component is rendered
   useEffect(() => {
     const getDisplayName = async () => {
+      //Getting the info from HD on phone
       const userData = await AsyncStorage.getItem('userData');
-
+      //Parsing the data to be able to read it
       const transformedData = JSON.parse(userData);
       //Getting data from HD
       const { token, userId, displayName } = transformedData;
-
       //Doing some basic JS to get first characters of the name
       const displayArray = displayName.split(' ')
-      const firstChar = displayArray[0].slice(0,1)
-      const secondChar = displayArray[1].slice(0,1)
-      const displayNameShort = firstChar.toUpperCase() + secondChar.toUpperCase()
+      //Defining vars to hold the char values
+      let firstChar;
+      let secondChar;
+      let displayNameShort;
+      //If user only put in surname
+      if(displayArray.length < 2){
+        firstChar = displayArray[0].slice(0,1)
+        displayNameShort = firstChar.toUpperCase()
+      //If user puts in surname and given name
+      }else{
+        firstChar = displayArray[0].slice(0,1)
+        secondChar = displayArray[1].slice(0,1)
+        displayNameShort = firstChar.toUpperCase() + secondChar.toUpperCase()
+      }
+      //Setting the characters to state variable
       setDisplayName(displayNameShort)
     };
   getDisplayName()
@@ -126,15 +145,17 @@ const ProfileScreen = (props) => {
 
   return(
     <View style={styles.container}>
+
         <View style={{zIndex: 1000, position: 'absolute', width: '100%', justifyContent: 'center', alignItems: 'center', top: 100}}>
-          <View style={{zIndex: 1000, backgroundColor: Colors.accentColor, padding: 40, borderRadius: 300}}>
+          <View style={{zIndex: 1000, backgroundColor: Colors.accentColor, width: width / 3, height: width / 3, borderRadius: 300, alignItems: 'center', justifyContent: 'center'}}>
             <Text
               style={styles.settingsText}>
-              {/* Displaying our beautiful two characters */}
+              {/* Displaying our beautiful character(s) */}
               {displayName}
             </Text>
           </View>
         </View>
+
       <View style={styles.backgroundTop}>
         <LinearGradient
             colors={[Colors.primaryColor, Colors.accentColor]}

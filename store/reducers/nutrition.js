@@ -1,24 +1,30 @@
-import { AsyncStorage } from 'react-native'
-import firebase from 'firebase';
+import { ADD_MEAL } from '../actions/nutrition'
+import { SET_USERMEAL } from '../actions/nutrition'
+import { SET_SUGGESTION } from '../actions/nutrition'
+import { SET_INGREDIENTS } from '../actions/nutrition'
 
-export default ADD_MEAL = 'ADD_MEAL'
-export default SET_USERMEAL = 'SET_USERMEAL'
-export default SET_SUGGESTION = 'SET_SUGGESTION'
-
-export const fetchUserMeals = () => {
-  return async(dispatch, getState) => {
-
-  }
+const initialState = {
+  ingredients: [],
+  foodSuggestions: [],
+  userMeals: [],
+  calorySuggestion: null,
 }
 
-export const fetchMealSuggestion = () => {
-  return async(dispatch, getState) => {
+const nutritionReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SET_INGREDIENTS:
+      return {...state, ingredients: action.ingredients}
+
+    case ADD_MEAL:
+
+
+    case SET_SUGGESTION:
+
+
+    case SET_USERMEAL:
 
   }
+  return state;
 }
 
-export const addMeal = () => {
-  return async(dispatch, getState) => {
-
-  }
-}
+export default nutritionReducer
