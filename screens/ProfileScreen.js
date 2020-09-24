@@ -1,8 +1,11 @@
 import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
 import { ScrollView, View, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
 import { AsyncStorage } from 'react-native'
+
 import { logout } from '../store/actions/auth'
 import { editPreference } from '../store/actions/auth'
+import { fetchIngredients } from '../store/actions/nutrition'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient'
@@ -48,6 +51,7 @@ const ProfileScreen = (props) => {
       setSaveLoad(true)
       let objectReturn = await editPreference(checked, userWork, userFreetime)
       await dispatch(objectReturn)
+      await dispatch(fetchIngredients())
       setSaveLoad(false)
       setToggleDrop(false)
     } catch (err) {

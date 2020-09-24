@@ -35,7 +35,7 @@ export const fetchUserData = () => {
       //transforming data from response
       const resData = await response.json();
       //Dispatching the preference to the Redux Store
-      dispatch({ type: SET_PREFERENCE, preference: resData.preference, freetime: resData.freetime, work: resData.work })
+      dispatch({ type: SET_PREFERENCE, token: token, userId: userId, preference: resData.preference, freetime: resData.freetime, work: resData.work })
 
     } catch (err) {
       throw err;
@@ -73,7 +73,7 @@ export const editPreference = (preference, work, freetime, token, userId) => {
     throw err;
   }
     //Dispatching the new state to Redux
-    dispatch({ type: SET_PREFERENCE, preference: preference, work: work, freetime: freetime })
+    dispatch({ type: SET_PREFERENCE, token: token, userId: userId, preference: preference, work: work, freetime: freetime })
   }
 }
 

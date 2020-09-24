@@ -10,7 +10,6 @@ export const fetchIngredients = () => {
   return async(dispatch, getState) => {
     const userId = getState().auth.userId
     const token = getState().auth.token
-
     try {
       const userResponse = await fetch(`https://nutrition-1cf49.firebaseio.com/users/${userId}.json?auth=${token}`);
       const response = await fetch(`https://nutrition-1cf49.firebaseio.com/foods.json?auth=${token}`);
@@ -21,6 +20,7 @@ export const fetchIngredients = () => {
       if (!userResponse.ok) {
         throw new Error('Something went wrong');
       }
+
       const userData = await userResponse.json()
       const resData = await response.json();
 
@@ -55,7 +55,7 @@ export const fetchIngredients = () => {
       dispatch({ type: SET_INGREDIENTS, ingredients: filteredIngredients })
 
     } catch (error) {
-
+      throw new Error('error', error);
     }
   }
 }

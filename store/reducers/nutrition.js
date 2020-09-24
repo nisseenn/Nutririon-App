@@ -13,7 +13,7 @@ const initialState = {
 const nutritionReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_INGREDIENTS:
-      return {...state, ingredients: action.ingredients}
+      return { ingredients: action.ingredients }
 
     case ADD_MEAL:
 

@@ -24,7 +24,7 @@ export default (state= initialState, action) => {
       // console.log(action.verified);
     //To set the preferences when app loads
     case SET_PREFERENCE:
-      return { preference: action.preference, freetime: action.freetime, work: action.work }
+      return { token: action.token, userId: action.userId, preference: action.preference, freetime: action.freetime, work: action.work }
 
     default:
       return state;

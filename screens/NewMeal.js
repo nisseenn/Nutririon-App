@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import Colors from '../constants/Colors'
 import { fetchIngredients } from '../store/actions/nutrition'
 import { SearchBar } from 'react-native-elements';
+import { LinearGradient } from 'expo-linear-gradient'
+
+import IngredientItem from '../components/IngredientItem'
 
 const {width,height} = Dimensions.get('window')
 
@@ -12,13 +15,16 @@ const NewMeal = (props) => {
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [error, setError] = useState()
   const [search, setSearch] = useState(null)
+  const [list, setList] = useState([])
 
   const dispatch = useDispatch()
-
+  //Getting the ingredients from the Redux store
   const ingredients = useSelector(state => state.nutrition.ingredients)
-
+  //Getting the userPreference from the redux store
+  const userPreference = useSelector(state => state.auth.preference)
 
   const loadIngredients = useCallback(async () => {
+  setList(ingredients)
   setIsRefreshing(true)
   setError(null)
   try {
@@ -27,41 +33,37 @@ const NewMeal = (props) => {
     setError(err.message)
   }
   setIsRefreshing(false)
-}, [dispatch, setIsLoading, setError])
+}, [dispatch, setIsLoading, setError, userPreference])
 
+  // const updateList = () => {
+  //   await dispatch(fetchIngredients())
+  // }
+  // To handle the update of ingredients once preference is changed
+  useEffect(() => {
+    setList(ingredients)
+  }, [ingredients])
+
+  //Function to handle the filtering from search, getting the parameter which is the user input
+  const searchIngredients = (value) => {
+    //Creating a new array which only contains the input in the name
+    const filteredIngredients = ingredients.filter(ingredient => {
+      let name = ingredient.name.toLowerCase()
+      let search = value.toLowerCase()
+      //returning the names which contain the value and hence is greater than -1 (which is default to false)
+      return name.indexOf(search) > -1
+    })
+    //Updating the list which is used in the Flatlist with the filtered list
+    setList(filteredIngredients)
+  }
+  //Function to render the different ingredients
+  //Getting the itemData from the Flatlist
   const renderIngredients = (itemData) => {
-    return(
-      <View>
-        <Text>
-          {itemData.item.name}
-        </Text>
-      </View>
+    return (
+        <IngredientItem
+          name={itemData.item.name}
+          />
     )
   };
-
-  // const renderHeader = () => {
-  //   return(
-  //     <View
-  //        style={{
-  //          backgroundColor: '#fff',
-  //          padding: 10,
-  //          marginVertical: 10,
-  //          borderRadius: 20
-  //        }}
-  //      >
-  //        {/* <TextInput
-  //           // style = {styles.input}
-  //           onChangeText={text => setSearch(text)}
-  //           selectionColor = "#9a73ef"
-  //           maxLength={60}
-  //           returnKeyType="done"
-  //           placeholder="example@ex.com"
-  //           textAlign="left"
-  //           keyboardType="email-address"
-  //         /> */}
-  //      </View>
-  //   )
-  // }
 
   useEffect(() => {
   setIsLoading(true)
@@ -80,30 +82,32 @@ const NewMeal = (props) => {
 
   return(
     <View style={{flex:1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff'}}>
-      <View style={{width: width, position: 'absolute', top: 50, zIndex: 4000}}>
+      <View style={{width: width, position: 'absolute', top: 0, zIndex: 4000, height: 100, justifyContent: 'center'}}>
+        <LinearGradient
+            colors={[Colors.primaryColor, Colors.accentColor]}
+            style={{
+              // flex:1,
+              height: height / 3
+            }}
+          />
         <SearchBar
           lightTheme={true}
           platform="ios"
-          containerStyle={{backgroundColor: '#fff'}}
+          cancelButtonProps={{color: "#000"}}
+          containerStyle={{position: 'absolute', top: 90, backgroundColor: 'transparent'}}
           inputContainerStyle={{backgroundColor: "#e5e5e5"}}
           placeholder="Search here..."
-          onChangeText={text => setSearch(text)}
+          onChangeText={text => searchIngredients(text)}
           value={search}
         />
       </View>
       <FlatList
-        contentContainerStyle={{ paddingTop: 130, width: width}}
+        contentContainerStyle={{ paddingTop: 200, width: width}}
         scrollEventThrottle={16}
-        // ListHeaderComponent={renderHeader}
-      //   onScroll={Animated.event([
-      //     {
-      //     nativeEvent: { contentOffset: { y: scrollY }}
-      //     }
-      // ],{ useNativeDriver: true })}
         onRefresh={loadIngredients}
         refreshing={isRefreshing}
-        numColumns={2}
-        data={ingredients}
+        numColumns={1}
+        data={list}
         renderItem={renderIngredients}
         keyExtractor={(item, index) => item.id}
       />
@@ -121,6 +125,11 @@ const styles = StyleSheet.create({
    borderBottomWidth: 1,
    color:"black"
   },
+  ingredientWrap:{
+    flex:1,
+
+    backgroundColor: 'red',
+  }
 })
 
 export default NewMeal
