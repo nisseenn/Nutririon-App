@@ -36,10 +36,23 @@ const ProfileScreen = (props) => {
   const [saveLoad, setSaveLoad] = useState(false)
   //For the single choice
   const [checked, setChecked] = useState(null);
-  //For the activity details
+  
+	//For the activity details - string
   const [work, setWork] = useState(null)
   const [freetime, setFreetime] = useState(null)
-
+  
+	// maps to convert slider vaue to text
+	// 
+	var workMap = {0: "Bedridden/Inactive", 1: "Sedentary work", 2:"Standing work", 3: "Physical hard work"}
+  var freetimeMap = {0: "Less active", 1: "Active", 2:"Very Active"}
+  
+	
+	// reverse lookup of hashmaps
+	//                object   int  -> string
+	// getKeyByValue( workMap, work) -> "Bedridden/Inactive"
+  function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+  }
 
   const dispatch = useDispatch()
   //Getting the Redux state for the preference, work and freetime
@@ -77,10 +90,13 @@ const ProfileScreen = (props) => {
   //Function to handle change of activity from user
   const submitActivityHandler = async() => {
     try{
+
+			console.log(workMap[work])
+			console.log(freetimeMap[freetime])
       //Setting state for the loader to work
       setSaveLoad(true)
       //Calling Redux funtion to handle the edit of preference in acitivity
-      let objectReturn = await editPreference(userPreference, work, freetime)
+      let objectReturn = await editPreference(userPreference, workMap[work], freetimeMap[freetime])
       //Dispatching the Object which is created in Redux. Dispatching it to the Redux store
       await dispatch(objectReturn)
       //Setting the loading to false
@@ -151,6 +167,8 @@ const ProfileScreen = (props) => {
   }
 
   return(
+
+    // Profile menu - top of stack navigation
     <View style={styles.container}>
 
         <View style={{zIndex: 1000, position: 'absolute', width: '100%', justifyContent: 'center', alignItems: 'center', top: 100}}>
@@ -192,9 +210,10 @@ const ProfileScreen = (props) => {
   <View style={{...styles.preferences, bottom: 270}}>
     <TouchableOpacity
       onPress={() => {
+
         //Setting state of work and userFreetime to info got from Redux so user gets info on modal pop up
-        setWork(userWork)
-        setFreetime(userFreetime)
+        setWork( getKeyByValue(workMap, userWork) )
+        setFreetime(getKeyByValue(freetimeMap, userFreetime) )
         //Activating the modal pop up
         setToggleActivity(true)
       }}
@@ -279,6 +298,15 @@ const ProfileScreen = (props) => {
       <MaterialIcons name="navigate-next" size={26} color="#000"/>
     </TouchableOpacity>
   </View>
+
+
+
+
+{/* Stack navigations- preference - activity */}
+
+
+
+
 
 {/* If toggleDrop is true, show this */}
   {toggleDrop ? (
@@ -402,6 +430,15 @@ const ProfileScreen = (props) => {
     </View>
   )}
 
+
+
+
+
+
+
+
+
+
 {/* If activittoggle is true, show this*/}
   {toggleActivity ? (
     <Animatable.View
@@ -414,50 +451,64 @@ const ProfileScreen = (props) => {
       style={{width: '100%', justifyContent: 'center', alignItems: 'center', position: 'absolute', top: 20}}>
 
       <Text style={{marginBottom: 5, fontWeight: 'bold', fontSize: 20}}>
-        Level of activity at work
+        Work activity
       </Text>
 
-      <View style={[{}]} >
+      <Text style={{marginBottom: 5, fontWeight: 'bold', fontSize: 15}}>
+        {workMap[work]}
+      </Text>
 
-                {/*Slider with max, min, step and initial value*/}
+      <View>   
+        {/*Slider with max, min, step and initial value*/}
         <Slider
-          maximumValue={4}
+          maximumValue={3}
           minimumValue={0}
           thumbTintColor={Colors.primaryColor}
           minimumTrackTintColor= {Colors.accentColor}
           maximumTrackTintColor="#000000"
-          minimumValueLabel="Never"
-          maximumValueLabel="Always"
           step={1}
           value={work}
-          onValueChange={(work) =>  setWork(work)}
-          style={{ width: 300, height: 50, marginBottom: 20 }}
+          onSlidingComplete={(work) =>  setWork(work)}
+          style={{ width: 330, height: 50}}
         />
 
       </View>
 
       <Text style={{marginTop: 30, fontWeight: 'bold', fontSize: 20}}>
-        Level of activity in freetime
+        Weekly free time activity
       </Text>
 
-      <View style={[{}]} >
+      <Text style={{marginTop: 5, marginBottom: -10, fontWeight: 'bold', fontSize: 15}}>
+        {freetimeMap[freetime]}
+      </Text>
 
-                {/*Slider with max, min, step and initial value*/}
+      <View>
+				
+        {/**/}
         <Slider
-          maximumValue={4}
+          maximumValue={2}
           minimumValue={0}
           thumbTintColor={Colors.primaryColor}
           minimumTrackTintColor= {Colors.accentColor}
-          maximumTrackTintColor="#000000"
-          minimumValueLabel="Never"
-          maximumValueLabel="Always"
+          maximumTrackTintColor={Colors.GREY}
           step={1}
           value={freetime}
-          onValueChange={(freetime) =>  setFreetime(freetime)}
-          style={{width: 300, height: 50, marginBottom: 20 }}
+          onSlidingComplete={(freetime) =>  setFreetime(freetime)}
+          style={{width: 330, height: 50 }}
         />
-
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        	<Text style={{marginTop: -10, marginBottom: 20}}>
+        	Less than{"\n"}2 hours
+      		</Text>
+      		<Text style={{marginTop: -10, marginBottom: 20}}>
+      		More than{"\n"}3 hours
+      		</Text>
+      	</View>
       </View>
+
+
+
+			{/*cancel and save buttons*/}
 
       <View style={{width: '100%', flexDirection: 'row', marginTop: 30, justifyContent: 'center', alignItems: 'center'}}>
         <TouchableOpacity
