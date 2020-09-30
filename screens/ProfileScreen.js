@@ -37,22 +37,40 @@ const ProfileScreen = (props) => {
   //For the single choice
   const [checked, setChecked] = useState(null);
   
-	//For the activity details - string
+	//For the activity details - int
   const [work, setWork] = useState(null)
   const [freetime, setFreetime] = useState(null)
   
 	// maps to convert slider vaue to text
 	// 
-	var workMap = {0: "Bedridden/Inactive", 1: "Sedentary work", 2:"Standing work", 3: "Physical hard work"}
-  var freetimeMap = {0: "Less active", 1: "Active", 2:"Very Active"}
+	var workMap = {0: "Bedridden/Inactive", 1: "Sedentary Work", 2:"Standing Work", 3: "Physical Hard Work"}
+  var freetimeMap = {0: "Less Active", 1: "Active", 2:"Very Active"}
   
 	
 	// reverse lookup of hashmaps
 	//                object   int  -> string
 	// getKeyByValue( workMap, work) -> "Bedridden/Inactive"
   function getKeyByValue(object, value) {
-    return Object.keys(object).find(key => object[key] === value);
+    
+    var ret;
+
+    try{
+
+      //get key from map, parse as int
+      ret = parseInt( Object.keys(object).find(key => object[key] === value) );
+      
+      // if no match use 1 as default
+      if(isNaN(ret) ){ ret = 1 }
+      
+    }
+    catch (err){
+      console.warn(err)
+      ret = 1;
+    }
+    return ret    
   }
+
+  
 
   const dispatch = useDispatch()
   //Getting the Redux state for the preference, work and freetime
@@ -91,8 +109,8 @@ const ProfileScreen = (props) => {
   const submitActivityHandler = async() => {
     try{
 
-			console.log(workMap[work])
-			console.log(freetimeMap[freetime])
+			console.log("submitting: " + workMap[work])
+			console.log("submitting: " + freetimeMap[freetime])
       //Setting state for the loader to work
       setSaveLoad(true)
       //Calling Redux funtion to handle the edit of preference in acitivity
@@ -211,9 +229,12 @@ const ProfileScreen = (props) => {
     <TouchableOpacity
       onPress={() => {
 
+        console.log("retrieving: " + userWork)
+        console.log("retrieving: " + userFreetime)
+
         //Setting state of work and userFreetime to info got from Redux so user gets info on modal pop up
         setWork( getKeyByValue(workMap, userWork) )
-        setFreetime(getKeyByValue(freetimeMap, userFreetime) )
+        setFreetime( getKeyByValue(freetimeMap, userFreetime) )
         //Activating the modal pop up
         setToggleActivity(true)
       }}
