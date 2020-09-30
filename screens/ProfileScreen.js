@@ -468,7 +468,7 @@ const ProfileScreen = (props) => {
           maximumTrackTintColor="#000000"
           step={1}
           value={work}
-          onSlidingComplete={(work) =>  setWork(work)}
+          onValueChange={(work) =>  setWork(work)}
           style={{ width: 330, height: 50}}
         />
 
@@ -493,7 +493,7 @@ const ProfileScreen = (props) => {
           maximumTrackTintColor={Colors.GREY}
           step={1}
           value={freetime}
-          onSlidingComplete={(freetime) =>  setFreetime(freetime)}
+          onValueChange={(freetime) =>  setFreetime(freetime)}
           style={{width: 330, height: 50 }}
         />
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -510,7 +510,7 @@ const ProfileScreen = (props) => {
 
 			{/*cancel and save buttons*/}
 
-      <View style={{width: '100%', flexDirection: 'row', marginTop: 30, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{width: '100%', flexDirection: 'row', bottom: -30, marginTop: 30, justifyContent: 'center', alignItems: 'center'}}>
         <TouchableOpacity
           onPress={() => setToggleActivity(false)}
           style={styles.modalButton2}>
