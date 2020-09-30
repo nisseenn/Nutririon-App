@@ -14,11 +14,9 @@
     "projects": [
       {
         "preset": "jest-expo/ios",
-        "platform": "ios"
       },
       {
         "preset": "jest-expo/android",
-        "platform": "android"
       }
     ],
     "transform": {
