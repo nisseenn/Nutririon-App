@@ -30,7 +30,7 @@ const StartScreen = (props) => {
                   style={styles.bgImg}
                 />
             </View>
-            <View style={{position: 'absolute', top: -50, width: width}}>
+            <View style={{zIndex: -10, position: 'absolute', top: -50, width: width}}>
               <View
                 style={{position: 'absolute', top: height - 250, height: 300, width: width, backgroundColor: '#69a1ff'}}>
               </View>
@@ -86,7 +86,7 @@ const StartScreen = (props) => {
                 <Ionicons
                   style={{ opacity: 0 }}
                   name="ios-quote" size={90} color="#fff"/>
-              </View>
+            </View>
 
           <View
             // animation="fadeInUpBig"
