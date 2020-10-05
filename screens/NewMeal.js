@@ -16,6 +16,8 @@ const NewMeal = (props) => {
   const [error, setError] = useState()
   const [search, setSearch] = useState(null)
   const [list, setList] = useState([])
+  //Getting the param passed from AddButton.js
+  const mealType = props.navigation.getParam("meal")
 
   const dispatch = useDispatch()
   //Getting the ingredients from the Redux store
@@ -62,6 +64,19 @@ const NewMeal = (props) => {
         <IngredientItem
           key={itemData.item.id}
           name={itemData.item.name}
+          onSelectIngredient={() => {
+            props.navigation.navigate("detail", {
+              name: itemData.item.name,
+              id: itemData.item.id,
+              energi: itemData.item.Energi1,
+              fett: itemData.item.Fett,
+              protein: itemData.item.Protein,
+              karbo: itemData.item.Karbo,
+              fiber: itemData.item.Fiber,
+              sukker: itemData.item.sukker,
+              porsjon: itemData.item.Portion
+            })
+          }}
           />
     )
   };
@@ -84,6 +99,9 @@ const NewMeal = (props) => {
   return(
     <View style={{flex:1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff'}}>
       <View style={{width: width, position: 'absolute', top: 0, zIndex: 4000, height: 100, justifyContent: 'center'}}>
+        <View style={styles.mealTitleWrap}>
+          <Text style={styles.mealText}>{mealType}</Text>
+        </View>
         <LinearGradient
             colors={[Colors.primaryColor, Colors.accentColor]}
             style={{
@@ -123,6 +141,19 @@ NewMeal.navigationOptions = () => {
 }
 
 const styles = StyleSheet.create({
+  mealTitleWrap:{
+    position: 'absolute',
+    top: 60,
+    zIndex: 4000,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  mealText:{
+    fontSize: 18,
+    color:"#fff",
+    fontWeight: '500',
+  },
   input: {
    width: '100%',
    height: 40,

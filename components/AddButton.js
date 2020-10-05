@@ -70,8 +70,8 @@ export default class AddButton extends React.Component {
             <Animated.View style={[styles.mealWrapper, {opacity: modalOpacity}]}>
               <TouchableOpacity onPress={() => {
                 this.handlePress()
-                this.props.navigation.navigate("MealHolder", {
-                  meal: 'breakfast'
+                this.props.navigation.navigate("mealStart", {
+                  meal: 'Breakfast'
                 })
               }}>
                    <Image source={breakfast} style={styles.image}/>
@@ -82,8 +82,8 @@ export default class AddButton extends React.Component {
              <Animated.View style={[styles.mealWrapper, {opacity: modalOpacity}]}>
               <TouchableOpacity onPress={() => {
                 this.handlePress()
-                this.props.navigation.navigate("MealHolder", {
-                  meal: 'breakfast'
+                this.props.navigation.navigate("mealStart", {
+                  meal: 'Lunch'
                 })
               }}>
                     <Image source={lunch} style={styles.image}/>
@@ -96,8 +96,8 @@ export default class AddButton extends React.Component {
             <Animated.View style={[styles.mealWrapper, {opacity: modalOpacity}]}>
               <TouchableOpacity onPress={() => {
                 this.handlePress()
-                this.props.navigation.navigate("MealHolder", {
-                  meal: 'breakfast'
+                this.props.navigation.navigate("mealStart", {
+                  meal: 'Dinner'
                 })
               }}>
                  <Image source={dinner} style={styles.image}/>
@@ -108,8 +108,8 @@ export default class AddButton extends React.Component {
              <Animated.View style={[styles.mealWrapper, {opacity: modalOpacity}]}>
                <TouchableOpacity onPress={() => {
                  this.handlePress()
-                 this.props.navigation.navigate("MealHolder", {
-                   meal: 'breakfast'
+                 this.props.navigation.navigate("mealStart", {
+                   meal: 'Snacks'
                  })
                }}>
                   <Image source={snacks} style={styles.image}/>

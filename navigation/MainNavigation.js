@@ -23,10 +23,12 @@ import PersonalInfoScreen from '../screens/PersonalInfoScreen'
 import PreferencesScreen from '../screens/PreferencesScreen'
 import SignUpMethodScreen from '../screens/SignUpMethodScreen'
 import StartUpScreen from '../screens/StartUpScreen'
+import IngredientDetailScreen from '../screens/IngredientDetailScreen'
 import AddButton from '../components/AddButton'
 
 const NewMealNavigator = createStackNavigator({
-  mealStart: NewMeal
+  mealStart: NewMeal,
+  detail: IngredientDetailScreen
 })
 
 //Creating the content for the bottom tab navigator
