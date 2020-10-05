@@ -13,6 +13,8 @@ import firebase from 'firebase';
 import * as Animatable from 'react-native-animatable';
 import Animated from 'react-native-reanimated';
 import { RadioButton, Checkbox } from 'react-native-paper';
+import Slider from '@react-native-community/slider';
+
 
 import Colors from '../constants/Colors'
 
@@ -34,9 +36,41 @@ const ProfileScreen = (props) => {
   const [saveLoad, setSaveLoad] = useState(false)
   //For the single choice
   const [checked, setChecked] = useState(null);
-  //For the activity details
+  
+	//For the activity details - int
   const [work, setWork] = useState(null)
   const [freetime, setFreetime] = useState(null)
+  
+	// maps to convert slider vaue to text
+	// 
+	var workMap = {0: "Bedridden/Inactive", 1: "Sedentary Work", 2:"Standing Work", 3: "Physical Hard Work"}
+  var freetimeMap = {0: "Less Active", 1: "Active", 2:"Very Active"}
+  
+	
+	// reverse lookup of hashmaps
+	//                object   int  -> string
+	// getKeyByValue( workMap, work) -> "Bedridden/Inactive"
+  function getKeyByValue(object, value) {
+    
+    var ret;
+
+    try{
+
+      //get key from map, parse as int
+      ret = parseInt( Object.keys(object).find(key => object[key] === value) );
+      
+      // if no match use 1 as default
+      if(isNaN(ret) ){ ret = 1 }
+      
+    }
+    catch (err){
+      console.warn(err)
+      ret = 1;
+    }
+    return ret    
+  }
+
+  
 
   const dispatch = useDispatch()
   //Getting the Redux state for the preference, work and freetime
@@ -74,10 +108,13 @@ const ProfileScreen = (props) => {
   //Function to handle change of activity from user
   const submitActivityHandler = async() => {
     try{
+
+			console.log("submitting: " + workMap[work])
+			console.log("submitting: " + freetimeMap[freetime])
       //Setting state for the loader to work
       setSaveLoad(true)
       //Calling Redux funtion to handle the edit of preference in acitivity
-      let objectReturn = await editPreference(userPreference, work, freetime)
+      let objectReturn = await editPreference(userPreference, workMap[work], freetimeMap[freetime])
       //Dispatching the Object which is created in Redux. Dispatching it to the Redux store
       await dispatch(objectReturn)
       //Setting the loading to false
@@ -148,6 +185,8 @@ const ProfileScreen = (props) => {
   }
 
   return(
+
+    // Profile menu - top of stack navigation
     <View style={styles.container}>
 
         <View style={{zIndex: 1000, position: 'absolute', width: '100%', justifyContent: 'center', alignItems: 'center', top: 100}}>
@@ -189,9 +228,13 @@ const ProfileScreen = (props) => {
   <View style={{...styles.preferences, bottom: 270}}>
     <TouchableOpacity
       onPress={() => {
+
+        console.log("retrieving: " + userWork)
+        console.log("retrieving: " + userFreetime)
+
         //Setting state of work and userFreetime to info got from Redux so user gets info on modal pop up
-        setWork(userWork)
-        setFreetime(userFreetime)
+        setWork( getKeyByValue(workMap, userWork) )
+        setFreetime( getKeyByValue(freetimeMap, userFreetime) )
         //Activating the modal pop up
         setToggleActivity(true)
       }}
@@ -276,6 +319,15 @@ const ProfileScreen = (props) => {
       <MaterialIcons name="navigate-next" size={26} color="#000"/>
     </TouchableOpacity>
   </View>
+
+
+
+
+{/* Stack navigations- preference - activity */}
+
+
+
+
 
 {/* If toggleDrop is true, show this */}
   {toggleDrop ? (
@@ -399,6 +451,15 @@ const ProfileScreen = (props) => {
     </View>
   )}
 
+
+
+
+
+
+
+
+
+
 {/* If activittoggle is true, show this*/}
   {toggleActivity ? (
     <Animatable.View
@@ -411,137 +472,66 @@ const ProfileScreen = (props) => {
       style={{width: '100%', justifyContent: 'center', alignItems: 'center', position: 'absolute', top: 20}}>
 
       <Text style={{marginBottom: 5, fontWeight: 'bold', fontSize: 20}}>
-        Level of activity at work
+        Work activity
       </Text>
 
-      <View style={{flexDirection: 'column'}}>
-        <View style={{flexDirection: 'row'}}>
-          {/* If state variable work is equal to sitting this will render */}
-          {work == 'sitting' ? (
-            <TouchableOpacity style={{...styles.button2, backgroundColor: Colors.primaryColor}} onPress={() => {setWork('sitting')}}>
-              <Text style={{...styles.buttonText2, color: "#fff"}}>
-                SITTING
-              </Text>
-            </TouchableOpacity>
-            // ELSE, this will render (E.g not another backgroundColor)
-          ) : (
-            <TouchableOpacity style={styles.button2} onPress={() => setWork('sitting')}>
-              <Text style={styles.buttonText2}>
-                SITTING
-              </Text>
-            </TouchableOpacity>
-          )}
-          {/* If state variable work is equal to standing this will render */}
-          {work == 'standing' ? (
-            <TouchableOpacity style={{...styles.button2, backgroundColor: Colors.primaryColor}} onPress={() => setWork('standing')}>
-              <Text style={{...styles.buttonText2, color: "#fff"}}>
-                STANDING
-              </Text>
-            </TouchableOpacity>
-          // ELSE, this will render (E.g not another backgroundColor)
-          ) : (
-            <TouchableOpacity style={styles.button2} onPress={() => setWork('standing')}>
-              <Text style={styles.buttonText2}>
-                STANDING
-              </Text>
-            </TouchableOpacity>
-          )}
+      <Text style={{marginBottom: 5, fontWeight: 'bold', fontSize: 15}}>
+        {workMap[work]}
+      </Text>
 
-        </View>
-        <View style={{flexDirection: 'row'}}>
-          {/* If state variable work is equal to physical this will render */}
-          {work == 'physical' ? (
-            <TouchableOpacity style={{...styles.button2, backgroundColor: Colors.primaryColor}} onPress={() => setWork('physical')}>
-              <Text style={{...styles.buttonText2, color: "#fff"}}>
-                PHYSICAL HARD
-              </Text>
-            </TouchableOpacity>
-          // ELSE, this will render (E.g not another backgroundColor)
-          ) : (
-            <TouchableOpacity style={styles.button2} onPress={() => setWork('physical')}>
-              <Text style={styles.buttonText2}>
-                PHYSICAL HARD
-              </Text>
-            </TouchableOpacity>
-          )}
-          {/* If state variable work is equal to beddriven this will render */}
-          {work == 'beddriven' ? (
-            <TouchableOpacity style={{...styles.button2, backgroundColor: Colors.primaryColor}} onPress={() => setWork('beddriven')}>
-              <Text style={{...styles.buttonText2, color: "#fff"}}>
-                BEDDRIVEN
-              </Text>
-            </TouchableOpacity>
-          // ELSE, this will render (E.g not another backgroundColor)
-          ) : (
-            <TouchableOpacity style={styles.button2} onPress={() => setWork('beddriven')}>
-              <Text style={styles.buttonText2}>
-                BEDDRIVEN
-              </Text>
-            </TouchableOpacity>
-          )}
+      <View>   
+        {/*Slider with max, min, step and initial value*/}
+        <Slider
+          maximumValue={3}
+          minimumValue={0}
+          thumbTintColor={Colors.primaryColor}
+          minimumTrackTintColor= {Colors.accentColor}
+          maximumTrackTintColor="#000000"
+          step={1}
+          value={work}
+          onValueChange={(work) =>  setWork(work)}
+          style={{ width: 330, height: 50}}
+        />
 
-        </View>
       </View>
 
       <Text style={{marginTop: 30, fontWeight: 'bold', fontSize: 20}}>
-        Level of activity in freetime
+        Weekly free time activity
       </Text>
 
-      <View style={{flexDirection: 'column', marginTop: 10}}>
-        <View style={{flexDirection: 'row'}}>
-          {/* If state variable freetime is equal to lessactive this will render */}
-          {freetime == 'lessactive' ? (
-            <TouchableOpacity style={{...styles.button2, backgroundColor: Colors.primaryColor}} onPress={() => setFreetime('lessactive')}>
-              <Text style={{...styles.buttonText2, color: "#fff"}}>
-                LESS ACTIVE
-              </Text>
-            </TouchableOpacity>
-          // ELSE, this will render (E.g not another backgroundColor)
-          ) : (
-            <TouchableOpacity style={styles.button2} onPress={() => setFreetime('lessactive')}>
-              <Text style={styles.buttonText2}>
-                LESS ACTIVE
-              </Text>
-            </TouchableOpacity>
-          )}
-          {/* If state variable freetime is equal to active this will render */}
-          {freetime == 'active' ? (
-            <TouchableOpacity style={{...styles.button2, backgroundColor: Colors.primaryColor}} onPress={() => setFreetime('active')}>
-              <Text style={{...styles.buttonText2, color:"#fff"}}>
-                ACTIVE
-              </Text>
-            </TouchableOpacity>
-          // ELSE, this will render (E.g not another backgroundColor)
-          ) : (
-            <TouchableOpacity style={styles.button2} onPress={() => setFreetime('active')}>
-              <Text style={styles.buttonText2}>
-                ACTIVE
-              </Text>
-            </TouchableOpacity>
-          )}
+      <Text style={{marginTop: 5, marginBottom: -10, fontWeight: 'bold', fontSize: 15}}>
+        {freetimeMap[freetime]}
+      </Text>
 
-        </View>
-        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-          {/* If state variable freetime is equal to veryactive this will render */}
-          {freetime == 'veryactive' ? (
-            <TouchableOpacity style={{...styles.button2, backgroundColor: Colors.primaryColor}} onPress={() => setFreetime('veryactive')}>
-              <Text style={{...styles.buttonText2, color: "#fff"}}>
-                VERY ACTIVE
-              </Text>
-            </TouchableOpacity>
-          // ELSE, this will render (E.g not another backgroundColor)
-          ) : (
-            <TouchableOpacity style={styles.button2} onPress={() => setFreetime('veryactive')}>
-              <Text style={styles.buttonText2}>
-                VERY ACTIVE
-              </Text>
-            </TouchableOpacity>
-          )}
-
-        </View>
+      <View>
+				
+        {/**/}
+        <Slider
+          maximumValue={2}
+          minimumValue={0}
+          thumbTintColor={Colors.primaryColor}
+          minimumTrackTintColor= {Colors.accentColor}
+          maximumTrackTintColor={Colors.GREY}
+          step={1}
+          value={freetime}
+          onValueChange={(freetime) =>  setFreetime(freetime)}
+          style={{width: 330, height: 50 }}
+        />
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        	<Text style={{marginTop: -10, marginBottom: 20}}>
+        	Less than{"\n"}2 hours
+      		</Text>
+      		<Text style={{marginTop: -10, marginBottom: 20}}>
+      		More than{"\n"}3 hours
+      		</Text>
+      	</View>
       </View>
 
-      <View style={{width: '100%', flexDirection: 'row', marginTop: 30, justifyContent: 'center', alignItems: 'center'}}>
+
+
+			{/*cancel and save buttons*/}
+
+      <View style={{width: '100%', flexDirection: 'row', bottom: -30, marginTop: 30, justifyContent: 'center', alignItems: 'center'}}>
         <TouchableOpacity
           onPress={() => setToggleActivity(false)}
           style={styles.modalButton2}>
@@ -630,8 +620,9 @@ preferencesButton:{
     alignItems: 'center',
     backgroundColor: Colors.accentColor,
     padding: 16,
-    width: '100%',
-    flexDirection: 'row'
+    width: '80%',
+    flexDirection: 'row',
+    borderRadius: 30
 },
 settingsText:{
   fontSize: 36,

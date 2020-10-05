@@ -1,5 +1,5 @@
 import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
-import { ScrollView, View, TextInput, Keyboard, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
+import { Platform, ScrollView, View, TextInput, Keyboard, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
 import { useDispatch } from 'react-redux'
 import firebase from 'firebase';
 import { login } from '../store/actions/auth'
@@ -13,7 +13,7 @@ import Colors from '../constants/Colors'
 import Input from '../components/Input'
 
 //Checking if the phone is andriod
-const isAndroid = Platform.OS == 'android'
+const isAndroid = Platform.OS == 'android';
 
 //Defining how keyboard should influence screen based on platform
 const behavior = Platform.OS == 'android' ? "height" : "padding"
