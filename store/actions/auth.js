@@ -113,6 +113,7 @@ export const signup = (email, password, name, gender, age, weight, userHeight, p
       freetime: userFreetime
     }
     updates['users/'+user.uid] = userData;
+    console.log(updates);
     await firebase.database().ref().update(updates)
 
     // user.sendEmailVerification().then(function() {

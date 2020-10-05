@@ -60,6 +60,7 @@ const NewMeal = (props) => {
   const renderIngredients = (itemData) => {
     return (
         <IngredientItem
+          key={itemData.item.id}
           name={itemData.item.name}
           />
     )
@@ -113,6 +114,12 @@ const NewMeal = (props) => {
       />
     </View>
   )
+}
+
+NewMeal.navigationOptions = () => {
+  return{
+    headerShown: false
+  }
 }
 
 const styles = StyleSheet.create({

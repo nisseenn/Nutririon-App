@@ -27,29 +27,30 @@ export const fetchIngredients = () => {
       let vegeterianer = false
       let vegan = false
       let pesc = false
+      let foodGroups = []
 
       if(userData.preference === "vegeterianer"){
         vegeterianer = true
+        foodGroups = ["1","2","5","6","7","8"]
       }
       if(userData.preference === "vegan"){
         vegan = true
+        foodGroups = ["5","6","7"]
       }
       if(userData.preference === "pesc"){
         pesc = true
+        foodGroups = ["1","2","4","5","6","7","8"]
       }
 
       const filteredIngredients = [];
 
       for(const key in resData){
-        if(vegeterianer && resData[key].vegeterianer){
+        const mainCategory = resData[key].groupId.split('.')[0]
+
+        if(foodGroups.includes(mainCategory)){
           filteredIngredients.push(resData[key])
         }
-        if(vegan && resData[key].vegan){
-          filteredIngredients.push(resData[key])
-        }
-        if(pesc && resData[key].pesc){
-          filteredIngredients.push(resData[key])
-        }
+
       }
 
       dispatch({ type: SET_INGREDIENTS, ingredients: filteredIngredients })

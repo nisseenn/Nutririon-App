@@ -1,7 +1,7 @@
-{
-  "foods": [
+[
     {
       "groupId": "10.4",
+      "id": "01.018",
       "name": "Ice cream, dairy",
       "Energi1": "@{ref=61a; value=812.0}",
       "Protein": "@{ref=100; value=3}",
@@ -14,13 +14,11 @@
       "Vit A": "@{ref=85; value=122.0}",
       "Vit D": "@{ref=100; value=0.13}",
       "Vit B1": "@{ref=100; value=0.05}",
-      "Vit C": "@{ref=100; value=0}",
-      "vegeterianer": true,
-      "vegan": true,
-      "pesc": true
+      "Vit C": "@{ref=100; value=0}"
     },
     {
       "groupId": "1.4.1",
+      "id": "01.027",
       "name": "Cheese, hard, Cheddar",
       "Energi1": "@{ref=61a; value=1724.8}",
       "Protein": "@{ref=450c; value=25.4}",
@@ -33,13 +31,11 @@
       "Vit A": "@{ref=85; value=375.75}",
       "Vit D": "@{ref=450c; value=0.3}",
       "Vit B1": "@{ref=450c; value=0.03}",
-      "Vit C": "@{ref=60a; value=0}",
-      "vegeterianer": true,
-      "vegan": true,
-      "pesc": false
+      "Vit C": "@{ref=60a; value=0}"
     },
     {
       "groupId": "3.3.1",
+      "id": "03.051",
       "name": "Beef, bottom round, silverside, stewing, raw",
       "Energi1": "@{ref=61a; value=524.0}",
       "Protein": "@{ref=315; value=21.9}",
@@ -52,10 +48,6 @@
       "Vit A": "@{ref=85; value=4.416666666666667}",
       "Vit D": "@{ref=71; value=0.06314}",
       "Vit B1": "@{ref=315; value=0.05}",
-      "Vit C": "@{ref=50; value=0}",
-      "vegeterianer": false,
-      "vegan": false,
-      "pesc": false
+      "Vit C": "@{ref=50; value=0}"
     }
   ]
-}
