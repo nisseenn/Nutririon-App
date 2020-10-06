@@ -5,6 +5,7 @@ import Colors from '../constants/Colors'
 
 import { fetchIngredients } from '../store/actions/nutrition'
 import { addIngredient } from '../store/actions/nutrition'
+import { deleteIngredient } from '../store/actions/nutrition'
 
 import { SearchBar } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient'
@@ -68,6 +69,13 @@ const NewMeal = (props) => {
     })
     //Updating the list which is used in the Flatlist with the filtered list
     setList(filteredIngredients)
+  }
+  //Function to handle deleting ingredients in the meal
+  const deleteHandler = (id) => {
+    //calling the redux function
+    let objectReturn = deleteIngredient(id)
+    //Dispatching the object returning from redux function to the Redux Store
+    dispatch(objectReturn)
   }
 
   //Function to render the different ingredients
@@ -150,6 +158,7 @@ const NewMeal = (props) => {
       />
       {/* Button in bottom right to show your ingredients added */}
       <ListButton
+        deleteIngredient={deleteHandler}
         ingredients={ingredientList}
       />
 

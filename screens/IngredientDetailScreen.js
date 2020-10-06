@@ -1,7 +1,10 @@
 import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
 import { ScrollView, SafeAreaView, View, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
+
 import { fetchUserData } from '../store/actions/auth'
 import { fetchIngredients } from '../store/actions/nutrition'
+import { addIngredient } from '../store/actions/nutrition'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient'
@@ -12,8 +15,11 @@ const {width,height} = Dimensions.get('window')
 //Defining IngredientDetailScreen functional component
 const IngredientDetailScreen = (props) => {
 
+  const dispatch = useDispatch()
+
   const [number, setNumber] = useState("1")
 
+  const id = props.navigation.getParam("id")
   const name = props.navigation.getParam("name")
   const porsjon = props.navigation.getParam("porsjon").replace(/[&\/\\#,+()$~%'":*?<>{}=@;]/g, '').split("value")[1]
   const protein = props.navigation.getParam("protein").replace(/[&\/\\#,+()$~%'":*?<>{}=@;]/g, '').split("value")[1]
@@ -62,7 +68,9 @@ const IngredientDetailScreen = (props) => {
         <View style={styles.buttonWrap}>
           <TouchableOpacity
             onPress={() => {
-              
+              let objectReturn = addIngredient(id)
+              dispatch(objectReturn)
+              props.navigation.navigate("mealStart")
             }}
             style={styles.addButton}>
             <Text style={styles.buttonText}>ADD</Text>

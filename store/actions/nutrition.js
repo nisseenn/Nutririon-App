@@ -6,6 +6,7 @@ export const SET_USERMEAL = 'SET_USERMEAL'
 export const SET_SUGGESTION = 'SET_SUGGESTION'
 export const SET_INGREDIENTS = 'SET_INGREDIENTS'
 export const ADD_INGREDIENT =  'ADD_INGREDIENT'
+export const DELETE_INGREDIENT = 'DELETE_INGREDIENT'
 
 export const fetchIngredients = () => {
   return async(dispatch, getState) => {
@@ -63,9 +64,13 @@ export const fetchIngredients = () => {
     }
   }
 }
-
-export const addIngredient = (ingredientId, name) => {
+//Function to handle adding ingredients to the meal
+export const addIngredient = (ingredientId) => {
     return { type: ADD_INGREDIENT, ingredientId: ingredientId }
+}
+//Function to handle deleting ingredients in a meal
+export const deleteIngredient = (ingredientId) => {
+    return { type: DELETE_INGREDIENT, ingredientId: ingredientId }
 }
 
 export const fetchUserMeals = () => {

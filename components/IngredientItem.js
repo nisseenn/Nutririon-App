@@ -20,7 +20,7 @@ const IngredientItem = (props) => {
             <TouchableOpacity
               onPress={props.onAddIngredient}
               style={styles.iconWrap}>
-              <Ionicons style={{}} size={34} name="ios-add"/>
+              <Ionicons style={{}} size={30} name="ios-add"/>
             </TouchableOpacity>
           </View>
       </TouchableOpacity>
@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 10,
     backgroundColor: "rgba(204,204,204,.4)",
-    height: 50,
-    width: 50,
+    height: 45,
+    width: 45,
     justifyContent: 'center',
     borderRadius: 100,
     alignItems: 'center'

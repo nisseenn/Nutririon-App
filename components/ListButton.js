@@ -41,6 +41,9 @@ export default class ListButton extends React.Component {
             {itemData.item.name}
           </Text>
           <TouchableOpacity
+            onPress={() => {
+              this.props.deleteIngredient(itemData.item.id)
+            }}
             style={styles.iconWrap}>
             <MaterialIcons style={{}} color="white" size={30} name="close"/>
           </TouchableOpacity>
@@ -98,16 +101,22 @@ export default class ListButton extends React.Component {
           <View style={{backgroundColor: 'red'}}>
             <Text style={styles.ingredientTitle}>Ingredients</Text>
           </View>
-          <FlatList
-            contentContainerStyle={{position: 'absolute', left: 0, top: 300, width: width}}
-            scrollEventThrottle={16}
-            // onRefresh={loadIngredients}
-            // refreshing={isRefreshing}
-            numColumns={1}
-            data={this.props.ingredients}
-            renderItem={this.renderIngredients}
-            keyExtractor={(item, index) => item.id}
-          />
+          {this.props.ingredients.length === 0 ? (
+            <View style={{position: 'absolute', width: '100%', top: height / 2, justifyContent: 'center', alignItems: 'center'}}>
+              <Text style={{color: "#fff", fontSize: 16, fontWeight: '500'}}>No ingredients added</Text>
+            </View>
+          ) : (
+            <FlatList
+              contentContainerStyle={{position: 'absolute', left: 0, top: 300, width: width}}
+              scrollEventThrottle={16}
+              // onRefresh={loadIngredients}
+              // refreshing={isRefreshing}
+              numColumns={1}
+              data={this.props.ingredients}
+              renderItem={this.renderIngredients}
+              keyExtractor={(item, index) => item.id}
+            />
+          )}
         </Animated.View>
 
         <Animated.View style={[styles.button, {backgroundColor: Colors.buttonColor}]}>
