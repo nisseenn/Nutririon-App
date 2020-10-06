@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   iconWrap:{
     position: 'absolute',
     right: 10,
-    backgroundColor: "rgba(204,204,204,.5)",
+    backgroundColor: "rgba(204,204,204,.4)",
     height: 40,
     width: 40,
     justifyContent: 'center',

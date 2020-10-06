@@ -2,12 +2,14 @@ import { ADD_MEAL } from '../actions/nutrition'
 import { SET_USERMEAL } from '../actions/nutrition'
 import { SET_SUGGESTION } from '../actions/nutrition'
 import { SET_INGREDIENTS } from '../actions/nutrition'
+import { ADD_INGREDIENT } from '../actions/nutrition'
 
 const initialState = {
   ingredients: [],
   foodSuggestions: [],
   userMeals: [],
   calorySuggestion: null,
+  mealIngredients: []
 }
 
 const nutritionReducer = (state = initialState, action) => {
@@ -22,6 +24,9 @@ const nutritionReducer = (state = initialState, action) => {
 
 
     case SET_USERMEAL:
+
+
+    case ADD_INGREDIENT:
 
   }
   return state;

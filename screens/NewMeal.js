@@ -5,6 +5,8 @@ import Colors from '../constants/Colors'
 import { fetchIngredients } from '../store/actions/nutrition'
 import { SearchBar } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient'
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import ListButton from '../components/ListButton'
 
 import IngredientItem from '../components/IngredientItem'
 
@@ -16,6 +18,7 @@ const NewMeal = (props) => {
   const [error, setError] = useState()
   const [search, setSearch] = useState(null)
   const [list, setList] = useState([])
+  const [mealIngredients, setMealIngredients] = useState([])
   //Getting the param passed from AddButton.js
   const mealType = props.navigation.getParam("meal")
 
@@ -73,7 +76,7 @@ const NewMeal = (props) => {
               protein: itemData.item.Protein,
               karbo: itemData.item.Karbo,
               fiber: itemData.item.Fiber,
-              sukker: itemData.item.sukker,
+              sukker: itemData.item.Sukker,
               porsjon: itemData.item.Portion
             })
           }}
@@ -118,6 +121,7 @@ const NewMeal = (props) => {
           placeholder="Search here..."
           onChangeText={text => searchIngredients(text)}
           value={search}
+          searchIcon={{color: Colors.iconColor}}
         />
       </View>
       <FlatList
@@ -130,6 +134,9 @@ const NewMeal = (props) => {
         renderItem={renderIngredients}
         keyExtractor={(item, index) => item.id}
       />
+      {/* Button in bottom right to show your ingredients added */}
+      <ListButton />
+
     </View>
   )
 }
@@ -165,8 +172,26 @@ const styles = StyleSheet.create({
   },
   ingredientWrap:{
     flex:1,
-
     backgroundColor: 'red',
+  },
+  ingWrap:{
+    position: 'absolute',
+    zIndex: 3000,
+    bottom: 15,
+    right: 15,
+  },
+  ingListButton:{
+    paddingVertical: 15,
+    borderRadius: 30,
+    backgroundColor: Colors.buttonColor,
+    paddingHorizontal: 15,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   }
 })
 

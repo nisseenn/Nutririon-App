@@ -5,6 +5,7 @@ export const ADD_MEAL = 'ADD_MEAL'
 export const SET_USERMEAL = 'SET_USERMEAL'
 export const SET_SUGGESTION = 'SET_SUGGESTION'
 export const SET_INGREDIENTS = 'SET_INGREDIENTS'
+export const ADD_INGREDIENT =  'ADD_INGREDIENT'
 
 export const fetchIngredients = () => {
   return async(dispatch, getState) => {
