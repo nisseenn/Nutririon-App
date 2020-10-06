@@ -15,7 +15,7 @@ const initialState = {
 const nutritionReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_INGREDIENTS:
-      return { ingredients: action.ingredients }
+      return { ingredients: action.ingredients, mealIngredients: action.mealIngredients }
 
     case ADD_MEAL:
 
@@ -27,7 +27,9 @@ const nutritionReducer = (state = initialState, action) => {
 
 
     case ADD_INGREDIENT:
-
+      const ingredientToAdd = state.ingredients.find(ingredient => ingredient.id === action.ingredientId);
+      // const isInList = state.mealIngredients.some(ingredient => ingredient === ingredientToAdd);
+      return { ...state, mealIngredients: state.mealIngredients.concat(ingredientToAdd) }
   }
   return state;
 }

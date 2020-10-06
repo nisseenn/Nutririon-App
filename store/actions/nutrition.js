@@ -11,6 +11,8 @@ export const fetchIngredients = () => {
   return async(dispatch, getState) => {
     const userId = getState().auth.userId
     const token = getState().auth.token
+    const updatedIngredients = getState().nutrition["mealIngredients"].map(prod => prod);
+
     try {
       const userResponse = await fetch(`https://nutrition-1cf49.firebaseio.com/users/${userId}.json?auth=${token}`);
       const response = await fetch(`https://nutrition-1cf49.firebaseio.com/foods.json?auth=${token}`);
@@ -54,12 +56,16 @@ export const fetchIngredients = () => {
 
       }
 
-      dispatch({ type: SET_INGREDIENTS, ingredients: filteredIngredients })
+      dispatch({ type: SET_INGREDIENTS, ingredients: filteredIngredients, mealIngredients: updatedIngredients })
 
     } catch (error) {
       throw new Error('error', error);
     }
   }
+}
+
+export const addIngredient = (ingredientId, name) => {
+    return { type: ADD_INGREDIENT, ingredientId: ingredientId }
 }
 
 export const fetchUserMeals = () => {

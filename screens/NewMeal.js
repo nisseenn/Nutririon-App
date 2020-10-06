@@ -2,7 +2,10 @@ import React, { useState, useReducer, useCallback, useEffect, useRef } from 'rea
 import { ScrollView, View, TextInput, StyleSheet, FlatList, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import Colors from '../constants/Colors'
+
 import { fetchIngredients } from '../store/actions/nutrition'
+import { addIngredient } from '../store/actions/nutrition'
+
 import { SearchBar } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
@@ -18,7 +21,7 @@ const NewMeal = (props) => {
   const [error, setError] = useState()
   const [search, setSearch] = useState(null)
   const [list, setList] = useState([])
-  const [mealIngredients, setMealIngredients] = useState([])
+  const [ingredientList, setIngredientList] = useState([])
   //Getting the param passed from AddButton.js
   const mealType = props.navigation.getParam("meal")
 
@@ -27,6 +30,8 @@ const NewMeal = (props) => {
   const ingredients = useSelector(state => state.nutrition.ingredients)
   //Getting the userPreference from the redux store
   const userPreference = useSelector(state => state.auth.preference)
+
+  const mealIngredients = useSelector(state => state.nutrition.mealIngredients)
 
   const loadIngredients = useCallback(async () => {
   setList(ingredients)
@@ -48,6 +53,10 @@ const NewMeal = (props) => {
     setList(ingredients)
   }, [ingredients])
 
+  useEffect(() => {
+    setIngredientList(mealIngredients)
+  }, [mealIngredients])
+
   //Function to handle the filtering from search, getting the parameter which is the user input
   const searchIngredients = (value) => {
     //Creating a new array which only contains the input in the name
@@ -60,6 +69,7 @@ const NewMeal = (props) => {
     //Updating the list which is used in the Flatlist with the filtered list
     setList(filteredIngredients)
   }
+
   //Function to render the different ingredients
   //Getting the itemData from the Flatlist
   const renderIngredients = (itemData) => {
@@ -79,6 +89,10 @@ const NewMeal = (props) => {
               sukker: itemData.item.Sukker,
               porsjon: itemData.item.Portion
             })
+          }}
+          onAddIngredient={() => {
+            let objectReturn = addIngredient(itemData.item.id, itemData.item.name)
+            dispatch(objectReturn)
           }}
           />
     )
@@ -135,7 +149,9 @@ const NewMeal = (props) => {
         keyExtractor={(item, index) => item.id}
       />
       {/* Button in bottom right to show your ingredients added */}
-      <ListButton />
+      <ListButton
+        ingredients={ingredientList}
+      />
 
     </View>
   )
