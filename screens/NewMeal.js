@@ -6,6 +6,7 @@ import Colors from '../constants/Colors'
 import { fetchIngredients } from '../store/actions/nutrition'
 import { addIngredient } from '../store/actions/nutrition'
 import { deleteIngredient } from '../store/actions/nutrition'
+import { addMeal } from '../store/actions/nutrition'
 
 import { SearchBar } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient'
@@ -31,8 +32,9 @@ const NewMeal = (props) => {
   const ingredients = useSelector(state => state.nutrition.ingredients)
   //Getting the userPreference from the redux store
   const userPreference = useSelector(state => state.auth.preference)
-
+  //Getting the user ingredients from redux store
   const mealIngredients = useSelector(state => state.nutrition.mealIngredients)
+
 
   const loadIngredients = useCallback(async () => {
   setList(ingredients)
@@ -78,6 +80,10 @@ const NewMeal = (props) => {
     dispatch(objectReturn)
   }
 
+  const submitHandler = async() => {
+    await dispatch(addMeal())
+  }
+
   //Function to render the different ingredients
   //Getting the itemData from the Flatlist
   const renderIngredients = (itemData) => {
@@ -85,6 +91,7 @@ const NewMeal = (props) => {
         <IngredientItem
           key={itemData.item.id}
           name={itemData.item.name}
+          id={itemData.item.id}
           onSelectIngredient={() => {
             props.navigation.navigate("detail", {
               name: itemData.item.name,
@@ -156,10 +163,12 @@ const NewMeal = (props) => {
         renderItem={renderIngredients}
         keyExtractor={(item, index) => item.id}
       />
+
       {/* Button in bottom right to show your ingredients added */}
       <ListButton
         deleteIngredient={deleteHandler}
         ingredients={ingredientList}
+        handleSubmitMeal={submitHandler}
       />
 
     </View>

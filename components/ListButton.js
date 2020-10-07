@@ -117,6 +117,14 @@ export default class ListButton extends React.Component {
               keyExtractor={(item, index) => item.id}
             />
           )}
+          <View style={styles.doneWrap}>
+            <TouchableOpacity
+              onPress={this.props.handleSubmitMeal}
+              style={styles.doneButton}>
+              <Text style={styles.doneText}>ADD MEAL</Text>
+            </TouchableOpacity>
+          </View>
+
         </Animated.View>
 
         <Animated.View style={[styles.button, {backgroundColor: Colors.buttonColor}]}>
@@ -215,4 +223,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  doneWrap:{
+    position: 'absolute',
+    bottom: 90,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  doneButton:{
+    width: '50%',
+    backgroundColor: Colors.buttonColor,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 15,
+    borderRadius: 30,
+    shadowRadius: 5,
+    shadowOffset: {height:5},
+    shadowOpacity: 0.3,
+  },
+  doneText:{
+    fontSize: 18,
+    fontWeight: 'bold'
+  }
 })

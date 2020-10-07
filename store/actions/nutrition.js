@@ -17,7 +17,7 @@ export const fetchIngredients = () => {
     try {
       const userResponse = await fetch(`https://nutrition-1cf49.firebaseio.com/users/${userId}.json?auth=${token}`);
       const response = await fetch(`https://nutrition-1cf49.firebaseio.com/foods.json?auth=${token}`);
-
+      
       if (!response.ok) {
         throw new Error('Something went wrong');
       }
@@ -87,6 +87,25 @@ export const fetchMealSuggestion = () => {
 
 export const addMeal = () => {
   return async(dispatch, getState) => {
+    const userId = getState().auth.userId
+    const token = getState().auth.token
+    const ingredients = getState().nutrition.mealIngredients
 
+    try {
+      const response = await fetch(`https://nutrition-1cf49.firebaseio.com/userMeals/${userId}/.json?auth=${token}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ingredients
+        })
+      });
+
+      dispatch({ type: ADD_MEAL, meal: ingredients })
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
