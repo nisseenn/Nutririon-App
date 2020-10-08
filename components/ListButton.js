@@ -66,8 +66,13 @@ export default class ListButton extends React.Component {
 
     const modalY = this.mode.interpolate({
      inputRange: [0, 1],
-     outputRange: [0, -height / 1.2]
+     outputRange: [300, -height / 1.2]
     });
+
+    // const modalX = this.mode.interpolate({
+    //  inputRange: [0, 1],
+    //  outputRange: [-1000, -70]
+    // });
 
    const heightModal = this.mode.interpolate({
     inputRange: [0, 1],
@@ -98,7 +103,7 @@ export default class ListButton extends React.Component {
       <View style={{position: 'absolute', bottom: 60, right: 70}}>
 
         <Animated.View style={[styles.modal, {top: modalY, height: heightModal, width: widthModal, opacity: modalOpacity}]}>
-          <View style={{backgroundColor: 'red'}}>
+          <View>
             <Text style={styles.ingredientTitle}>Ingredients</Text>
           </View>
           {this.props.ingredients.length === 0 ? (
@@ -225,10 +230,11 @@ const styles = StyleSheet.create({
   },
   doneWrap:{
     position: 'absolute',
+    height: 55,
     bottom: 90,
     width: '100%',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   doneButton:{
     width: '50%',

@@ -102,6 +102,7 @@ export const signup = (email, password, name, gender, age, weight, userHeight, p
     })
     //Creating an empty object
     let updates = {}
+
     //Creating the obj to push to DB
     let userData = {
       gender: gender,
@@ -113,7 +114,7 @@ export const signup = (email, password, name, gender, age, weight, userHeight, p
       freetime: userFreetime
     }
     updates['users/'+user.uid] = userData;
-    console.log(updates);
+
     await firebase.database().ref().update(updates)
 
     // user.sendEmailVerification().then(function() {

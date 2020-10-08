@@ -19,7 +19,7 @@ const nutritionReducer = (state = initialState, action) => {
       return { ingredients: action.ingredients, mealIngredients: action.mealIngredients }
 
     case ADD_MEAL:
-      return { ...state, userMeals: action.meal }
+      return { ...state, mealIngredients: [] }
 
     case SET_SUGGESTION:
 

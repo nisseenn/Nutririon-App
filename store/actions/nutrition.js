@@ -17,7 +17,7 @@ export const fetchIngredients = () => {
     try {
       const userResponse = await fetch(`https://nutrition-1cf49.firebaseio.com/users/${userId}.json?auth=${token}`);
       const response = await fetch(`https://nutrition-1cf49.firebaseio.com/foods.json?auth=${token}`);
-      
+
       if (!response.ok) {
         throw new Error('Something went wrong');
       }
@@ -44,6 +44,9 @@ export const fetchIngredients = () => {
       if(userData.preference === "pesc"){
         pesc = true
         foodGroups = ["1","2","4","5","6","7","8"]
+      }
+      if(userData.preference == null){
+        foodGroups = ["1","2","3","4","5","6","7","8","9","10","11"]
       }
 
       const filteredIngredients = [];
@@ -92,7 +95,7 @@ export const addMeal = () => {
     const ingredients = getState().nutrition.mealIngredients
 
     try {
-      const response = await fetch(`https://nutrition-1cf49.firebaseio.com/userMeals/${userId}/.json?auth=${token}`, {
+      const response = await fetch(`https://nutrition-1cf49.firebaseio.com/userMeals/${userId}.json?auth=${token}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -102,7 +105,7 @@ export const addMeal = () => {
         })
       });
 
-      dispatch({ type: ADD_MEAL, meal: ingredients })
+      dispatch({ type: ADD_MEAL })
 
     } catch (error) {
       console.log(error);

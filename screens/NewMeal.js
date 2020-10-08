@@ -1,19 +1,19 @@
 import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
 import { ScrollView, View, TextInput, StyleSheet, FlatList, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import Colors from '../constants/Colors'
+import * as Animatable from 'react-native-animatable';
+import { SearchBar } from 'react-native-elements';
+import { LinearGradient } from 'expo-linear-gradient'
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 import { fetchIngredients } from '../store/actions/nutrition'
 import { addIngredient } from '../store/actions/nutrition'
 import { deleteIngredient } from '../store/actions/nutrition'
 import { addMeal } from '../store/actions/nutrition'
 
-import { SearchBar } from 'react-native-elements';
-import { LinearGradient } from 'expo-linear-gradient'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import ListButton from '../components/ListButton'
-
 import IngredientItem from '../components/IngredientItem'
+import Colors from '../constants/Colors'
 
 const {width,height} = Dimensions.get('window')
 
@@ -24,6 +24,10 @@ const NewMeal = (props) => {
   const [search, setSearch] = useState(null)
   const [list, setList] = useState([])
   const [ingredientList, setIngredientList] = useState([])
+  //state for the "added meal" animation
+  const [addAnimation, setAddAnimation] = useState(false)
+  //Ref for the bouncing view
+  const imageRef = useRef(null);
   //Getting the param passed from AddButton.js
   const mealType = props.navigation.getParam("meal")
 
@@ -81,7 +85,22 @@ const NewMeal = (props) => {
   }
 
   const submitHandler = async() => {
+    console.log('hei');
     await dispatch(addMeal())
+    handleAnimation()
+  }
+
+  const handleAnimation = async() => {
+    await setAddAnimation(true)
+    //bounce in image
+    await imageRef.current.bounceIn(1000)
+    //Waiting 3 sek before it bounces out again
+    const startAnimation = await setTimeout(() => {
+      imageRef.current.fadeOut(200)
+    }, 1000)
+    const endanimation = await setTimeout(() => {
+      setAddAnimation(false)
+    }, 1300)
   }
 
   //Function to render the different ingredients
@@ -106,7 +125,8 @@ const NewMeal = (props) => {
             })
           }}
           onAddIngredient={() => {
-            let objectReturn = addIngredient(itemData.item.id, itemData.item.name)
+            console.log('heipådeg');
+            let objectReturn = addIngredient(itemData.item.id)
             dispatch(objectReturn)
           }}
           />
@@ -154,7 +174,7 @@ const NewMeal = (props) => {
         />
       </View>
       <FlatList
-        contentContainerStyle={{ paddingTop: 200, width: width}}
+        contentContainerStyle={{ paddingTop: 200, width: width, }}
         scrollEventThrottle={16}
         onRefresh={loadIngredients}
         refreshing={isRefreshing}
@@ -165,12 +185,28 @@ const NewMeal = (props) => {
       />
 
       {/* Button in bottom right to show your ingredients added */}
-      <ListButton
-        deleteIngredient={deleteHandler}
-        ingredients={ingredientList}
-        handleSubmitMeal={submitHandler}
-      />
+        <ListButton
+          deleteIngredient={deleteHandler}
+          ingredients={ingredientList}
+          handleSubmitMeal={submitHandler}
+        />
 
+      {addAnimation ? (
+        <View style={styles.animationPopWrap}>
+          <Animatable.View
+            style={styles.popupWrap}
+            ref={imageRef}
+            >
+            <Text style={styles.mealAnimationTitle}>Meal added!</Text>
+            <Text style={styles.mealDescText}></Text>
+            <MaterialIcons name="check" size={50} color="#fff"/>
+          </Animatable.View>
+        </View>
+      ) : (
+        <View>
+
+        </View>
+      )}
     </View>
   )
 }
@@ -226,6 +262,35 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+  },
+  animationPopWrap:{
+    flex:1,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    zIndex: 7000
+  },
+  popupWrap:{
+    backgroundColor: "#80d0c7",
+    width: width / 2,
+    height: width / 2,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  mealAnimationTitle:{
+    color:"#fff",
+    fontWeight: '600',
+    fontSize: 20
+  },
+  mealDescText:{
+    color:"#fff",
+    fontWeight: '600',
+    fontSize: 16,
+    marginTop: 5,
+    marginBottom: 5
   }
 })
 
