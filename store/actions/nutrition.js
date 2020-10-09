@@ -33,19 +33,19 @@ export const fetchIngredients = () => {
       let pesc = false
       let foodGroups = []
 
-      if(userData.preference === "vegeterianer"){
+      if(userData.preference_id === "vegeterianer"){
         vegeterianer = true
         foodGroups = ["1","2","5","6","7","8"]
       }
-      if(userData.preference === "vegan"){
+      if(userData.preference_id === "vegan"){
         vegan = true
         foodGroups = ["5","6","7"]
       }
-      if(userData.preference === "pesc"){
+      if(userData.preference_id === "pesc"){
         pesc = true
         foodGroups = ["1","2","4","5","6","7","8"]
       }
-      if(userData.preference == null){
+      if(userData.preference_id == null){
         foodGroups = ["1","2","3","4","5","6","7","8","9","10","11"]
       }
 
