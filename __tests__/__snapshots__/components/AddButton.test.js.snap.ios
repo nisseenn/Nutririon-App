@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddButton /> render() renders the component 1`] = `
+<TouchableHighlight
+  hostRef={null}
+  onPress={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "borderRadius": 36,
+        "height": 40,
+        "justifyContent": "center",
+        "position": "absolute",
+        "shadowOffset": Object {
+          "height": 5,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 5,
+        "width": 40,
+      },
+      Object {
+        "backgroundColor": "#ffb944",
+        "shadowColor": undefined,
+      },
+    ]
+  }
+>
+  <ForwardRef(AnimatedComponentWrapper)>
+    <IconClass
+      brand={false}
+      light={false}
+      name="plus"
+      onPress={[Function]}
+      regular={false}
+      size={15}
+      solid={false}
+    />
+  </ForwardRef(AnimatedComponentWrapper)>
+</TouchableHighlight>
+`;

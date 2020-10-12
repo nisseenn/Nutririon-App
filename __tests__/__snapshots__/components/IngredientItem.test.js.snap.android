@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<IngredientItem /> render() renders the component 1`] = `
+<View
+  style={
+    Object {
+      "marginVertical": 5,
+    }
+  }
+>
+  <ForwardRef
+    onPress={[Function]}
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "height": 70,
+        "justifyContent": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 20,
+          "fontWeight": "600",
+          "paddingLeft": 30,
+        }
+      }
+    />
+  </ForwardRef>
+</View>
+`;

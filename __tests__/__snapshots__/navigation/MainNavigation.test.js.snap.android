@@ -1,0 +1,248 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Navigation /> render() renders the component 1`] = `
+<ContextProvider
+  value="light"
+>
+  <ContextProvider
+    value={
+      Object {
+        "_childrenNavigation": Object {},
+        "actions": Object {},
+        "addListener": [Function],
+        "dangerouslyGetParent": [Function],
+        "dispatch": [Function],
+        "getChildNavigation": [Function],
+        "getScreenProps": [Function],
+        "goBack": [Function],
+        "isFirstRouteInParent": [Function],
+        "isFocused": [Function],
+        "navigate": [Function],
+        "router": Object {
+          "childRouters": Object {
+            "Auth": Object {
+              "childRouters": Object {
+                "login": null,
+                "signup": Object {
+                  "childRouters": Object {
+                    "gender": null,
+                    "info": null,
+                    "method": null,
+                    "preferences": null,
+                    "start": null,
+                  },
+                  "getActionCreators": [Function],
+                  "getActionForPathAndParams": [Function],
+                  "getComponentForRouteName": [Function],
+                  "getComponentForState": [Function],
+                  "getPathAndParamsForState": [Function],
+                  "getScreenOptions": [Function],
+                  "getStateForAction": [Function],
+                },
+                "start": null,
+              },
+              "getActionCreators": [Function],
+              "getActionForPathAndParams": [Function],
+              "getComponentForRouteName": [Function],
+              "getComponentForState": [Function],
+              "getPathAndParamsForState": [Function],
+              "getScreenOptions": [Function],
+              "getStateForAction": [Function],
+            },
+            "Main": Object {
+              "childRouters": Object {
+                "Home": null,
+                "New": null,
+                "Profile": null,
+              },
+              "getActionCreators": [Function],
+              "getActionForPathAndParams": [Function],
+              "getComponentForRouteName": [Function],
+              "getComponentForState": [Function],
+              "getPathAndParamsForState": [Function],
+              "getScreenOptions": [Function],
+              "getStateForAction": [Function],
+            },
+            "Start": null,
+          },
+          "getActionCreators": [Function],
+          "getActionForPathAndParams": [Function],
+          "getComponentForRouteName": [Function],
+          "getComponentForState": [Function],
+          "getPathAndParamsForState": [Function],
+          "getScreenOptions": [Function],
+          "getStateForAction": [Function],
+        },
+        "setParams": [Function],
+        "state": Object {
+          "index": 0,
+          "routes": Array [
+            Object {
+              "key": "Start",
+              "params": undefined,
+              "routeName": "Start",
+            },
+            Object {
+              "index": 0,
+              "isTransitioning": false,
+              "key": "Auth",
+              "params": undefined,
+              "routeName": "Auth",
+              "routes": Array [
+                Object {
+                  "key": "id-1602020899131-0",
+                  "routeName": "start",
+                },
+              ],
+            },
+            Object {
+              "index": 0,
+              "key": "Main",
+              "params": undefined,
+              "routeName": "Main",
+              "routes": Array [
+                Object {
+                  "key": "Home",
+                  "params": undefined,
+                  "routeName": "Home",
+                },
+                Object {
+                  "key": "New",
+                  "params": undefined,
+                  "routeName": "New",
+                },
+                Object {
+                  "key": "Profile",
+                  "params": undefined,
+                  "routeName": "Profile",
+                },
+              ],
+            },
+          ],
+        },
+      }
+    }
+  >
+    <Navigator
+      navigation={
+        Object {
+          "_childrenNavigation": Object {},
+          "actions": Object {},
+          "addListener": [Function],
+          "dangerouslyGetParent": [Function],
+          "dispatch": [Function],
+          "getChildNavigation": [Function],
+          "getScreenProps": [Function],
+          "goBack": [Function],
+          "isFirstRouteInParent": [Function],
+          "isFocused": [Function],
+          "navigate": [Function],
+          "router": Object {
+            "childRouters": Object {
+              "Auth": Object {
+                "childRouters": Object {
+                  "login": null,
+                  "signup": Object {
+                    "childRouters": Object {
+                      "gender": null,
+                      "info": null,
+                      "method": null,
+                      "preferences": null,
+                      "start": null,
+                    },
+                    "getActionCreators": [Function],
+                    "getActionForPathAndParams": [Function],
+                    "getComponentForRouteName": [Function],
+                    "getComponentForState": [Function],
+                    "getPathAndParamsForState": [Function],
+                    "getScreenOptions": [Function],
+                    "getStateForAction": [Function],
+                  },
+                  "start": null,
+                },
+                "getActionCreators": [Function],
+                "getActionForPathAndParams": [Function],
+                "getComponentForRouteName": [Function],
+                "getComponentForState": [Function],
+                "getPathAndParamsForState": [Function],
+                "getScreenOptions": [Function],
+                "getStateForAction": [Function],
+              },
+              "Main": Object {
+                "childRouters": Object {
+                  "Home": null,
+                  "New": null,
+                  "Profile": null,
+                },
+                "getActionCreators": [Function],
+                "getActionForPathAndParams": [Function],
+                "getComponentForRouteName": [Function],
+                "getComponentForState": [Function],
+                "getPathAndParamsForState": [Function],
+                "getScreenOptions": [Function],
+                "getStateForAction": [Function],
+              },
+              "Start": null,
+            },
+            "getActionCreators": [Function],
+            "getActionForPathAndParams": [Function],
+            "getComponentForRouteName": [Function],
+            "getComponentForState": [Function],
+            "getPathAndParamsForState": [Function],
+            "getScreenOptions": [Function],
+            "getStateForAction": [Function],
+          },
+          "setParams": [Function],
+          "state": Object {
+            "index": 0,
+            "routes": Array [
+              Object {
+                "key": "Start",
+                "params": undefined,
+                "routeName": "Start",
+              },
+              Object {
+                "index": 0,
+                "isTransitioning": false,
+                "key": "Auth",
+                "params": undefined,
+                "routeName": "Auth",
+                "routes": Array [
+                  Object {
+                    "key": "id-1602020899131-0",
+                    "routeName": "start",
+                  },
+                ],
+              },
+              Object {
+                "index": 0,
+                "key": "Main",
+                "params": undefined,
+                "routeName": "Main",
+                "routes": Array [
+                  Object {
+                    "key": "Home",
+                    "params": undefined,
+                    "routeName": "Home",
+                  },
+                  Object {
+                    "key": "New",
+                    "params": undefined,
+                    "routeName": "New",
+                  },
+                  Object {
+                    "key": "Profile",
+                    "params": undefined,
+                    "routeName": "Profile",
+                  },
+                ],
+              },
+            ],
+          },
+        }
+      }
+      theme="light"
+    />
+  </ContextProvider>
+</ContextProvider>
+`;

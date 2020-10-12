@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Input /> render() renders the component 1`] = `
+<View
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "marginVertical": 8,
+      }
+    }
+  />
+  <Component
+    allowFontScaling={true}
+    onBlur={[Function]}
+    onChangeText={[Function]}
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderBottomColor": "#ccc",
+        "borderBottomWidth": 1,
+        "paddingHorizontal": 2,
+        "paddingVertical": 5,
+      }
+    }
+    underlineColorAndroid="transparent"
+    value=""
+  />
+</View>
+`;
