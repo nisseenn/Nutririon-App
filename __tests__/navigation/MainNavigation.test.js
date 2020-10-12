@@ -8,9 +8,14 @@ import "../setup/setupEnzyme"
 
 import Navigation from "../../Navigation/MainNavigation"
 
+
 describe('<Navigation />', () => {
   describe('render()', () => {
     test('renders the component', () => {
+      
+      const getOS = jest.fn().mockImplementationOnce(() => 'android');
+
+      
       const wrapper = shallow(<Navigation />);
       const component = wrapper.dive();
 

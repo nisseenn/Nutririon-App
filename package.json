@@ -13,10 +13,10 @@
     "rootDir": ".",
     "projects": [
       {
-        "preset": "jest-expo/ios",
+        "preset": "jest-expo/ios"
       },
       {
-        "preset": "jest-expo/android",
+        "preset": "jest-expo/android"
       }
     ],
     "transform": {

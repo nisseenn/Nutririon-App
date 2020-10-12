@@ -11,6 +11,8 @@ import Animated from 'react-native-reanimated';
 import Colors from '../constants/Colors'
 //Importing our customized, amazing component, which can be used in multiple other components
 import Input from '../components/Input'
+// import helper function getOS to allow mocking Platform.OS in jest
+import getOS from '../constants/helper'
 
 //Checking if the phone is andriod
 const isAndroid = Platform.OS == 'android';
