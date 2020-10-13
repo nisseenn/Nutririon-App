@@ -34,7 +34,11 @@ exports[`renders the component 1`] = `
   }
 >
   <View>
-    <Text />
+    <View
+      name="plus"
+      onPress={[Function]}
+      size={15}
+    />
   </View>
 </View>
 `;

@@ -4,6 +4,20 @@ import renderer from 'react-test-renderer';
 
 import AddButton from "../../components/AddButton"
 
+
+//Mock Icon causing rendering error
+jest.mock('@expo/vector-icons', () => {
+  const { View } = require('react-native');
+  return {
+    MaterialIcons: View,
+    Ionicons: View,
+    FontAwesome: View,
+    FontAwesome5: View,
+    Feather: View,
+  };
+});
+
+
 it('renders the component', () => {
 
     const tree = renderer.create(<AddButton />);
