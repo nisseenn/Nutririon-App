@@ -8,8 +8,6 @@ import * as firebase from 'firebase'
 import { signup } from '../store/actions/auth'
 //Importing colors
 import Colors from '../constants/Colors'
-//import helper function getOS to allow mocking Platform.OS in Jest
-import { getOS } from '../constants/helper'
 
 
 

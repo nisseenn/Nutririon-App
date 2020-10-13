@@ -4,34 +4,35 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store'
 import {Provider} from "react-redux";
 
-import LoginScreen from '../../screens/LoginScreen'
+import HomeScreen from '../../screens/HomeScreen'
 
 //create mockStore
 let mockStore;
 //create Obj for config store
 const mockStoreConf = configureStore([]);
 
-//beforeEach( () => { 
-  //jest.useFakeTimers() 
-//});
+jest.useFakeTimers();
 
-//Icon results in error, mock it out
-jest.mock('@expo/vector-icons', () => {
-  const { View } = require('react-native');
-  return {
-    MaterialIcons: View,
-    Ionicons: View,
-  };
-});
+it('HomeScreen renders correctly', async () => {
 
-it('LoginScreen renders correctly', async () => {
   //configure store (add states)
   mockStore = mockStoreConf({});
-  
+
   const tree = await renderer.create(
         <Provider store={mockStore}>
-          <LoginScreen />
-        </Provider>  
-  );
+          <HomeScreen />
+        </Provider>
+      );
   expect(tree).toMatchSnapshot();
 });
+
+
+/*
+it('ENZYME snapshot', () => {
+  const tree = mount(<HomeScreen />);
+  expect(toJson(tree)).toMatchSnapshot()
+});
+*/
+
+
+//pass without warning

@@ -90,7 +90,7 @@ exports[`<Navigation /> render() renders the component 1`] = `
               "routeName": "Auth",
               "routes": Array [
                 Object {
-                  "key": "id-1602020899131-0",
+                  "key": "id-1602605749008-0",
                   "routeName": "start",
                 },
               ],
@@ -209,7 +209,7 @@ exports[`<Navigation /> render() renders the component 1`] = `
                 "routeName": "Auth",
                 "routes": Array [
                   Object {
-                    "key": "id-1602020899131-0",
+                    "key": "id-1602605749008-0",
                     "routeName": "start",
                   },
                 ],
