@@ -1,9 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<AddButton /> render() renders the component 1`] = `
-<TouchableHighlight
-  hostRef={null}
-  onPress={[Function]}
+exports[`renders the component 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
   style={
     Array [
       Object {
@@ -26,16 +33,8 @@ exports[`<AddButton /> render() renders the component 1`] = `
     ]
   }
 >
-  <ForwardRef(AnimatedComponentWrapper)>
-    <IconClass
-      brand={false}
-      light={false}
-      name="plus"
-      onPress={[Function]}
-      regular={false}
-      size={15}
-      solid={false}
-    />
-  </ForwardRef(AnimatedComponentWrapper)>
-</TouchableHighlight>
+  <View>
+    <Text />
+  </View>
+</View>
 `;

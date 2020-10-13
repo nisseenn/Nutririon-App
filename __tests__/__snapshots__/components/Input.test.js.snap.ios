@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Input /> render() renders the component 1`] = `
+exports[`renders the component 1`] = `
 <View
   style={
     Object {
@@ -15,7 +15,7 @@ exports[`<Input /> render() renders the component 1`] = `
       }
     }
   />
-  <Component
+  <TextInput
     allowFontScaling={true}
     onBlur={[Function]}
     onChangeText={[Function]}

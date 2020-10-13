@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<IngredientItem /> render() renders the component 1`] = `
+exports[`renders the component 1`] = `
 <View
   style={
     Object {
@@ -8,13 +8,22 @@ exports[`<IngredientItem /> render() renders the component 1`] = `
     }
   }
 >
-  <ForwardRef
-    onPress={[Function]}
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "alignItems": "flex-start",
         "height": 70,
         "justifyContent": "center",
+        "opacity": 1,
         "width": "100%",
       }
     }
@@ -28,6 +37,6 @@ exports[`<IngredientItem /> render() renders the component 1`] = `
         }
       }
     />
-  </ForwardRef>
+  </View>
 </View>
 `;

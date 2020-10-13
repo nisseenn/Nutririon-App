@@ -1,25 +1,28 @@
+import 'react-native';
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-import configureStore from 'redux-mock-store'; // Smart components
-
-import "../setup/setupEnzyme"
-
+import renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store'
+import {Provider} from "react-redux";
 
 import Navigation from "../../Navigation/MainNavigation"
 
+//create mockStore
+let mockStore;
+//create Obj for config store
+const mockStoreConf = configureStore([]);
 
-describe('<Navigation />', () => {
-  describe('render()', () => {
-    test('renders the component', () => {
-      
-      const getOS = jest.fn().mockImplementationOnce(() => 'android');
+jest.useFakeTimers();
 
-      
-      const wrapper = shallow(<Navigation />);
-      const component = wrapper.dive();
+it('renders the component', () => {
 
-      expect(toJson(component)).toMatchSnapshot();
-    });
-  });
+
+  //configure store (add states)
+  mockStore = mockStoreConf({});
+
+    const tree = renderer.create(
+              <Provider store = { mockStore }>
+                <Navigation />
+              </Provider>);
+
+    expect(tree).toMatchSnapshot();
 });

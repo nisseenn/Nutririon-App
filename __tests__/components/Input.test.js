@@ -1,20 +1,11 @@
+import 'react-native';
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-import configureStore from 'redux-mock-store'; // Smart components
-
-import "../setup/setupEnzyme"
-
+import renderer from 'react-test-renderer';
 
 import Input from "../../components/Input"
 
-describe('<Input />', () => {
-  describe('render()', () => {
-    test('renders the component', () => {
-      const wrapper = shallow(<Input />);
-      const component = wrapper.dive();
+it('renders the component', () => {
 
-      expect(toJson(component)).toMatchSnapshot();
-    });
-  });
+    const tree = renderer.create(<Input />);
+    expect(tree).toMatchSnapshot();
 });
