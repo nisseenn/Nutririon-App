@@ -94,6 +94,13 @@ export const addMeal = () => {
     const token = getState().auth.token
     const ingredients = getState().nutrition.mealIngredients
 
+    let date = new Date();
+    const timestamp = {
+      day: date.getDate(),
+      month: date.getMonth(),
+      year: date.getFullYear()
+    }
+
     try {
       const response = await fetch(`https://nutrition-1cf49.firebaseio.com/userMeals/${userId}.json?auth=${token}`, {
         method: 'POST',
@@ -101,7 +108,8 @@ export const addMeal = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          ingredients
+          ingredients,
+          timestamp
         })
       });
 

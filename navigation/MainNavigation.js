@@ -17,6 +17,7 @@ import SignupScreen from '../screens/SignupScreen'
 import StartScreen from '../screens/StartScreen'
 import NewMeal from '../screens/NewMeal'
 import HomeScreen from '../screens/HomeScreen'
+import CalendarScreen from '../screens/CalendarScreen'
 import ProfileScreen from '../screens/ProfileScreen'
 import GenderScreen from '../screens/GenderScreen'
 import PersonalInfoScreen from '../screens/PersonalInfoScreen'
@@ -31,12 +32,27 @@ const NewMealNavigator = createStackNavigator({
   detail: IngredientDetailScreen
 })
 
+const HomeScreenNavigator = createStackNavigator({
+  main: {
+    screen: HomeScreen,
+    navigationOptions:{
+      headerShown: false
+    }
+  },
+  calendar: {
+    screen: CalendarScreen,
+    navigationOptions:{
+      headerShown: false
+    }
+  }
+})
+
 //Creating the content for the bottom tab navigator
 const tabScreenConfig = {
     //Defining a tab in the bottom
     Home: {
       //Which component is the tab pointing to
-      screen: HomeScreen,
+      screen: HomeScreenNavigator,
       //Some options to tweak the tabbar as we want
       navigationOptions:{
         //Put a nice icon in there, we also give color as parameter
