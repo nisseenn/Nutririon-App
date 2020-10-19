@@ -17,9 +17,11 @@ jest.mock('@expo/vector-icons', () => {
   };
 });
 
+describe('AddButton', () => {
+  it('renders the component', () => {
 
-it('renders the component', () => {
+      const tree = renderer.create(<AddButton />);
+      expect(tree).toMatchSnapshot();
+  });
 
-    const tree = renderer.create(<AddButton />);
-    expect(tree).toMatchSnapshot();
 });

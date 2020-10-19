@@ -1,7 +1,6 @@
 import React from 'react';
 import 'react-native';
 import renderer from 'react-test-renderer';
-
 import GenderScreen from '../../screens/GenderScreen'
 
 //Icon results in error, mock it out
@@ -12,7 +11,6 @@ jest.mock('@expo/vector-icons', () => {
     Ionicons: View,
   };
 });
-
 
 it('GenderScreen renders correctly', () => {
 

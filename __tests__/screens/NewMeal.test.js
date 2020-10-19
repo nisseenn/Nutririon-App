@@ -3,6 +3,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store'
 import {Provider} from "react-redux";
+import {useSelector} from "react-redux";
 
 import NewMeal from '../../screens/NewMeal'
 
@@ -13,22 +14,38 @@ let mockStore;
 //create Obj for config store
 const mockStoreConf = configureStore([]);
 
+//configure store (add states)
+mockStore = mockStoreConf({});
 
 beforeAll( () => { 
   jest.useFakeTimers() 
 });
 
+jest.mock("react-redux", () => ({
+  useSelector: jest.fn()
+}));
 
 
-it('NewMeal renders correctly', () => {
 
-  //configure store (add states)
-  mockStore = mockStoreConf({});
+describe("NewMeal", () => {
+  beforeEach(() => {
+    useSelector.mockImplementation(callback => {
+      return callback(mockAppState);
+    });
+  });
+  afterEach(() => {
+    useSelector.mockClear();
+  });
 
-  const tree = renderer.create(
-        <Provider store={mockStore}>
-          <NewMeal />
-        </Provider>
-      );
-  expect(tree).toMatchSnapshot();
+
+  it('NewMeal renders correctly', () => {
+
+    const tree = renderer.create(
+          <Provider store={mockStore}>
+            <NewMeal />
+          </Provider>
+        );
+    expect(tree).toMatchSnapshot();
+  });
 });
+
