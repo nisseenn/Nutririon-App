@@ -4,8 +4,10 @@ import renderer from 'react-test-renderer';
 
 import Input from "../../components/Input"
 
-it('renders the component', () => {
+describe('Input', ()=>{
+    it('renders the component', () => {
 
-    const tree = renderer.create(<Input />);
-    expect(tree).toMatchSnapshot();
+        const tree = renderer.create(<Input />);
+        expect(tree).toMatchSnapshot();
+    });
 });

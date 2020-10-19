@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1602626484418" clover="3.2.0">
-  <project timestamp="1602626484418" name="All files">
-    <metrics statements="543" coveredstatements="200" conditionals="124" coveredconditionals="19" methods="158" coveredmethods="18" elements="825" coveredelements="237" complexity="0" loc="543" ncloc="543" packages="6" files="19" classes="19"/>
+<coverage generated="1603133624176" clover="3.2.0">
+  <project timestamp="1603133624176" name="All files">
+    <metrics statements="555" coveredstatements="198" conditionals="135" coveredconditionals="29" methods="160" coveredmethods="21" elements="850" coveredelements="248" complexity="0" loc="555" ncloc="555" packages="7" files="21" classes="21"/>
     <package name="assets">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="startimg.jpg" path="C:\Users\juzen\GIT\Study\nutrition\assets\startimg.jpg">
@@ -22,11 +22,11 @@
       </file>
       <file name="IngredientItem.js" path="C:\Users\juzen\GIT\Study\nutrition\components\IngredientItem.js">
         <metrics statements="5" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="8" count="6" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
-        <line num="25" count="6" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
       </file>
       <file name="Input.js" path="C:\Users\juzen\GIT\Study\nutrition\components\Input.js">
         <metrics statements="31" coveredstatements="11" conditionals="30" coveredconditionals="3" methods="5" coveredmethods="1"/>
@@ -87,7 +87,7 @@
       </file>
     </package>
     <package name="screens">
-      <metrics statements="387" coveredstatements="152" conditionals="68" coveredconditionals="16" methods="120" coveredmethods="13"/>
+      <metrics statements="387" coveredstatements="132" conditionals="68" coveredconditionals="16" methods="120" coveredmethods="9"/>
       <file name="GenderScreen.js" path="C:\Users\juzen\GIT\Study\nutrition\screens\GenderScreen.js">
         <metrics statements="43" coveredstatements="17" conditionals="6" coveredconditionals="0" methods="17" coveredmethods="1"/>
         <line num="8" count="4" type="stmt"/>
@@ -213,16 +213,16 @@
         <line num="390" count="4" type="stmt"/>
       </file>
       <file name="NewMeal.js" path="C:\Users\juzen\GIT\Study\nutrition\screens\NewMeal.js">
-        <metrics statements="38" coveredstatements="10" conditionals="2" coveredconditionals="0" methods="12" coveredmethods="2"/>
-        <line num="11" count="4" type="stmt"/>
-        <line num="13" count="4" type="stmt"/>
-        <line num="14" count="2" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
-        <line num="16" count="2" type="stmt"/>
-        <line num="17" count="2" type="stmt"/>
-        <line num="18" count="2" type="stmt"/>
-        <line num="20" count="2" type="stmt"/>
-        <line num="22" count="2" type="stmt"/>
+        <metrics statements="38" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="12" coveredmethods="0"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
@@ -251,7 +251,7 @@
         <line num="83" count="0" type="stmt"/>
         <line num="100" count="0" type="stmt"/>
         <line num="112" count="0" type="stmt"/>
-        <line num="118" count="4" type="stmt"/>
+        <line num="118" count="2" type="stmt"/>
       </file>
       <file name="PersonalInfoScreen.js" path="C:\Users\juzen\GIT\Study\nutrition\screens\PersonalInfoScreen.js">
         <metrics statements="27" coveredstatements="16" conditionals="6" coveredconditionals="3" methods="9" coveredmethods="1"/>
@@ -308,29 +308,29 @@
         <line num="122" count="4" type="stmt"/>
       </file>
       <file name="ProfileScreen.js" path="C:\Users\juzen\GIT\Study\nutrition\screens\ProfileScreen.js">
-        <metrics statements="94" coveredstatements="17" conditionals="18" coveredconditionals="0" methods="30" coveredmethods="2"/>
-        <line num="21" count="4" type="stmt"/>
-        <line num="23" count="4" type="stmt"/>
-        <line num="25" count="4" type="stmt"/>
-        <line num="27" count="2" type="stmt"/>
-        <line num="30" count="2" type="stmt"/>
-        <line num="32" count="2" type="stmt"/>
-        <line num="34" count="2" type="stmt"/>
-        <line num="35" count="2" type="stmt"/>
-        <line num="36" count="2" type="stmt"/>
-        <line num="38" count="2" type="stmt"/>
-        <line num="41" count="2" type="stmt"/>
-        <line num="42" count="2" type="stmt"/>
-        <line num="46" count="2" type="stmt"/>
-        <line num="47" count="2" type="stmt"/>
+        <metrics statements="94" coveredstatements="4" conditionals="18" coveredconditionals="0" methods="30" coveredmethods="0"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
         <line num="57" count="0" type="stmt"/>
         <line num="60" count="0" type="stmt"/>
         <line num="63" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="67" count="0" type="stmt"/>
         <line num="68" count="0" type="stmt"/>
         <line num="70" count="0" type="stmt"/>
-        <line num="75" count="2" type="stmt"/>
-        <line num="78" count="2" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
         <line num="79" count="0" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
         <line num="83" count="0" type="stmt"/>
@@ -402,7 +402,7 @@
         <line num="492" count="0" type="stmt"/>
         <line num="517" count="0" type="stmt"/>
         <line num="536" count="0" type="stmt"/>
-        <line num="572" count="4" type="stmt"/>
+        <line num="572" count="2" type="stmt"/>
       </file>
       <file name="SignUpMethodScreen.js" path="C:\Users\juzen\GIT\Study\nutrition\screens\SignUpMethodScreen.js">
         <metrics statements="17" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="1"/>
@@ -510,15 +510,16 @@
       </file>
     </package>
     <package name="store.actions">
-      <metrics statements="102" coveredstatements="21" conditionals="26" coveredconditionals="0" methods="22" coveredmethods="0"/>
+      <metrics statements="103" coveredstatements="28" conditionals="26" coveredconditionals="0" methods="22" coveredmethods="5"/>
       <file name="auth.js" path="C:\Users\juzen\GIT\Study\nutrition\store\actions\auth.js">
-        <metrics statements="60" coveredstatements="13" conditionals="4" coveredconditionals="0" methods="14" coveredmethods="0"/>
-        <line num="4" count="12" type="stmt"/>
-        <line num="14" count="12" type="stmt"/>
-        <line num="16" count="12" type="stmt"/>
-        <line num="17" count="12" type="stmt"/>
-        <line num="18" count="12" type="stmt"/>
-        <line num="22" count="12" type="stmt"/>
+        <metrics statements="61" coveredstatements="20" conditionals="4" coveredconditionals="0" methods="14" coveredmethods="5"/>
+        <line num="4" count="14" type="stmt"/>
+        <line num="14" count="14" type="stmt"/>
+        <line num="16" count="14" type="stmt"/>
+        <line num="17" count="14" type="stmt"/>
+        <line num="18" count="14" type="stmt"/>
+        <line num="19" count="14" type="stmt"/>
+        <line num="22" count="14" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
@@ -530,7 +531,7 @@
         <line num="36" count="0" type="stmt"/>
         <line num="38" count="0" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
-        <line num="46" count="12" type="stmt"/>
+        <line num="46" count="14" type="stmt"/>
         <line num="47" count="0" type="stmt"/>
         <line num="49" count="0" type="stmt"/>
         <line num="50" count="0" type="stmt"/>
@@ -542,13 +543,13 @@
         <line num="70" count="0" type="stmt"/>
         <line num="73" count="0" type="stmt"/>
         <line num="76" count="0" type="stmt"/>
-        <line num="80" count="12" type="stmt"/>
-        <line num="81" count="0" type="stmt"/>
-        <line num="83" count="0" type="stmt"/>
-        <line num="87" count="12" type="stmt"/>
-        <line num="88" count="0" type="stmt"/>
-        <line num="89" count="0" type="stmt"/>
-        <line num="93" count="12" type="stmt"/>
+        <line num="80" count="14" type="stmt"/>
+        <line num="81" count="2" type="stmt"/>
+        <line num="83" count="2" type="stmt"/>
+        <line num="87" count="14" type="stmt"/>
+        <line num="88" count="2" type="stmt"/>
+        <line num="89" count="2" type="stmt"/>
+        <line num="93" count="14" type="stmt"/>
         <line num="94" count="0" type="stmt"/>
         <line num="95" count="0" type="stmt"/>
         <line num="96" count="0" type="stmt"/>
@@ -561,26 +562,26 @@
         <line num="124" count="0" type="stmt"/>
         <line num="125" count="0" type="stmt"/>
         <line num="126" count="0" type="stmt"/>
-        <line num="130" count="12" type="stmt"/>
+        <line num="130" count="14" type="stmt"/>
         <line num="131" count="0" type="stmt"/>
         <line num="132" count="0" type="stmt"/>
         <line num="134" count="0" type="stmt"/>
         <line num="135" count="0" type="stmt"/>
         <line num="137" count="0" type="stmt"/>
         <line num="138" count="0" type="stmt"/>
-        <line num="142" count="12" type="stmt"/>
-        <line num="144" count="0" type="stmt"/>
-        <line num="145" count="0" type="stmt"/>
-        <line num="148" count="12" type="stmt"/>
+        <line num="142" count="14" type="stmt"/>
+        <line num="144" count="2" type="stmt"/>
+        <line num="145" count="2" type="stmt"/>
+        <line num="148" count="14" type="stmt"/>
         <line num="149" count="0" type="stmt"/>
       </file>
       <file name="nutrition.js" path="C:\Users\juzen\GIT\Study\nutrition\store\actions\nutrition.js">
         <metrics statements="42" coveredstatements="8" conditionals="22" coveredconditionals="0" methods="8" coveredmethods="0"/>
-        <line num="4" count="8" type="stmt"/>
-        <line num="5" count="8" type="stmt"/>
-        <line num="6" count="8" type="stmt"/>
-        <line num="7" count="8" type="stmt"/>
-        <line num="9" count="8" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
@@ -612,12 +613,32 @@
         <line num="51" count="0" type="stmt"/>
         <line num="55" count="0" type="stmt"/>
         <line num="58" count="0" type="stmt"/>
-        <line num="63" count="8" type="stmt"/>
+        <line num="63" count="6" type="stmt"/>
         <line num="64" count="0" type="stmt"/>
-        <line num="69" count="8" type="stmt"/>
+        <line num="69" count="6" type="stmt"/>
         <line num="70" count="0" type="stmt"/>
-        <line num="75" count="8" type="stmt"/>
+        <line num="75" count="6" type="stmt"/>
         <line num="76" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="store.reducers">
+      <metrics statements="11" coveredstatements="11" conditionals="11" coveredconditionals="10" methods="2" coveredmethods="2"/>
+      <file name="auth.js" path="C:\Users\juzen\GIT\Study\nutrition\store\reducers\auth.js">
+        <metrics statements="6" coveredstatements="6" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="16" count="14" type="cond" truecount="5" falsecount="0"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="30" count="4" type="stmt"/>
+      </file>
+      <file name="nutrition.js" path="C:\Users\juzen\GIT\Study\nutrition\store\reducers\nutrition.js">
+        <metrics statements="5" coveredstatements="5" conditionals="5" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="13" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="14" count="12" type="cond" truecount="4" falsecount="0"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="27" count="8" type="stmt"/>
       </file>
     </package>
   </project>

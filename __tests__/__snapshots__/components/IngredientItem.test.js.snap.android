@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders the component 1`] = `
+exports[`IngredientItem renders the component 1`] = `
 <View
   style={
     Object {

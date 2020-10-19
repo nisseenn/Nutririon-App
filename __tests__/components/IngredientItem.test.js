@@ -4,8 +4,10 @@ import renderer from 'react-test-renderer';
 
 import IngredientItem from "../../components/IngredientItem"
 
-it('renders the component', () => {
+describe('IngredientItem', ()=>{
+    it('renders the component', () => {
 
-    const tree = renderer.create(<IngredientItem />);
-    expect(tree).toMatchSnapshot();
+        const tree = renderer.create(<IngredientItem />);
+        expect(tree).toMatchSnapshot();
+    });
 });

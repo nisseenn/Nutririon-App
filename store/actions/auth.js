@@ -16,7 +16,7 @@ let app = firebase.initializeApp(config);
 export const LOGOUT = "LOGOUT"
 export const AUTHENTICATE = "AUTHENTICATE"
 export const SET_PREFERENCE = "SET_PREFERENCE"
-// export const EMAIL_VERIFY = "EMAIL_VERIFY"
+export const EMAIL_VERIFY = "EMAIL_VERIFY"
 
 //Creating a function to fetch user data when app loads
 export const fetchUserData = () => {
