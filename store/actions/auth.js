@@ -96,24 +96,57 @@ export const signup = (email, password, name, gender, age, weight, userHeight, p
     const user = await firebase.auth().currentUser;
 
     const idToken = await user.getIdToken()
+
+  //   try {
+  //     //Requesting data from Firebase with token and userid
+  //     const response2 = await fetch(`https://nutrition-1cf49.firebaseio.com/users/${user.uid}.json`, {
+  //       method: 'PUT',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({
+  //         gender: gender,
+  //         age: age,
+  //         weight: weight,
+  //         userHeight: userHeight,
+  //         preference_id: preference,
+  //         work: userWork,
+  //         freetime: userFreetime
+  //       })
+  //     });
+  //
+  //     if(!response2.ok) {
+  //       const resData = await response2.json();
+  //       // console.log(resData);
+  //       throw new Error("Something went wrong")
+  //     }
+  // } catch (err) {
+  //   console.log(err);
+  // }
+
+
     //Updating user displayName with firebase method updateProfile
     const updateUser = await user.updateProfile({
       displayName: name,
     })
     //Creating an empty object
     let updates = {}
+
     //Creating the obj to push to DB
     let userData = {
       gender: gender,
       age: age,
       weight: weight,
       userHeight: userHeight,
-      preference: preference,
+      preference_id: preference,
       work: userWork,
       freetime: userFreetime
     }
     updates['users/'+user.uid] = userData;
+
     await firebase.database().ref().update(updates)
+
+
 
     // user.sendEmailVerification().then(function() {
     //   // dispatch(verifyEmail(false))

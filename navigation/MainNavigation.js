@@ -5,6 +5,7 @@ import { View, Text, Button, Platform } from 'react-native'
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 //Importing iconsetß
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 
@@ -16,20 +17,42 @@ import SignupScreen from '../screens/SignupScreen'
 import StartScreen from '../screens/StartScreen'
 import NewMeal from '../screens/NewMeal'
 import HomeScreen from '../screens/HomeScreen'
+import CalendarScreen from '../screens/CalendarScreen'
 import ProfileScreen from '../screens/ProfileScreen'
 import GenderScreen from '../screens/GenderScreen'
 import PersonalInfoScreen from '../screens/PersonalInfoScreen'
 import PreferencesScreen from '../screens/PreferencesScreen'
 import SignUpMethodScreen from '../screens/SignUpMethodScreen'
 import StartUpScreen from '../screens/StartUpScreen'
+import IngredientDetailScreen from '../screens/IngredientDetailScreen'
 import AddButton from '../components/AddButton'
+
+const NewMealNavigator = createStackNavigator({
+  mealStart: NewMeal,
+  detail: IngredientDetailScreen
+})
+
+const HomeScreenNavigator = createStackNavigator({
+  main: {
+    screen: HomeScreen,
+    navigationOptions:{
+      headerShown: false
+    }
+  },
+  calendar: {
+    screen: CalendarScreen,
+    navigationOptions:{
+      headerShown: false
+    }
+  }
+})
 
 //Creating the content for the bottom tab navigator
 const tabScreenConfig = {
     //Defining a tab in the bottom
     Home: {
       //Which component is the tab pointing to
-      screen: HomeScreen,
+      screen: HomeScreenNavigator,
       //Some options to tweak the tabbar as we want
       navigationOptions:{
         //Put a nice icon in there, we also give color as parameter
@@ -43,14 +66,30 @@ const tabScreenConfig = {
     },
     //repeat
     New: {
-      screen: NewMeal,
-      navigationOptions:{
-        tabBarIcon: (color) => {
+      screen: () => null,
+      navigationOptions: ({ navigation }) => ({
+        tabBarIcon: () => {
             //Rendering our new sexy add button
-            return <AddButton color={color.tintColor}/>
+            return <AddButton
+              navigation={navigation}
+            />
+          },
+          tabBarOnPress: () => {
           },
           title: '',
-      }
+      }),
+    },
+    MealHolder: {
+      screen: NewMealNavigator,
+      navigationOptions: ({ navigation }) => ({
+        tabBarButtonComponent: () => {
+            //Rendering our new sexy add button
+            return <View />
+          },
+          tabBarOnPress: () => {
+          },
+          title: '',
+      }),
     },
     //repeat
     Profile: {
@@ -65,11 +104,15 @@ const tabScreenConfig = {
 
 //Defining the bottom navigator with the help of createMaterialBottomTabNavigator, first argument is the config we defined beofre
 //second is some navigationoptions for the tabbar
-const BottomNavigator = createMaterialBottomTabNavigator(tabScreenConfig, {
+const BottomNavigator = createBottomTabNavigator(tabScreenConfig, {
+  tabBarOptions:{
+    activeTintColor: '#fff',
+    inactiveTintColor: Colors.iconColor,
+    style: {
+      backgroundColor: Colors.primaryColor,
+    }
+  },
   initialRouteName: 'Home',
-      activeColor: '#fff',
-      inactiveColor: Colors.iconColor,
-      barStyle: { backgroundColor: Colors.primaryColor },
       //makes the sexy color change possible
 });
 
