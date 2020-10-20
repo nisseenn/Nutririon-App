@@ -1,0 +1,235 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PreferencesScreen renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#fff",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "left": 10,
+        "position": "absolute",
+        "top": 50,
+      }
+    }
+  >
+    <View
+      color="#000"
+      name="navigate-before"
+      onPress={[Function]}
+      size={35}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "maxWidth": 576.9230769230769,
+        "paddingBottom": 40,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 26,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      Any preferences we should know about?
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginVertical": 20,
+        "width": "80%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "marginRight": 60,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 30,
+            "fontWeight": "500",
+          }
+        }
+      >
+        Vegeterian
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "borderColor": "#000",
+          "borderRadius": 100,
+          "borderWidth": 1,
+          "position": "absolute",
+          "right": 0,
+        }
+      }
+    >
+      <View
+        color="#448AFF"
+        onPress={[Function]}
+        status="unchecked"
+        value="vegeterianer"
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginVertical": 20,
+        "width": "80%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "marginRight": 60,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 30,
+            "fontWeight": "500",
+          }
+        }
+      >
+        Vegan
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "borderColor": "#000",
+          "borderRadius": 100,
+          "borderWidth": 1,
+          "position": "absolute",
+          "right": 0,
+        }
+      }
+    >
+      <View
+        color="#448AFF"
+        onPress={[Function]}
+        status="unchecked"
+        value="vegan"
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginVertical": 20,
+        "width": "80%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "marginRight": 60,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 30,
+            "fontWeight": "500",
+          }
+        }
+      >
+        Pescetarian
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "borderColor": "#000",
+          "borderRadius": 100,
+          "borderWidth": 1,
+          "position": "absolute",
+          "right": 0,
+        }
+      }
+    >
+      <View
+        color="#448AFF"
+        onPress={[Function]}
+        status="unchecked"
+        value="pesc"
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "bottom": 100,
+        "justifyContent": "center",
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "backgroundColor": "#ffb944",
+          "borderRadius": 100,
+          "opacity": 1,
+          "paddingHorizontal": 250,
+          "paddingVertical": 15,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        NEXT
+      </Text>
+    </View>
+  </View>
+</View>
+`;

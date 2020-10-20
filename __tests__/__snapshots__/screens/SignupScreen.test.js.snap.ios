@@ -1,0 +1,501 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignupScreen renders correctly 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "height": "100%",
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <ViewManagerAdapter_ExpoLinearGradient
+    proxiedProperties={
+      Object {
+        "colors": Array [
+          4282682111,
+          4294946749,
+        ],
+        "endPoint": undefined,
+        "locations": undefined,
+        "startPoint": undefined,
+      }
+    }
+    style={
+      Object {
+        "height": 1334,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "justifyContent": "flex-end",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "left": 10,
+          "position": "absolute",
+          "top": 50,
+        }
+      }
+    >
+      <View
+        color="white"
+        name="navigate-before"
+        onPress={[Function]}
+        size={35}
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "flex-end",
+          "justifyContent": "center",
+          "marginBottom": 44.46666666666667,
+          "paddingHorizontal": 15,
+        }
+      }
+    />
+    <View
+      animation="fadeInUpBig"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderTopLeftRadius": 30,
+          "borderTopRightRadius": 30,
+          "height": 1160,
+          "justifyContent": "center",
+          "opacity": 1,
+          "paddingHorizontal": 20,
+          "paddingVertical": 35,
+        }
+      }
+    >
+      <RCTScrollView>
+        <View>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+              }
+            }
+          >
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#093170",
+                    "fontSize": 20,
+                    "fontWeight": "bold",
+                    "top": 15,
+                  }
+                }
+              >
+                Name
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-end",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flexDirection": "column",
+                    "paddingRight": 10,
+                  }
+                }
+              >
+                <View
+                  color="#093170"
+                  name="person-outline"
+                  size={30}
+                />
+              </View>
+              <View
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "marginVertical": 8,
+                    }
+                  }
+                />
+                <TextInput
+                  allowFontScaling={true}
+                  autoCapitalize="none"
+                  id="name"
+                  initialValue=""
+                  keyboardType="default"
+                  onBlur={[Function]}
+                  onChangeText={[Function]}
+                  onInputChange={[Function]}
+                  placeholder="Full Name"
+                  rejectResponderTermination={true}
+                  required={true}
+                  style={
+                    Object {
+                      "borderBottomColor": "#ccc",
+                      "borderBottomWidth": 1,
+                      "paddingHorizontal": 2,
+                      "paddingVertical": 5,
+                    }
+                  }
+                  underlineColorAndroid="transparent"
+                  value=""
+                />
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "height": 33.35,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+              }
+            }
+          >
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#093170",
+                    "fontSize": 20,
+                    "fontWeight": "bold",
+                    "top": 15,
+                  }
+                }
+              >
+                Email
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-end",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flexDirection": "column",
+                    "paddingRight": 10,
+                  }
+                }
+              >
+                <View
+                  color="#093170"
+                  name="person-outline"
+                  size={30}
+                />
+              </View>
+              <View
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "marginVertical": 8,
+                    }
+                  }
+                />
+                <TextInput
+                  allowFontScaling={true}
+                  autoCapitalize="none"
+                  containerStyle={
+                    Object {
+                      "borderBottomColor": "#ccc",
+                      "borderBottomWidth": 1,
+                      "paddingHorizontal": 2,
+                      "paddingVertical": 5,
+                      "width": "100%",
+                    }
+                  }
+                  email={true}
+                  errorText="plase enter valid email"
+                  id="email"
+                  initialValue=""
+                  keyboardType="email-address"
+                  onBlur={[Function]}
+                  onChangeText={[Function]}
+                  onInputChange={[Function]}
+                  placeholder="Your email"
+                  rejectResponderTermination={true}
+                  required={true}
+                  style={
+                    Object {
+                      "borderBottomColor": "#ccc",
+                      "borderBottomWidth": 1,
+                      "paddingHorizontal": 2,
+                      "paddingVertical": 5,
+                    }
+                  }
+                  underlineColorAndroid="transparent"
+                  value=""
+                />
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "height": 33.35,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+              }
+            }
+          >
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#093170",
+                    "fontSize": 20,
+                    "fontWeight": "bold",
+                    "top": 15,
+                  }
+                }
+              >
+                Password
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-end",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flexDirection": "column",
+                    "paddingRight": 10,
+                  }
+                }
+              >
+                <View
+                  color="#093170"
+                  name="lock-outline"
+                  size={30}
+                />
+              </View>
+              <View
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "marginVertical": 8,
+                    }
+                  }
+                />
+                <TextInput
+                  allowFontScaling={true}
+                  autoCapitalize="none"
+                  errorText="plase enter valid password"
+                  id="password"
+                  initialValue=""
+                  keyboardType="default"
+                  minLength={5}
+                  onBlur={[Function]}
+                  onChangeText={[Function]}
+                  onInputChange={[Function]}
+                  placeholder="Your password"
+                  rejectResponderTermination={true}
+                  required={true}
+                  secureTextEntry={true}
+                  style={
+                    Object {
+                      "borderBottomColor": "#ccc",
+                      "borderBottomWidth": 1,
+                      "paddingHorizontal": 2,
+                      "paddingVertical": 5,
+                    }
+                  }
+                  underlineColorAndroid="transparent"
+                  value=""
+                />
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "height": 44.46666666666667,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+              }
+            }
+          >
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#093170",
+                    "fontSize": 20,
+                    "fontWeight": "bold",
+                    "marginVertical": 8,
+                  }
+                }
+              >
+                Confirm Password
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-end",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flexDirection": "column",
+                    "paddingRight": 10,
+                  }
+                }
+              >
+                <View
+                  color="#093170"
+                  name="lock-outline"
+                  size={30}
+                />
+              </View>
+              <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                errorText="plase enter valid password"
+                keyboardType="default"
+                minLength={5}
+                onChangeText={[Function]}
+                placeholder="Confirm Password"
+                rejectResponderTermination={true}
+                required={true}
+                secureTextEntry={true}
+                style={
+                  Object {
+                    "borderBottomColor": "#ccc",
+                    "borderBottomWidth": 1,
+                    "paddingHorizontal": 2,
+                    "paddingVertical": 5,
+                    "width": "100%",
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value={null}
+              />
+            </View>
+          </View>
+          <View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffb944",
+                  "borderRadius": 35,
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                  "marginHorizontal": 20,
+                  "marginTop": 45,
+                  "opacity": 1,
+                  "paddingVertical": 15,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "black",
+                    "fontSize": 20,
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                Sign up
+              </Text>
+              <View
+                color="black"
+                name="navigate-next"
+                size={26}
+              />
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "height": 26.68,
+              }
+            }
+          />
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>
+</View>
+`;

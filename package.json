@@ -6,17 +6,17 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest ./__tests__"
+    "test": "jest"
   },
   "jest": {
     "preset": "jest-expo/universal",
     "rootDir": ".",
     "projects": [
       {
-        "preset": "jest-expo/ios",
+        "preset": "jest-expo/ios"
       },
       {
-        "preset": "jest-expo/android",
+        "preset": "jest-expo/android"
       }
     ],
     "transform": {

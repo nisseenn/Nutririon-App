@@ -1,0 +1,225 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUpMethodScreen renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#fff",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "left": 10,
+        "position": "absolute",
+        "top": 50,
+      }
+    }
+  >
+    <View
+      color="#000"
+      name="navigate-before"
+      onPress={[Function]}
+      size={35}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "maxWidth": 625,
+        "paddingBottom": 40,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 26,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      How would you like to sign in?
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+        "marginVertical": 15,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#000",
+          "borderRadius": 100,
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+          "opacity": 1,
+          "paddingLeft": 70,
+          "paddingVertical": 15,
+          "width": 625,
+        }
+      }
+    >
+      <View
+        color="#fff"
+        name="apple"
+        size={20}
+        style={
+          Object {
+            "left": 30,
+            "position": "absolute",
+          }
+        }
+      />
+      <Text
+        style={
+          Object {
+            "color": "#fff",
+            "fontSize": 18,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        LOG IN WITH APPLE
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+        "marginVertical": 15,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#448AFF",
+          "borderRadius": 100,
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+          "opacity": 1,
+          "paddingLeft": 70,
+          "paddingVertical": 15,
+          "width": 625,
+        }
+      }
+    >
+      <View
+        color="#fff"
+        name="facebook"
+        size={20}
+        style={
+          Object {
+            "left": 30,
+            "position": "absolute",
+          }
+        }
+      />
+      <Text
+        style={
+          Object {
+            "color": "#fff",
+            "fontSize": 18,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        LOG IN WITH FACEBOOK
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+        "marginVertical": 15,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ffb944",
+          "borderRadius": 100,
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+          "opacity": 1,
+          "paddingLeft": 70,
+          "paddingVertical": 15,
+          "width": 625,
+        }
+      }
+    >
+      <View
+        color="#000"
+        name="ios-mail"
+        size={26}
+        style={
+          Object {
+            "left": 30,
+            "position": "absolute",
+          }
+        }
+      />
+      <Text
+        style={
+          Object {
+            "color": "#000",
+            "fontSize": 18,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        LOG IN WITH EMAIL
+      </Text>
+    </View>
+  </View>
+</View>
+`;

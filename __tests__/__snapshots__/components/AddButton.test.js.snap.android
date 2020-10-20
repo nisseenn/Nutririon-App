@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddButton renders the component 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "borderRadius": 36,
+        "height": 40,
+        "justifyContent": "center",
+        "position": "absolute",
+        "shadowOffset": Object {
+          "height": 5,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 5,
+        "width": 40,
+      },
+      Object {
+        "backgroundColor": "#ffb944",
+        "shadowColor": undefined,
+      },
+    ]
+  }
+>
+  <View>
+    <View
+      name="plus"
+      onPress={[Function]}
+      size={15}
+    />
+  </View>
+</View>
+`;

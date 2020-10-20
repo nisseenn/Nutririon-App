@@ -12,6 +12,7 @@ import Colors from '../constants/Colors'
 //Importing our customized, amazing component, which can be used in multiple other components
 import Input from '../components/Input'
 
+
 //Checking if the phone is andriod
 const isAndroid = Platform.OS == 'android';
 

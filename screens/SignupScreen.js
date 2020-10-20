@@ -1,5 +1,5 @@
 import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
-import { ScrollView, View, TextInput, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
+import { Platform, ScrollView, View, TextInput, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient'
 import { useDispatch } from 'react-redux'
@@ -8,6 +8,9 @@ import * as firebase from 'firebase'
 import { signup } from '../store/actions/auth'
 //Importing colors
 import Colors from '../constants/Colors'
+
+
+
 //Getting height of screen
 const {width,height} = Dimensions.get('window')
 //Checking if andriod
