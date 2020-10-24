@@ -17,8 +17,21 @@ import { ProgressBar } from 'react-native-paper';
 const {width,height} = Dimensions.get('window')
 
 //Defining HomeScreen functional component
-const HomeScreen = () => {
+const HomeScreen = (props) => {
   const dispatch = useDispatch()
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  const userNutrients = useSelector(state => state.nutrition.nutritientSuggestions)
+  const calorySuggestion = useSelector(state => state.nutrition.calorySuggestion)
+  const caloryRef = useSelector(state => state.nutrition.caloryRef)
+  const nutrients = useSelector(state => state.nutrition.nutrients)
+
+  const percent = Math.round( calorySuggestion / caloryRef * 100)
+  const proteinPercent = nutrients.protein / nutrients.total
+  const fatPercent = nutrients.fat / nutrients.total
+  const carbsPercent = nutrients.carbs / nutrients.total
+
   //Creating a function which will run on start of app
   const loadUserData = useCallback(async () => {
   try {
@@ -38,19 +51,37 @@ try {
 }
 }, [dispatch])
 
+const getData = async() => {
+  setIsLoading(true)
+  await loadUserData()
+  await loadIngredients()
+  setIsLoading(false)
+}
+
 //Calling the function before render with useEffect
 useEffect(() => {
-  loadUserData()
-  .then(loadIngredients())
+  getData()
 }, [dispatch])
 
+  if(isLoading){
+    return(
+      <View style={styles.container}>
+        <ActivityIndicator size="large"/>
+      </View>
+    )
+  }
+  else{
   //Returning the JSX code
   return(
     <View style={styles.container}>
       <View style={styles.header}>
 
         <View style={styles.calendarWrap}>
-          <TouchableOpacity style={styles.calendarButton}>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.navigate("calendar")
+            }}
+            style={styles.calendarButton}>
             <FontAwesome5 size={30} color="#fff" name="calendar-alt"/>
             <Text style={styles.calendarText}>Today</Text>
           </TouchableOpacity>
@@ -60,7 +91,7 @@ useEffect(() => {
 
           <View style={styles.progressWrap}>
             <ProgressCircle
-                percent={50}
+                percent={percent}
                 radius={height / 10}
                 borderWidth={7}
                 color={Colors.buttonColor}
@@ -68,7 +99,7 @@ useEffect(() => {
                 bgColor={Colors.primaryColor}
                 >
                 <View style={styles.progressText}>
-                  <Text style={{ fontSize: 36, fontWeight: '600', fontStyle: 'italic', color: "#fff"}}>845</Text>
+                  <Text style={{ fontSize: 36, fontWeight: '600', fontStyle: 'italic', color: "#fff"}}>{calorySuggestion}</Text>
                   <Text style={{ fontSize: 16, fontWeight: '400', fontStyle: 'italic', color: "#fff"}}>Calories left</Text>
                 </View>
             </ProgressCircle>
@@ -77,17 +108,21 @@ useEffect(() => {
           <View style={styles.barWrap}>
             <View style={styles.nutrientWrap}>
               <Text style={styles.nutritionText}>Protein</Text>
-              <ProgressBar progress={0.3} style={styles.progressBar} color={Colors.buttonColor} />
-            </View>
-            <View style={styles.nutrientWrap}>
-              <Text style={styles.nutritionText}>Fat</Text>
               <ProgressBar progress={0.5} style={styles.progressBar} color={Colors.buttonColor} />
             </View>
             <View style={styles.nutrientWrap}>
-              <Text style={styles.nutritionText}>Carbs</Text>
-              <ProgressBar progress={0.9} style={styles.progressBar} color={Colors.buttonColor} />
+              <Text style={styles.nutritionText}>Fat</Text>
+              <ProgressBar progress={fatPercent} style={styles.progressBar} color={Colors.buttonColor} />
             </View>
-            <TouchableOpacity style={styles.detailsButton}>
+            <View style={styles.nutrientWrap}>
+              <Text style={styles.nutritionText}>Carbs</Text>
+              <ProgressBar progress={carbsPercent} style={styles.progressBar} color={Colors.buttonColor} />
+            </View>
+            <TouchableOpacity
+              onPress={() => {
+                console.log('pressed');
+              }}
+              style={styles.detailsButton}>
               <Text style={styles.detailText}>
                 See details
               </Text>
@@ -98,6 +133,7 @@ useEffect(() => {
       </View>
     </View>
   )
+}
 }
 
 const styles = StyleSheet.create({

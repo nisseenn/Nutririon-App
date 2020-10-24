@@ -88,6 +88,7 @@ const NewMeal = (props) => {
     console.log('hei');
     await dispatch(addMeal())
     handleAnimation()
+    dispatch(fetchIngredients())
   }
 
   const handleAnimation = async() => {
