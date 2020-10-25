@@ -16,6 +16,11 @@ import { ProgressBar } from 'react-native-paper';
 
 const {width,height} = Dimensions.get('window')
 
+const breakfast = require('../assets/breakfast.png')
+const lunch = require('../assets/lunchbox.png')
+const dinner = require('../assets/fast-food.png')
+const snacks = require('../assets/snacks.png')
+
 //Defining HomeScreen functional component
 const HomeScreen = (props) => {
   const dispatch = useDispatch()
@@ -26,8 +31,11 @@ const HomeScreen = (props) => {
   const calorySuggestion = useSelector(state => state.nutrition.calorySuggestion)
   const caloryRef = useSelector(state => state.nutrition.caloryRef)
   const nutrients = useSelector(state => state.nutrition.nutrients)
+  const todayMeal = useSelector(state => state.nutrition.todayMeal)
 
-  const percent = Math.round( calorySuggestion / caloryRef * 100)
+  const percent1 = 1 - (calorySuggestion / caloryRef)
+  const percent = Math.round(percent1 * 100)
+
   const proteinPercent = nutrients.protein / nutrients.total
   const fatPercent = nutrients.fat / nutrients.total
   const carbsPercent = nutrients.carbs / nutrients.total
@@ -38,7 +46,6 @@ const HomeScreen = (props) => {
     //We call the Redux function which get the preferences
     await dispatch(fetchUserData())
   } catch (err) {
-    console.log('failed');
   }
 }, [dispatch])
 
@@ -47,7 +54,7 @@ try {
   //We call the Redux function which get the preferences
   await dispatch(fetchIngredients())
 } catch (err) {
-  console.log('failed');
+
 }
 }, [dispatch])
 
@@ -107,20 +114,29 @@ useEffect(() => {
 
           <View style={styles.barWrap}>
             <View style={styles.nutrientWrap}>
-              <Text style={styles.nutritionText}>Protein</Text>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={styles.nutritionText}>Protein</Text>
+                <Text style={styles.nutritionText2}>{nutrients.protein}g / {nutrients.total}g</Text>
+              </View>
               <ProgressBar progress={0.5} style={styles.progressBar} color={Colors.buttonColor} />
             </View>
             <View style={styles.nutrientWrap}>
-              <Text style={styles.nutritionText}>Fat</Text>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={styles.nutritionText}>Fat</Text>
+                <Text style={styles.nutritionText2}>{nutrients.fat}g / {nutrients.total}g</Text>
+              </View>
               <ProgressBar progress={fatPercent} style={styles.progressBar} color={Colors.buttonColor} />
             </View>
             <View style={styles.nutrientWrap}>
-              <Text style={styles.nutritionText}>Carbs</Text>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={styles.nutritionText}>Carbs</Text>
+                <Text style={styles.nutritionText2}>{nutrients.carbs}g / {nutrients.total}g</Text>
+              </View>
               <ProgressBar progress={carbsPercent} style={styles.progressBar} color={Colors.buttonColor} />
             </View>
             <TouchableOpacity
               onPress={() => {
-                console.log('pressed');
+                props.navigation.navigate("nutrientdetail")
               }}
               style={styles.detailsButton}>
               <Text style={styles.detailText}>
@@ -131,6 +147,51 @@ useEffect(() => {
 
         </View>
       </View>
+      <View style={styles.cardWrapper}>
+        <ScrollView contentContainerStyle={{width: '100%', alignItems: 'center', height: '100%'}}>
+          <View style={styles.titleWrap}>
+            <Text style={styles.title}>Summary</Text>
+          </View>
+
+            <TouchableOpacity style={styles.card}>
+              <Image source={breakfast} style={styles.image}/>
+              <View>
+                <Text style={styles.cardTitle}>Breakfast</Text>
+                {todayMeal.Breakfast == undefined ? (
+                  <Text style={styles.cardDesc}>0 calories</Text>
+                ) : (
+                  <Text style={styles.cardDesc}>{todayMeal.Breakfast} calories</Text>
+                )}
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.card}>
+              <Image source={lunch} style={styles.image}/>
+              <View>
+                <Text style={styles.cardTitle}>Lunch</Text>
+                {todayMeal.Lunch == undefined ? (
+                  <Text style={styles.cardDesc}>0 calories</Text>
+                ) : (
+                  <Text style={styles.cardDesc}>{todayMeal.Lunch} calories</Text>
+                )}
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.card}>
+              <Image source={dinner} style={styles.image}/>
+              <View>
+                <Text style={styles.cardTitle}>Dinner</Text>
+                {todayMeal.Dinner == undefined ? (
+                  <Text style={styles.cardDesc}>0 calories</Text>
+                ) : (
+                  <Text style={styles.cardDesc}>{todayMeal.Dinner} calories</Text>
+                )}
+              </View>
+            </TouchableOpacity>
+
+        </ScrollView>
+      </View>
+
     </View>
   )
 }
@@ -148,11 +209,20 @@ const styles = StyleSheet.create({
     width: '100%',
     height: height / 2.6,
     backgroundColor: Colors.primaryColor,
+    marginBottom: height / 2.6
   },
   calendarWrap:{
     position: 'absolute',
     top: 60,
     left: 20
+  },
+  titleWrap:{
+    width: '90%',
+    marginVertical: 10
+  },
+  title:{
+    fontSize: 22,
+    fontWeight: 'bold',
   },
   calendarButton:{
     flexDirection: 'row',
@@ -169,6 +239,13 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 24,
     fontWeight: '700'
+  },
+  cardDesc:{
+    fontSize: 16,
+    marginLeft: 30,
+    color:"#000",
+    fontWeight: '400',
+    marginTop: 5
   },
   contentWrap:{
     flexDirection: 'row',
@@ -200,12 +277,48 @@ const styles = StyleSheet.create({
     color: "#fff",
     marginBottom: 5
   },
+  nutritionText2:{
+    fontSize: 12,
+    position: 'absolute',
+    right: 0,
+    color: "#fff",
+    marginBottom: 5
+  },
   detailsButton:{
     marginTop: 10
   },
   detailText:{
     color: "#fff"
-  }
+  },
+  cardWrapper:{
+    height: '100%',
+    position: 'absolute',
+    top: height / 2.6,
+    width: '100%',
+  },
+  card:{
+    backgroundColor: '#fff',
+    width: '90%',
+    height: height / 8,
+    borderRadius: 5,
+    marginVertical: 5,
+    alignItems: 'center',
+    flexDirection: 'row',
+    shadowRadius: 2,
+    shadowOffset: {height:2},
+    shadowOpacity: 0.1,
+  },
+  cardTitle:{
+    fontSize: 20,
+    marginLeft: 30,
+    color:"#000",
+    fontWeight: 'bold',
+  },
+  image:{
+    marginLeft: 20,
+    width: 60,
+    height: 60
+  },
 })
 
 //Exporting the component so that we can use it in other components

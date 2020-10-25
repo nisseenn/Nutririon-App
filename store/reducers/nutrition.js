@@ -8,7 +8,7 @@ import { DELETE_INGREDIENT } from '../actions/nutrition'
 const initialState = {
   ingredients: [],
   nutritientSuggestions: [],
-  todayMeal: [],
+  todayMeal: {},
   userMeals: [],
   calorySuggestion: null,
   caloryRef: null,
@@ -25,6 +25,7 @@ const nutritionReducer = (state = initialState, action) => {
       let fatTotal = 0;
       let proteinTotal = 0;
       let carbsTotal = 0;
+      let mealsOfDay = {}
 
       let date = new Date();
       let day = date.getDate()
@@ -74,6 +75,7 @@ const nutritionReducer = (state = initialState, action) => {
       }
 
       const meals = action.nutritientSuggestions
+
       for(var meal = 0; meal < meals.length; meal++){
         const ingredientList = meals[meal].ingredients
         const timestamp = meals[meal].timestamp
@@ -88,6 +90,7 @@ const nutritionReducer = (state = initialState, action) => {
             fatTotal += parseInt(fat)
             carbsTotal += parseInt(carbs)
             proteinTotal += parseInt(protein)
+            mealsOfDay[meals[meal].mealType] = calories.split('.')[0]
           }
         }
       }
@@ -101,7 +104,7 @@ const nutritionReducer = (state = initialState, action) => {
 
       const suggestedCals = refCals - cals
 
-      return { ingredients: action.ingredients, mealIngredients: action.mealIngredients, nutritientSuggestions: action.nutritientSuggestions, calorySuggestion: suggestedCals, caloryRef: refCals, nutrients: nutrientsObj }
+      return { ingredients: action.ingredients, mealIngredients: action.mealIngredients, nutritientSuggestions: action.nutritientSuggestions, calorySuggestion: suggestedCals, caloryRef: refCals, nutrients: nutrientsObj, todayMeal: mealsOfDay }
 
     case ADD_MEAL:
       return { ...state, mealIngredients: [] }

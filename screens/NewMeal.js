@@ -85,8 +85,7 @@ const NewMeal = (props) => {
   }
 
   const submitHandler = async() => {
-    console.log('hei');
-    await dispatch(addMeal())
+    await dispatch(addMeal(mealType))
     handleAnimation()
     dispatch(fetchIngredients())
   }

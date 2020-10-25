@@ -100,7 +100,7 @@ export const fetchNutritientSuggestion = () => {
   }
 }
 
-export const addMeal = () => {
+export const addMeal = (mealType) => {
   return async(dispatch, getState) => {
     const userId = getState().auth.userId
     const token = getState().auth.token
@@ -121,7 +121,8 @@ export const addMeal = () => {
         },
         body: JSON.stringify({
           ingredients,
-          timestamp
+          timestamp,
+          mealType
         })
       });
 

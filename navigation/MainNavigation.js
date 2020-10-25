@@ -26,6 +26,7 @@ import SignUpMethodScreen from '../screens/SignUpMethodScreen'
 import StartUpScreen from '../screens/StartUpScreen'
 import IngredientDetailScreen from '../screens/IngredientDetailScreen'
 import AddButton from '../components/AddButton'
+import NutrientDetailScreen from '../screens/NutrientDetailScreen'
 
 const NewMealNavigator = createStackNavigator({
   mealStart: NewMeal,
@@ -41,6 +42,12 @@ const HomeScreenNavigator = createStackNavigator({
   },
   calendar: {
     screen: CalendarScreen,
+    navigationOptions:{
+      headerShown: false
+    }
+  },
+  nutrientdetail:{
+    screen: NutrientDetailScreen,
     navigationOptions:{
       headerShown: false
     }
