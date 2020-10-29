@@ -7,7 +7,7 @@ import Input from '../components/Input'
 import * as firebase from 'firebase'
 import { signup } from '../store/actions/auth'
 //Importing colors
-import Colors from '../constants/Colors'
+import COLORS from '../constants/Colors'
 
 
 
@@ -151,7 +151,7 @@ const inputChangeHandler = useCallback(
       keyboardVerticalOffset={-200}
       style={styles.screen}>
       <LinearGradient
-          colors={[Colors.primaryColor, '#ffafbd']}
+          colors={[COLORS.primaryColor, '#ffafbd']}
           style={{
             position: 'absolute',
             left: 0,
@@ -195,7 +195,7 @@ const inputChangeHandler = useCallback(
             </View>
             <View style={styles.inputcontainer}>
               <View style={styles.iconcont}>
-                <MaterialIcons name="person-outline" size={30} color={Colors.iconColor}/>
+                <MaterialIcons name="person-outline" size={30} color={COLORS.iconColor}/>
               </View>
               <Input
                 id="name"
@@ -215,7 +215,7 @@ const inputChangeHandler = useCallback(
             </View>
             <View style={styles.inputcontainer}>
               <View style={styles.iconcont}>
-                <MaterialIcons name="person-outline" size={30} color={Colors.iconColor}/>
+                <MaterialIcons name="person-outline" size={30} color={COLORS.iconColor}/>
               </View>
               <Input
                 id="email"
@@ -240,7 +240,7 @@ const inputChangeHandler = useCallback(
             </View>
             <View style={styles.inputcontainer}>
               <View style={styles.iconcont}>
-                <MaterialIcons name="lock-outline" size={30} color={Colors.iconColor}/>
+                <MaterialIcons name="lock-outline" size={30} color={COLORS.iconColor}/>
               </View>
               <Input
                 id="password"
@@ -265,7 +265,7 @@ const inputChangeHandler = useCallback(
             </View>
             <View style={styles.formControl}>
               <View style={styles.iconcont}>
-                <MaterialIcons name="lock-outline" size={30} color={Colors.iconColor}/>
+                <MaterialIcons name="lock-outline" size={30} color={COLORS.iconColor}/>
               </View>
               <TextInput
                 placeholder='Confirm Password'
@@ -286,14 +286,14 @@ const inputChangeHandler = useCallback(
             {isLoading ? (
               <TouchableOpacity
                 onPress={authHandler}
-                style={{...styles.button, backgroundColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
+                style={{...styles.button, backgroundColor: COLORS.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
                 <ActivityIndicator size="small" color="white"/>
               </TouchableOpacity>
             )
             : (
             <TouchableOpacity
               onPress={authHandler}
-              style={{...styles.button, backgroundColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
+              style={{...styles.button, backgroundColor: COLORS.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
               <Text style={{fontSize: 20, fontWeight: 'bold', color: 'black'}}>Sign up</Text>
               <MaterialIcons name="navigate-next" size={26} color="black"/>
             </TouchableOpacity>
@@ -357,7 +357,7 @@ const styles = StyleSheet.create({
   inputTitle:{
     fontSize: 20,
     fontWeight: 'bold',
-    color: Colors.iconColor,
+    color: COLORS.iconColor,
     top: 15,
   },
   avatar:{
@@ -378,7 +378,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     fontSize: 20,
     fontWeight: 'bold',
-    color: Colors.iconColor,
+    color: COLORS.iconColor,
   },
   iconcont:{
     flexDirection: 'column',

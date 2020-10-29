@@ -8,7 +8,7 @@ const {width,height} = Dimensions.get('window')
 const height_logo = height * 0.6 * 0.4
 import Svg, { Path } from 'react-native-svg';
 
-import Colors from '../constants/Colors'
+import COLORS from '../constants/Colors'
 
 
 const StartScreen = (props) => {
@@ -35,7 +35,7 @@ const StartScreen = (props) => {
                 style={{position: 'absolute', top: height - 250, height: 300, width: width, backgroundColor: '#69a1ff'}}>
               </View>
               <View
-                style={{position: 'absolute', zIndex: 100, top: height - 165, height: 300, width: width, backgroundColor: Colors.primaryColor}}>
+                style={{position: 'absolute', zIndex: 100, top: height - 165, height: 300, width: width, backgroundColor: COLORS.primaryColor}}>
               </View>
               <Svg
                 style={{position: 'absolute', bottom: 0, zIndex: 1000}}
@@ -49,7 +49,7 @@ const StartScreen = (props) => {
                 width="100%"
                 viewBox="0 0 1440 320">
                 <Path
-                  fill={Colors.primaryColor}
+                  fill={COLORS.primaryColor}
                   d="M0,32L60,64C120,96,240,160,360,208C480,256,600,288,720,256C840,224,960,128,1080,80C1200,32,1320,32,1380,32L1440,32L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
                   />
               </Svg>
@@ -79,7 +79,7 @@ const StartScreen = (props) => {
                 width="100%"
                 viewBox="0 0 1440 320">
                 <Path
-                  fill={Colors.primaryColor}
+                  fill={COLORS.primaryColor}
                   d="M0,96L60,90.7C120,85,240,75,360,101.3C480,128,600,192,720,202.7C840,213,960,171,1080,165.3C1200,160,1320,192,1380,208L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
                   />
               </Svg>
@@ -97,7 +97,7 @@ const StartScreen = (props) => {
                 onPress={() => {
                   props.navigation.navigate("login")
                 }}
-                style={{...styles.button, backgroundColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
+                style={{...styles.button, backgroundColor: COLORS.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
                 <Text style={{fontSize: 20, fontWeight: 'bold', color: 'black'}}>Log in</Text>
                 <MaterialIcons name="navigate-next" size={26} color="black"/>
               </TouchableOpacity>
@@ -105,7 +105,7 @@ const StartScreen = (props) => {
                 onPress={() => {
                   props.navigation.navigate("signup")
                 }}
-                style={{...styles.button, borderWidth: 2,backgroundColor: 'rgba(229,	103,	103, 0)', borderColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
+                style={{...styles.button, borderWidth: 2,backgroundColor: 'rgba(229,	103,	103, 0)', borderColor: COLORS.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
                 <Text style={{fontSize: 20, fontWeight: '500', color: '#fff'}}>Sign up</Text>
                 <MaterialIcons name="navigate-next" size={26} color="#fff"/>
               </TouchableOpacity>

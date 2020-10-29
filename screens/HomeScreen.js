@@ -9,7 +9,7 @@ import { ScrollView, View, StyleSheet, KeyboardAvoidingView, TouchableOpacity, T
 import { fetchUserData } from '../store/actions/auth'
 import { fetchIngredients } from '../store/actions/nutrition'
 import { useDispatch, useSelector } from 'react-redux'
-import Colors from '../constants/Colors'
+import COLORS from '../constants/Colors'
 import ProgressCircle from 'react-native-progress-circle'
 import { Ionicons, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { ProgressBar } from 'react-native-paper';
@@ -101,9 +101,9 @@ useEffect(() => {
                 percent={percent}
                 radius={height / 10}
                 borderWidth={7}
-                color={Colors.buttonColor}
+                color={COLORS.buttonColor}
                 shadowColor="#fff"
-                bgColor={Colors.primaryColor}
+                bgColor={COLORS.primaryColor}
                 >
                 <View style={styles.progressText}>
                   <Text style={{ fontSize: 36, fontWeight: '600', fontStyle: 'italic', color: "#fff"}}>{calorySuggestion}</Text>
@@ -118,21 +118,21 @@ useEffect(() => {
                 <Text style={styles.nutritionText}>Protein</Text>
                 <Text style={styles.nutritionText2}>{nutrients.protein}g / {nutrients.total}g</Text>
               </View>
-              <ProgressBar progress={0.5} style={styles.progressBar} color={Colors.buttonColor} />
+              <ProgressBar progress={0.5} style={styles.progressBar} color={COLORS.buttonColor} />
             </View>
             <View style={styles.nutrientWrap}>
               <View style={{flexDirection: 'row'}}>
                 <Text style={styles.nutritionText}>Fat</Text>
                 <Text style={styles.nutritionText2}>{nutrients.fat}g / {nutrients.total}g</Text>
               </View>
-              <ProgressBar progress={fatPercent} style={styles.progressBar} color={Colors.buttonColor} />
+              <ProgressBar progress={fatPercent} style={styles.progressBar} color={COLORS.buttonColor} />
             </View>
             <View style={styles.nutrientWrap}>
               <View style={{flexDirection: 'row'}}>
                 <Text style={styles.nutritionText}>Carbs</Text>
                 <Text style={styles.nutritionText2}>{nutrients.carbs}g / {nutrients.total}g</Text>
               </View>
-              <ProgressBar progress={carbsPercent} style={styles.progressBar} color={Colors.buttonColor} />
+              <ProgressBar progress={carbsPercent} style={styles.progressBar} color={COLORS.buttonColor} />
             </View>
             <TouchableOpacity
               onPress={() => {
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     top:0,
     width: '100%',
     height: height / 2.6,
-    backgroundColor: Colors.primaryColor,
+    backgroundColor: COLORS.primaryColor,
     marginBottom: height / 2.6
   },
   calendarWrap:{

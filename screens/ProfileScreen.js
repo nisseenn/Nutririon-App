@@ -15,8 +15,9 @@ import Animated from 'react-native-reanimated';
 import { RadioButton, Checkbox } from 'react-native-paper';
 import Slider from '@react-native-community/slider';
 
-
-import Colors from '../constants/Colors'
+//import constants
+import COLORS from '../constants/Colors'
+import STRINGS from '../constants/Strings'
 
 const {width,height} = Dimensions.get('window')
 //making it cleaner to use firebase.database code
@@ -38,52 +39,21 @@ const ProfileScreen = (props) => {
   const [checked, setChecked] = useState(null);
   
 	//For the activity details - int
-  const [work, setWork] = useState(null)
-  const [freetime, setFreetime] = useState(null)
-  
-	// maps to convert slider vaue to text
-	// 
-	var workMap = {0: "Bedridden/Inactive", 1: "Sedentary Work", 2:"Standing Work", 3: "Physical Hard Work"}
-  var freetimeMap = {0: "Less Active", 1: "Active", 2:"Very Active"}
-  
-	
-	// reverse lookup of hashmaps
-	//                object   int  -> string
-	// getKeyByValue( workMap, work) -> "Bedridden/Inactive"
-  function getKeyByValue(object, value) {
-    
-    var ret;
-
-    try{
-
-      //get key from map, parse as int
-      ret = parseInt( Object.keys(object).find(key => object[key] === value) );
-      
-      // if no match use 1 as default
-      if(isNaN(ret) ){ ret = 1 }
-      
-    }
-    catch (err){
-      console.warn(err)
-      ret = 1;
-    }
-    return ret    
-  }
-
-  
-
+  const [labor, setLabor] = useState(null)
+  const [activity, setActivity] = useState(null)
+ 
   const dispatch = useDispatch()
-  //Getting the Redux state for the preference, work and freetime
+  //Getting the Redux state for the preference, labor and freetime
   //the "auth" is connected to out App.js file, where we define the Redux Reducer key value
   const userPreference = useSelector(state => state.auth.preference)
-  const userWork = useSelector(state => state.auth.work)
-  const userFreetime = useSelector(state => state.auth.freetime)
+  const userLabor = useSelector(state => state.auth.labor)
+  const userActivity = useSelector(state => state.auth.activity)
 
   //Function to handle submit of preferences
   const submitHandler = async() => {
     try {
       setSaveLoad(true)
-      let objectReturn = await editPreference(checked, userWork, userFreetime)
+      let objectReturn = await editPreference(checked, userLabor, userActivity)
       await dispatch(objectReturn)
       await dispatch(fetchIngredients())
       setSaveLoad(false)
@@ -97,7 +67,7 @@ const ProfileScreen = (props) => {
     try {
       //Calling Redux function to handle edit of the preference.
       //We pass null as the parameter for preference. It will therefore be deleted in Firebase
-      let objectReturn = await editPreference(null, userWork, userFreetime)
+      let objectReturn = await editPreference(null, userLabor, userActivity)
       //Dispatching the obj from redux function to redux state
       await dispatch(objectReturn)
     } catch (error) {
@@ -109,12 +79,10 @@ const ProfileScreen = (props) => {
   const submitActivityHandler = async() => {
     try{
 
-			console.log("submitting: " + workMap[work])
-			console.log("submitting: " + freetimeMap[freetime])
-      //Setting state for the loader to work
+			//Setting state for the loader to work
       setSaveLoad(true)
       //Calling Redux funtion to handle the edit of preference in acitivity
-      let objectReturn = await editPreference(userPreference, workMap[work], freetimeMap[freetime])
+      let objectReturn = await editPreference(userPreference, userLabor, userActivity)
       //Dispatching the Object which is created in Redux. Dispatching it to the Redux store
       await dispatch(objectReturn)
       //Setting the loading to false
@@ -169,8 +137,8 @@ const ProfileScreen = (props) => {
       preference: null,
       userHeight: null,
       weight: null,
-      freetime: null,
-      work: null
+      activity: null,
+      labor: null
     }
     //Updating RTDB with the new message, using userId ofc
     firebase.database().ref('users').child(user.uid).update(message)
@@ -190,7 +158,7 @@ const ProfileScreen = (props) => {
     <View style={styles.container}>
 
         <View style={{zIndex: 1000, position: 'absolute', width: '100%', justifyContent: 'center', alignItems: 'center', top: 100}}>
-          <View style={{zIndex: 1000, backgroundColor: Colors.accentColor, width: width / 3, height: width / 3, borderRadius: 300, alignItems: 'center', justifyContent: 'center'}}>
+          <View style={{zIndex: 1000, backgroundColor: COLORS.accentColor, width: width / 3, height: width / 3, borderRadius: 300, alignItems: 'center', justifyContent: 'center'}}>
             <Text
               style={styles.settingsText}>
               {/* Displaying our beautiful character(s) */}
@@ -201,7 +169,7 @@ const ProfileScreen = (props) => {
 
       <View style={styles.backgroundTop}>
         <LinearGradient
-            colors={[Colors.primaryColor, Colors.accentColor]}
+            colors={[COLORS.primaryColor, COLORS.accentColor]}
             style={{
               // flex:1,
               height: height / 3
@@ -219,7 +187,7 @@ const ProfileScreen = (props) => {
       }}
       style={styles.preferencesButton}>
       <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-        CHANGE PREFERENCES
+        Change preference
       </Text>
       <MaterialIcons name="navigate-next" size={26} color="#000"/>
     </TouchableOpacity>
@@ -229,18 +197,15 @@ const ProfileScreen = (props) => {
     <TouchableOpacity
       onPress={() => {
 
-        console.log("retrieving: " + userWork)
-        console.log("retrieving: " + userFreetime)
-
-        //Setting state of work and userFreetime to info got from Redux so user gets info on modal pop up
-        setWork( getKeyByValue(workMap, userWork) )
-        setFreetime( getKeyByValue(freetimeMap, userFreetime) )
+        //Setting state of work and userActivity to info got from Redux so user gets info on modal pop up
+        setLabor( userLabor )
+        setActivity( userActivity )
         //Activating the modal pop up
         setToggleActivity(true)
       }}
       style={styles.preferencesButton}>
       <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-        CHANGE ACTIVITY DETAILS
+        Change Activity Details
       </Text>
       <MaterialIcons name="navigate-next" size={26} color="#000"/>
     </TouchableOpacity>
@@ -249,7 +214,7 @@ const ProfileScreen = (props) => {
   <View style={styles.preferences}>
     <TouchableOpacity style={styles.preferencesButton}>
       <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-        VIEW PRIVACY POLICY
+        View Privacy Policy
       </Text>
       <MaterialIcons name="navigate-next" size={26} color="#000"/>
     </TouchableOpacity>
@@ -283,9 +248,9 @@ const ProfileScreen = (props) => {
         );
 
       }}
-      style={{...styles.preferencesButton, backgroundColor: Colors.buttonColor}}>
+      style={{...styles.preferencesButton, backgroundColor: COLORS.buttonColor}}>
       <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-        LOG OUT
+        Log Out
       </Text>
       <MaterialIcons name="navigate-next" size={26} color="#000"/>
     </TouchableOpacity>
@@ -314,7 +279,7 @@ const ProfileScreen = (props) => {
       }}
       style={{...styles.preferencesButton, backgroundColor: '#ff5656'}}>
       <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-        DELETE ACCOUNT
+        Delete Account
       </Text>
       <MaterialIcons name="navigate-next" size={26} color="#000"/>
     </TouchableOpacity>
@@ -342,16 +307,16 @@ const ProfileScreen = (props) => {
       <View style={styles.boxWrap}>
         <View style={styles.textWrap}>
           <Text style={styles.boxText}>
-            Vegeterian
+            {STRINGS.preference[1] /*vegeterian*/}
           </Text>
         </View>
 
         <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
           <RadioButton
-            value="vegeterianer"
-            status={ checked === 'vegeterianer' ? 'checked' : 'unchecked' }
-            color={Colors.primaryColor}
-            onPress={() => setChecked('vegeterianer')}
+            value= {STRINGS.preference[1]}
+            status={ checked === STRINGS.preference[1] ? 'checked' : 'unchecked' }
+            color={COLORS.primaryColor}
+            onPress={() => setChecked(STRINGS.preference[1])}
           />
         </View>
       </View>
@@ -359,16 +324,16 @@ const ProfileScreen = (props) => {
       <View style={styles.boxWrap}>
         <View style={styles.textWrap}>
           <Text style={styles.boxText}>
-            Vegan
+            {STRINGS.preference[2] /*Vegan*/}
           </Text>
         </View>
 
         <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
           <RadioButton
-            value="vegan"
-            status={ checked === 'vegan' ? 'checked' : 'unchecked' }
-            color={Colors.primaryColor}
-            onPress={() => setChecked('vegan')}
+            value= {STRINGS.preference[2]}
+            status={ checked === STRINGS.preference[2] ? 'checked' : 'unchecked' }
+            color={COLORS.primaryColor}
+            onPress={() => setChecked(STRINGS.preference[2])}
           />
         </View>
       </View>
@@ -376,16 +341,16 @@ const ProfileScreen = (props) => {
       <View style={styles.boxWrap}>
         <View style={styles.textWrap}>
           <Text style={styles.boxText}>
-            Pescetarian
+            {STRINGS.preference[3]}
           </Text>
         </View>
 
         <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
           <RadioButton
-            value="pesc"
-            status={ checked === 'pesc' ? 'checked' : 'unchecked' }
-            color={Colors.primaryColor}
-            onPress={() => setChecked('pesc')}
+            value= {STRINGS.preference[3]}
+            status={ checked === STRINGS.preference[3] ? 'checked' : 'unchecked' }
+            color={COLORS.primaryColor}
+            onPress={() => setChecked(STRINGS.preference[3])}
           />
         </View>
       </View>
@@ -395,15 +360,15 @@ const ProfileScreen = (props) => {
         {saveLoad ? (
           <TouchableOpacity
             onPress={submitHandler}
-            style={{...styles.modalButton, borderWidth: 0, backgroundColor: Colors.buttonColor}}>
+            style={{...styles.modalButton, borderWidth: 0, backgroundColor: COLORS.buttonColor}}>
           <ActivityIndicator size="small" color="black"/>
         </TouchableOpacity>
         ) : (
           <TouchableOpacity
             onPress={submitHandler}
-            style={{...styles.modalButton, borderWidth: 0, backgroundColor: Colors.buttonColor}}>
+            style={{...styles.modalButton, borderWidth: 0, backgroundColor: COLORS.buttonColor}}>
             <Text style={{fontSize: 16, fontWeight: '700', color: "black"}}>
-              SAVE
+              Save
             </Text>
           </TouchableOpacity>
         )}
@@ -412,7 +377,7 @@ const ProfileScreen = (props) => {
         onPress={() => setToggleDrop(false)}
         style={styles.modalButton}>
         <Text style={{fontSize: 16, fontWeight: '700'}}>
-          CANCEL
+          Cancel
         </Text>
       </TouchableOpacity>
 
@@ -476,20 +441,20 @@ const ProfileScreen = (props) => {
       </Text>
 
       <Text style={{marginBottom: 5, fontWeight: 'bold', fontSize: 15}}>
-        {workMap[work]}
+        {userLabor}
       </Text>
 
       <View>   
         {/*Slider with max, min, step and initial value*/}
         <Slider
-          maximumValue={3}
+          maximumValue={4}
           minimumValue={0}
-          thumbTintColor={Colors.primaryColor}
-          minimumTrackTintColor= {Colors.accentColor}
+          thumbTintColor={COLORS.primaryColor}
+          minimumTrackTintColor= {COLORS.accentColor}
           maximumTrackTintColor="#000000"
           step={1}
-          value={work}
-          onValueChange={(work) =>  setWork(work)}
+          value={STRINGS.labor.indexOf(userLabor)}
+          onValueChange={(sliderLabor) =>  setLabor(STRINGS.labor[sliderLabor])}
           style={{ width: 330, height: 50}}
         />
 
@@ -500,29 +465,35 @@ const ProfileScreen = (props) => {
       </Text>
 
       <Text style={{marginTop: 5, marginBottom: -10, fontWeight: 'bold', fontSize: 15}}>
-        {freetimeMap[freetime]}
+        {userActivity}
       </Text>
 
       <View>
 				
         {/**/}
         <Slider
-          maximumValue={2}
+          maximumValue={3}
           minimumValue={0}
-          thumbTintColor={Colors.primaryColor}
-          minimumTrackTintColor= {Colors.accentColor}
-          maximumTrackTintColor={Colors.GREY}
+          thumbTintColor={COLORS.primaryColor}
+          minimumTrackTintColor= {COLORS.accentColor}
+          maximumTrackTintColor={COLORS.GREY}
           step={1}
-          value={freetime}
-          onValueChange={(freetime) =>  setFreetime(freetime)}
+          value={STRINGS.activity.indexOf(userActivity)}
+          onValueChange={(sliderActivity) =>  setActivity(STRINGS.activity[sliderActivity])}
           style={{width: 330, height: 50 }}
         />
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         	<Text style={{marginTop: -10, marginBottom: 20}}>
-        	Less than{"\n"}2 hours
+        	{ "None"}
       		</Text>
+          <Text style={{marginTop: -10, marginBottom: 20}}>
+          {"<2 hours"}
+          </Text>
+          <Text style={{marginTop: -10, marginBottom: 20}}>
+          {"2-3 hours"}
+          </Text>
       		<Text style={{marginTop: -10, marginBottom: 20}}>
-      		More than{"\n"}3 hours
+      		{">3 hours"}
       		</Text>
       	</View>
       </View>
@@ -536,23 +507,23 @@ const ProfileScreen = (props) => {
           onPress={() => setToggleActivity(false)}
           style={styles.modalButton2}>
           <Text style={{fontSize: 16, fontWeight: '700'}}>
-            CANCEL
+            Cancel
           </Text>
         </TouchableOpacity>
         {/* IF save button is pressed, ActivityIndicator will replace the text */}
         {saveLoad ? (
           <TouchableOpacity
             onPress={submitActivityHandler}
-            style={{...styles.modalButton2, borderColor: Colors.buttonColor}}>
+            style={{...styles.modalButton2, borderColor: COLORS.buttonColor}}>
           <ActivityIndicator size="small" color="black"/>
         </TouchableOpacity>
         // Else it will show the text
         ) : (
           <TouchableOpacity
             onPress={submitActivityHandler}
-            style={{...styles.modalButton2, borderColor: Colors.buttonColor}}>
+            style={{...styles.modalButton2, borderColor: COLORS.buttonColor}}>
             <Text style={{fontSize: 16, fontWeight: '700', color: "black"}}>
-              SAVE
+              Save
             </Text>
           </TouchableOpacity>
         )}
@@ -618,7 +589,7 @@ modalButton2:{
 preferencesButton:{
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Colors.accentColor,
+    backgroundColor: COLORS.accentColor,
     padding: 16,
     width: '80%',
     flexDirection: 'row',
@@ -626,7 +597,7 @@ preferencesButton:{
 },
 settingsText:{
   fontSize: 36,
-  color: Colors.iconColor,
+  color: COLORS.iconColor,
   fontWeight: 'bold',
 },
 boxWrap:{
@@ -643,7 +614,7 @@ boxText:{
   fontWeight: '500',
 },
 button2:{
-  backgroundColor: Colors.buttonColor,
+  backgroundColor: COLORS.buttonColor,
   // paddingHorizontal: 40,
   paddingVertical: 15,
   borderRadius: 30,

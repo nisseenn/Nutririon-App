@@ -1,9 +1,12 @@
+//third party imports
 import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
 import { ScrollView, View, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { RadioButton, Checkbox } from 'react-native-paper';
 
-import Colors from '../constants/Colors'
+// constants imports
+import COLORS from '../constants/Colors'
+import STRINGS from '../constants/Strings'
 
 const {width,height} = Dimensions.get('window')
 
@@ -35,54 +38,57 @@ const PreferencesScreen = (props) => {
         </Text>
       </View>
 
+      {/*Vegeterian -> STRINGS.preference[1] */}
       <View style={styles.boxWrap}>
         <View style={styles.textWrap}>
           <Text style={styles.boxText}>
-            Vegeterian
+            {STRINGS.preference[1]}
           </Text>
         </View>
 
         <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
           <RadioButton
-            value="vegeterianer"
-            status={ checked === 'vegeterianer' ? 'checked' : 'unchecked' }
-            color={Colors.primaryColor}
-            onPress={() => setChecked('vegeterianer')}
+            value={STRINGS.preference[1]}
+            status={ checked === STRINGS.preference[1] ? 'checked' : 'unchecked' }
+            color={COLORS.primaryColor}
+            onPress={() => setChecked(STRINGS.preference[1])}
           />
         </View>
       </View>
 
+      {/*Vegan -> STRINGS.preference[2] */}
       <View style={styles.boxWrap}>
         <View style={styles.textWrap}>
           <Text style={styles.boxText}>
-            Vegan
+            {STRINGS.preference[2]}
           </Text>
         </View>
 
         <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
           <RadioButton
-            value="vegan"
-            status={ checked === 'vegan' ? 'checked' : 'unchecked' }
-            color={Colors.primaryColor}
-            onPress={() => setChecked('vegan')}
+            value={STRINGS.preference[2]}
+            status={ checked === STRINGS.preference[2] ? 'checked' : 'unchecked' }
+            color={COLORS.primaryColor}
+            onPress={() => setChecked(STRINGS.preference[2])}
           />
         </View>
       </View>
 
+      {/*Pescetarian*/}
       <View style={styles.boxWrap}>
         <View style={styles.textWrap}>
           <Text style={styles.boxText}>
-            Pescetarian
+            {STRINGS.preference[3]}
           </Text>
         </View>
 
         <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
           <RadioButton
-            value="pesc"
-            status={ checked === 'pesc' ? 'checked' : 'unchecked' }
-            color={Colors.primaryColor}
+            value={STRINGS.preference[3]}
+            status={ checked === STRINGS.preference[3] ? 'checked' : 'unchecked' }
+            color={COLORS.primaryColor}
             onPress={() => {
-              setChecked('pesc')
+              setChecked(STRINGS.preference[3])
             }}
           />
         </View>
@@ -147,7 +153,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   buttonBottom:{
-    backgroundColor: Colors.buttonColor,
+    backgroundColor: COLORS.buttonColor,
     paddingHorizontal: width / 3,
     paddingVertical: 15,
     borderRadius: 100

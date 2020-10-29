@@ -1,4 +1,4 @@
-export default {
+export default COLORS = {
   primaryColor: '#448AFF', //blue
   accentColor: '#90CAF9', //green
   buttonColor: '#ffb944', //yellow
