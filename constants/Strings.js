@@ -1,11 +1,12 @@
 
 //hash or array?
-
+//Profiles like institution, boy, girl etc contains no information on preference, labor, activity
 export const SEX = ["Male", "Female", "Infant", "Boy", "Girl", "Pregnant", "Lactating", "Institution", "General"];
 export const PREFERENCE = ["None", "Pesceterian", "Vegeterian", "Vegan"];
 export const LABOR = ["None", "Bedridden/Inactive", "Sedentary Work", "Standing Work", "Physical Hard Work"];
 export const ACTIVITY = ["None", "Less Active", "Active", "Very Active"];
 
+/*
 //defines strings for preference, gender, work, freetime
 //uses dicts to simplify use of sliders for selection 
 export const SEX = {0:"Male",
@@ -58,3 +59,5 @@ export function getKeyByValue(object, value) {
 
     return ret    
   }
+
+*/
