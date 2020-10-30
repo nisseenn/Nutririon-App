@@ -41,19 +41,22 @@ const ProfileScreen = (props) => {
 	//For the activity details - int
   const [labor, setLabor] = useState(null)
   const [activity, setActivity] = useState(null)
+  const [hours, setHours] = useState(null)
  
   const dispatch = useDispatch()
   //Getting the Redux state for the preference, labor and freetime
   //the "auth" is connected to out App.js file, where we define the Redux Reducer key value
   const userPreference = useSelector(state => state.auth.preference)
-  const userLabor = useSelector(state => state.auth.labor)
-  const userActivity = useSelector(state => state.auth.activity)
+  const userLabor = useSelector(state => state.auth.work)
+  const userActivity = useSelector(state => state.auth.freetime)
+  let sliderActivity = STRINGS.activity.indexOf(userActivity);
+  let sliderLabor = STRINGS.activity.indexOf(userLabor);
 
   //Function to handle submit of preferences
   const submitHandler = async() => {
     try {
       setSaveLoad(true)
-      let objectReturn = await editPreference(checked, userLabor, userActivity)
+      let objectReturn = await editPreference(checked, labor, activity)
       await dispatch(objectReturn)
       await dispatch(fetchIngredients())
       setSaveLoad(false)
@@ -67,7 +70,7 @@ const ProfileScreen = (props) => {
     try {
       //Calling Redux function to handle edit of the preference.
       //We pass null as the parameter for preference. It will therefore be deleted in Firebase
-      let objectReturn = await editPreference(null, userLabor, userActivity)
+      let objectReturn = await editPreference(null, labor, activity)
       //Dispatching the obj from redux function to redux state
       await dispatch(objectReturn)
     } catch (error) {
@@ -78,7 +81,8 @@ const ProfileScreen = (props) => {
   //Function to handle change of activity from user
   const submitActivityHandler = async() => {
     try{
-
+      console.log("ProfileScreen, submitActivityHandler:",labor);
+      console.log("ProfileScreen, submitActivityHandler:",activity);
 			//Setting state for the loader to work
       setSaveLoad(true)
       //Calling Redux funtion to handle the edit of preference in acitivity
@@ -187,7 +191,7 @@ const ProfileScreen = (props) => {
       }}
       style={styles.preferencesButton}>
       <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-        Change preference
+        Change Preference
       </Text>
       <MaterialIcons name="navigate-next" size={26} color="#000"/>
     </TouchableOpacity>
@@ -441,23 +445,30 @@ const ProfileScreen = (props) => {
       </Text>
 
       <Text style={{marginBottom: 5, fontWeight: 'bold', fontSize: 15}}>
-        {userLabor}
+        {labor}
       </Text>
 
       <View>   
         {/*Slider with max, min, step and initial value*/}
         <Slider
           maximumValue={4}
-          minimumValue={0}
+          minimumValue={1}
           thumbTintColor={COLORS.primaryColor}
           minimumTrackTintColor= {COLORS.accentColor}
           maximumTrackTintColor="#000000"
           step={1}
-          value={STRINGS.labor.indexOf(userLabor)}
+          value={sliderLabor}
           onValueChange={(sliderLabor) =>  setLabor(STRINGS.labor[sliderLabor])}
           style={{ width: 330, height: 50}}
         />
-
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        	<Text style={{marginTop: -10, marginBottom: 20}}>
+          Light
+          </Text>
+          <Text style={{marginTop: -10, marginBottom: 20}}>
+          Hard
+          </Text>
+      	</View>
       </View>
 
       <Text style={{marginTop: 30, fontWeight: 'bold', fontSize: 20}}>
@@ -465,7 +476,7 @@ const ProfileScreen = (props) => {
       </Text>
 
       <Text style={{marginTop: 5, marginBottom: -10, fontWeight: 'bold', fontSize: 15}}>
-        {userActivity}
+        {activity}
       </Text>
 
       <View>
@@ -478,23 +489,20 @@ const ProfileScreen = (props) => {
           minimumTrackTintColor= {COLORS.accentColor}
           maximumTrackTintColor={COLORS.GREY}
           step={1}
-          value={STRINGS.activity.indexOf(userActivity)}
+          value={sliderActivity}
           onValueChange={(sliderActivity) =>  setActivity(STRINGS.activity[sliderActivity])}
           style={{width: 330, height: 50 }}
         />
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         	<Text style={{marginTop: -10, marginBottom: 20}}>
-        	{ "None"}
-      		</Text>
-          <Text style={{marginTop: -10, marginBottom: 20}}>
-          {"<2 hours"}
+          Less
+          </Text>
+          <Text style={{marginTop: 5, marginBottom: -10, fontWeight: 'bold'}}>
+        	{STRINGS.hours[STRINGS.activity.indexOf(activity)]}
           </Text>
           <Text style={{marginTop: -10, marginBottom: 20}}>
-          {"2-3 hours"}
+          More
           </Text>
-      		<Text style={{marginTop: -10, marginBottom: 20}}>
-      		{">3 hours"}
-      		</Text>
       	</View>
       </View>
 
