@@ -8,6 +8,7 @@ import React, { useState, useReducer, useCallback, useEffect, useRef } from 'rea
 import { ScrollView, View, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
 import { fetchUserData } from '../store/actions/auth'
 import { fetchIngredients } from '../store/actions/nutrition'
+import { fetchUserMeals } from '../store/actions/nutrition'
 import { useDispatch, useSelector } from 'react-redux'
 import Colors from '../constants/Colors'
 import Calendar from '../components/Calendar'
@@ -23,12 +24,15 @@ const lunch = require('../assets/lunchbox.png')
 const dinner = require('../assets/fast-food.png')
 const snacks = require('../assets/snacks.png')
 
+const AnimatableTouchableOpacity = Animatable.createAnimatableComponent(TouchableOpacity);
+
 //Defining HomeScreen functional component
 const HomeScreen = (props) => {
   const dispatch = useDispatch()
 
   const [isLoading, setIsLoading] = useState(false)
   const [toggleDrop, setToggleDrop] = useState(false)
+  const [dateShown, setDateShown] = useState('Today')
   const [animation, setAnimation] = useState("slideInDown")
 
   const userNutrients = useSelector(state => state.nutrition.nutritientSuggestions)
@@ -62,11 +66,29 @@ try {
 }
 }, [dispatch])
 
+const loaduserNutrients= useCallback(async () => {
+try {
+  //We call the Redux function which get the preferences
+  await dispatch(fetchUserMeals())
+} catch (err) {
+
+}
+}, [dispatch])
+
 const getData = async() => {
   setIsLoading(true)
   await loadUserData()
   await loadIngredients()
+  await loaduserNutrients()
   setIsLoading(false)
+}
+
+const handleSelectDate = async(date) => {
+  const filtered = date.toString().split(" ")
+  setDateShown(filtered[0] + " " + filtered[1] + " " + filtered[2])
+
+
+  setToggleDrop(false)
 }
 
 //Calling the function before render with useEffect
@@ -88,13 +110,16 @@ useEffect(() => {
       {toggleDrop ? (
         <Animatable.View
           useNativeDriver
-          duration={200}
+          duration={300}
           animation={animation}
           style={styles.modal}>
 
-          <Calendar/>
+          <Calendar onSelectDate={handleSelectDate}/>
           <View style={{width: '100%', justifyContent: 'center', alignItems: 'center', marginTop: 10}}>
             <TouchableOpacity
+              // animation="fadeInDown"
+              // useNativeDriver
+              // duration={400}
               onPress={() => setToggleDrop(false)}
               style={styles.modalButton}>
               <Text style={{fontSize: 16, fontWeight: '700'}}>
@@ -118,7 +143,7 @@ useEffect(() => {
             }}
             style={styles.calendarButton}>
             <FontAwesome5 size={30} color="#fff" name="calendar-alt"/>
-            <Text style={styles.calendarText}>Today</Text>
+            <Text style={styles.calendarText}>{dateShown}</Text>
           </TouchableOpacity>
         </View>
 

@@ -12,18 +12,12 @@ export const fetchIngredients = () => {
   return async(dispatch, getState) => {
     const userId = getState().auth.userId
     const token = getState().auth.token
-    const preference = getState().auth.preference
-    const freetime = getState().auth.freetime
-    const work = getState().auth.work
-    const age = getState().auth.age
-    const gender = getState().auth.gender
 
     const updatedIngredients = getState().nutrition["mealIngredients"].map(prod => prod);
 
     try {
       const userResponse = await fetch(`https://nutrition-1cf49.firebaseio.com/users/${userId}.json?auth=${token}`);
       const response = await fetch(`https://nutrition-1cf49.firebaseio.com/foods.json?auth=${token}`);
-      const userNutrition = await fetch(`https://nutrition-1cf49.firebaseio.com/userMeals/${userId}.json?auth=${token}`)
 
       if (!response.ok) {
         throw new Error('Something went wrong');
@@ -31,15 +25,9 @@ export const fetchIngredients = () => {
       if (!userResponse.ok) {
         throw new Error('Something went wrong');
       }
-      if (!userNutrition.ok) {
-        throw new Error('Something went wrong');
-      }
 
       const userData = await userResponse.json()
       const resData = await response.json();
-      const mealData = await userNutrition.json()
-
-      const nutritionData = Object.values(mealData)
 
       let vegeterianer = false
       let vegan = false
@@ -72,13 +60,14 @@ export const fetchIngredients = () => {
         }
       }
 
-      dispatch({ type: SET_INGREDIENTS, ingredients: filteredIngredients, mealIngredients: updatedIngredients, nutritientSuggestions: nutritionData, preference: preference, work: work, freetime: freetime, age: age, gender: gender })
+      dispatch({ type: SET_INGREDIENTS, ingredients: filteredIngredients, mealIngredients: updatedIngredients })
 
     } catch (error) {
       throw new Error('error', error);
     }
   }
 }
+
 //Function to handle adding ingredients to the meal
 export const addIngredient = (ingredientId) => {
     return { type: ADD_INGREDIENT, ingredientId: ingredientId }
@@ -90,7 +79,25 @@ export const deleteIngredient = (ingredientId) => {
 
 export const fetchUserMeals = () => {
   return async(dispatch, getState) => {
+    const userId = getState().auth.userId
+    const token = getState().auth.token
+    const preference = getState().auth.preference
+    const freetime = getState().auth.freetime
+    const work = getState().auth.work
+    const age = getState().auth.age
+    const gender = getState().auth.gender
+    
+    const userNutrition = await fetch(`https://nutrition-1cf49.firebaseio.com/userMeals/${userId}.json?auth=${token}`)
 
+    if (!userNutrition.ok) {
+      throw new Error('Something went wrong');
+    }
+
+    const mealData = await userNutrition.json()
+
+    const nutritionData = Object.values(mealData)
+
+    dispatch({ type: SET_USERMEAL, nutritientSuggestions: nutritionData, preference: preference, work: work, freetime: freetime, age: age, gender: gender })
   }
 }
 

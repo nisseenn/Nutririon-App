@@ -5,26 +5,34 @@ import { fetchIngredients } from '../store/actions/nutrition'
 import { useDispatch, useSelector } from 'react-redux'
 import CalendarStrip from 'react-native-calendar-strip';
 import Colors from '../constants/Colors'
+import * as Animatable from 'react-native-animatable';
 
 const {width,height} = Dimensions.get('window')
 
-const Calendar = () => {
+const Calendar = (props) => {
   const dispatch = useDispatch()
 
   //Returning the JSX code
   return(
-    <View style={styles.wrapper}>
+    <Animatable.View
+      useNativeDriver
+      animation="fadeInDown"
+      duration={200}
+      delay={200}
+      style={styles.wrapper}>
       <CalendarStrip
         scrollable
+        minDate={'2020-10-01'}
+        maxDate={'2021-10-01'}
+        daySelectionAnimation={{type: 'background', highlightColor: Colors.accentColor}}
         calendarColor={{color: 'white'}}
-        calendarHeaderStyle={{color: "#000", fontSize: 30}}
+        calendarHeaderStyle={{color: "#000", fontSize: width / 14}}
         dateNumberStyle={{color: "#000", fontSize: 22}}
-        dateNameStyle={{color: "#000", fontSize: 12}}
         iconContainer={{flex: 0.1}}
-        onDateSelected={(date) => console.log(date)}
+        onDateSelected={(date) => props.onSelectDate(date)}
         style={{flex:1, height:200, paddingTop: 100, paddingBottom: 10}}
       />
-    </View>
+    </Animatable.View>
   )
 }
 

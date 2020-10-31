@@ -19,6 +19,16 @@ const initialState = {
 const nutritionReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_INGREDIENTS:
+
+      return { ...state, ingredients: action.ingredients, mealIngredients: action.mealIngredients }
+
+    case ADD_MEAL:
+      return { ...state, mealIngredients: [] }
+
+    case SET_SUGGESTION:
+
+
+    case SET_USERMEAL:
       let cals = 0
       let nutrientsTotal = 0;
       let refCals;
@@ -26,17 +36,16 @@ const nutritionReducer = (state = initialState, action) => {
       let proteinTotal = 0;
       let carbsTotal = 0;
       let mealsOfDay = {}
-
-      let date = new Date();
-      let day = date.getDate()
-      let month = date.getMonth()
-      let year = date.getFullYear()
-
       const preference = action.preference
       const freetime = action.freetime
       const work = action.work
       const age = parseInt(action.age)
       const gender = action.gender
+
+      let date = new Date();
+      let day = date.getDate()
+      let month = date.getMonth()
+      let year = date.getFullYear()
 
       if(gender == 'male'){
         if(age > 18 && age < 30){
@@ -104,16 +113,7 @@ const nutritionReducer = (state = initialState, action) => {
 
       const suggestedCals = refCals - cals
 
-      return { ingredients: action.ingredients, mealIngredients: action.mealIngredients, nutritientSuggestions: action.nutritientSuggestions, calorySuggestion: suggestedCals, caloryRef: refCals, nutrients: nutrientsObj, todayMeal: mealsOfDay }
-
-    case ADD_MEAL:
-      return { ...state, mealIngredients: [] }
-
-    case SET_SUGGESTION:
-
-
-    case SET_USERMEAL:
-
+      return {...state, nutritientSuggestions: action.nutritientSuggestions, calorySuggestion: suggestedCals, caloryRef: refCals, nutrients: nutrientsObj, todayMeal: mealsOfDay}
 
     case ADD_INGREDIENT:
       //Finding the ingredient we want to add
