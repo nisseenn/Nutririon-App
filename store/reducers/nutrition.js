@@ -42,11 +42,6 @@ const nutritionReducer = (state = initialState, action) => {
       const age = parseInt(action.age)
       const gender = action.gender
 
-      let date = new Date();
-      let day = date.getDate()
-      let month = date.getMonth()
-      let year = date.getFullYear()
-
       if(gender == 'male'){
         if(age > 18 && age < 30){
           if(work == 'beddriven' && freetime == 'lessactive'){
@@ -88,7 +83,7 @@ const nutritionReducer = (state = initialState, action) => {
       for(var meal = 0; meal < meals.length; meal++){
         const ingredientList = meals[meal].ingredients
         const timestamp = meals[meal].timestamp
-        if(timestamp.day == day && timestamp.month == month && timestamp.year == year){
+        if(timestamp.day == action.day && timestamp.month == action.month && timestamp.year == action.year){
           for(var ingredient = 0; ingredient < ingredientList.length; ingredient++){
             const calories = ingredientList[ingredient].Energi2.split('value')[1].split('=')[1].split('}')[0]
             const fat = ingredientList[ingredient].Fett.split('value')[1].split('=')[1].split('}')[0]

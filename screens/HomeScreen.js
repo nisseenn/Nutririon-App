@@ -85,10 +85,31 @@ const getData = async() => {
 
 const handleSelectDate = async(date) => {
   const filtered = date.toString().split(" ")
-  setDateShown(filtered[0] + " " + filtered[1] + " " + filtered[2])
 
+  const month = date.month()
+  const year = date.year()
+  const day = date.date()
 
+  let optDate = new Date();
+  let optDay = optDate.getDate()
+  let optMonth = optDate.getMonth()
+  let optYear = optDate.getFullYear()
+
+  if(day == optDay && month == optMonth && year == optYear){
+    setDateShown("Today")
+  }
+  else if(day == optDay - 1 && month == optMonth && year == optYear){
+    setDateShown("Yesterday")
+  }
+  else{
+    setDateShown(filtered[0] + " " + filtered[1] + " " + filtered[2])
+  }
+  await dispatch(fetchUserMeals(day, month, year))
   setToggleDrop(false)
+}
+
+const handleScroll = () => {
+  console.log('scrolling');
 }
 
 //Calling the function before render with useEffect
@@ -201,7 +222,9 @@ useEffect(() => {
         </View>
       </View>
       <View style={styles.cardWrapper}>
-        <ScrollView contentContainerStyle={{width: '100%', alignItems: 'center', height: '100%'}}>
+        <ScrollView
+          onScroll={handleScroll}
+          contentContainerStyle={{width: '100%', alignItems: 'center', height: '100%'}}>
           <View style={styles.titleWrap}>
             <Text style={styles.title}>Summary</Text>
           </View>

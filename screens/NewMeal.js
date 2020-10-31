@@ -7,6 +7,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 import { fetchIngredients } from '../store/actions/nutrition'
+import { fetchUserMeals } from '../store/actions/nutrition'
 import { addIngredient } from '../store/actions/nutrition'
 import { deleteIngredient } from '../store/actions/nutrition'
 import { addMeal } from '../store/actions/nutrition'
@@ -88,6 +89,7 @@ const NewMeal = (props) => {
     await dispatch(addMeal(mealType))
     handleAnimation()
     dispatch(fetchIngredients())
+    dispatch(fetchUserMeals())
   }
 
   const handleAnimation = async() => {
