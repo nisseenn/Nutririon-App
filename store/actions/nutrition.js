@@ -131,5 +131,6 @@ export const addMeal = (mealType) => {
     } catch (error) {
       console.log(error);
     }
+
   }
 }

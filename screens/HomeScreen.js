@@ -10,9 +10,11 @@ import { fetchUserData } from '../store/actions/auth'
 import { fetchIngredients } from '../store/actions/nutrition'
 import { useDispatch, useSelector } from 'react-redux'
 import Colors from '../constants/Colors'
+import Calendar from '../components/Calendar'
 import ProgressCircle from 'react-native-progress-circle'
 import { Ionicons, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { ProgressBar } from 'react-native-paper';
+import * as Animatable from 'react-native-animatable';
 
 const {width,height} = Dimensions.get('window')
 
@@ -26,6 +28,8 @@ const HomeScreen = (props) => {
   const dispatch = useDispatch()
 
   const [isLoading, setIsLoading] = useState(false)
+  const [toggleDrop, setToggleDrop] = useState(false)
+  const [animation, setAnimation] = useState("slideInDown")
 
   const userNutrients = useSelector(state => state.nutrition.nutritientSuggestions)
   const calorySuggestion = useSelector(state => state.nutrition.calorySuggestion)
@@ -81,12 +85,36 @@ useEffect(() => {
   //Returning the JSX code
   return(
     <View style={styles.container}>
+      {toggleDrop ? (
+        <Animatable.View
+          useNativeDriver
+          duration={200}
+          animation={animation}
+          style={styles.modal}>
+
+          <Calendar/>
+          <View style={{width: '100%', justifyContent: 'center', alignItems: 'center', marginTop: 10}}>
+            <TouchableOpacity
+              onPress={() => setToggleDrop(false)}
+              style={styles.modalButton}>
+              <Text style={{fontSize: 16, fontWeight: '700'}}>
+                CANCEL
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+        </Animatable.View>
+      ) : (
+        <View>
+
+        </View>
+      )}
       <View style={styles.header}>
 
         <View style={styles.calendarWrap}>
           <TouchableOpacity
             onPress={() => {
-              props.navigation.navigate("calendar")
+              setToggleDrop(true)
             }}
             style={styles.calendarButton}>
             <FontAwesome5 size={30} color="#fff" name="calendar-alt"/>
@@ -118,7 +146,7 @@ useEffect(() => {
                 <Text style={styles.nutritionText}>Protein</Text>
                 <Text style={styles.nutritionText2}>{nutrients.protein}g / {nutrients.total}g</Text>
               </View>
-              <ProgressBar progress={0.5} style={styles.progressBar} color={Colors.buttonColor} />
+              <ProgressBar progress={proteinPercent} style={styles.progressBar} color={Colors.buttonColor} />
             </View>
             <View style={styles.nutrientWrap}>
               <View style={{flexDirection: 'row'}}>
@@ -202,6 +230,26 @@ const styles = StyleSheet.create({
     flex:1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  modal:{
+    position: 'absolute',
+    width: '100%',
+    top: 0,
+    height: height / 2.6,
+    backgroundColor: 'white',
+    zIndex: 6000,
+  },
+  modalButton:{
+    paddingVertical: 10,
+    borderWidth: 1.5,
+    width: '50%',
+    borderColor: "#da2626",
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 30,
+    position: 'absolute',
+    bottom: 0,
+    marginVertical: 10
   },
   header:{
     position: 'absolute',

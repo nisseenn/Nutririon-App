@@ -97,34 +97,6 @@ export const signup = (email, password, name, gender, age, weight, userHeight, p
 
     const idToken = await user.getIdToken()
 
-  //   try {
-  //     //Requesting data from Firebase with token and userid
-  //     const response2 = await fetch(`https://nutrition-1cf49.firebaseio.com/users/${user.uid}.json`, {
-  //       method: 'PUT',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify({
-  //         gender: gender,
-  //         age: age,
-  //         weight: weight,
-  //         userHeight: userHeight,
-  //         preference_id: preference,
-  //         work: userWork,
-  //         freetime: userFreetime
-  //       })
-  //     });
-  //
-  //     if(!response2.ok) {
-  //       const resData = await response2.json();
-  //       // console.log(resData);
-  //       throw new Error("Something went wrong")
-  //     }
-  // } catch (err) {
-  //   console.log(err);
-  // }
-
-
     //Updating user displayName with firebase method updateProfile
     const updateUser = await user.updateProfile({
       displayName: name,
@@ -146,13 +118,22 @@ export const signup = (email, password, name, gender, age, weight, userHeight, p
 
     await firebase.database().ref().update(updates)
 
+    const userRecomendation = await fetch(`https://nutrition-1cf49.firebaseio.com/recommendations.json?auth=${idToken}`);
 
+    if (!userRecomendation.ok) {
+      throw new Error('Something went wrong');
+    }
 
-    // user.sendEmailVerification().then(function() {
-    //   // dispatch(verifyEmail(false))
-    // }).catch(function(error) {
-    //
-    // });
+    const userReference = await userRecomendation.json()
+
+    const filteredArray = userReference.filter(value => value !== null)
+    let filteredData = []
+
+    filteredArray.forEach((item, i) => {
+      if(item.sex.toLowerCase() == gender.toLowerCase() && item.labor.toLowerCase() == userWork.toLowerCase() && item.activity.toLowerCase() == userFreetime.toLowerCase()){
+        filteredData.push(item)
+      }
+    });
 
     dispatch(authenticate(user.uid, idToken))
     dispatch({ type: SET_PREFERENCE, preference: preference, work: userWork, freetime: userFreetime })
