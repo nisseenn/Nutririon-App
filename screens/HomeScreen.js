@@ -5,7 +5,7 @@
 
 //Importing the react native and react components
 import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
-import { ScrollView, View, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
+import { ScrollView, View, Animated, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
 import { fetchUserData } from '../store/actions/auth'
 import { fetchIngredients } from '../store/actions/nutrition'
 import { fetchUserMeals } from '../store/actions/nutrition'
@@ -19,12 +19,18 @@ import * as Animatable from 'react-native-animatable';
 
 const {width,height} = Dimensions.get('window')
 
+const HEADER_MAX_HEIGHT = height / 2.6;
+const HEADER_MIN_HEIGHT = height / 7;
+const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
+
 const breakfast = require('../assets/breakfast.png')
 const lunch = require('../assets/lunchbox.png')
 const dinner = require('../assets/fast-food.png')
 const snacks = require('../assets/snacks.png')
 
 const AnimatableTouchableOpacity = Animatable.createAnimatableComponent(TouchableOpacity);
+const AnimatedCircle = Animated.createAnimatedComponent(ProgressCircle)
+const AnimatedText = Animated.createAnimatedComponent(Text)
 
 //Defining HomeScreen functional component
 const HomeScreen = (props) => {
@@ -34,6 +40,45 @@ const HomeScreen = (props) => {
   const [toggleDrop, setToggleDrop] = useState(false)
   const [dateShown, setDateShown] = useState('Today')
   const [animation, setAnimation] = useState("slideInDown")
+
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const fade = useRef(new Animated.Value(0)).current;
+
+  const headerTranslateY = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE * .99],
+    outputRange: [0, -HEADER_SCROLL_DISTANCE * 1.05],
+    extrapolate: 'clamp',
+  });
+
+  const flatListTranslateY = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE  * .95],
+    outputRange: [0, -HEADER_SCROLL_DISTANCE * 1.05],
+    extrapolate: 'clamp',
+  });
+
+  const barOpacity = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE / 30, HEADER_SCROLL_DISTANCE / 2],
+    outputRange: [1, 1, 0],
+    extrapolate: 'clamp',
+  });
+
+  const textTranslateY = scrollY.interpolate({
+    inputRange: [0, HEADER_MAX_HEIGHT],
+    outputRange: [0, HEADER_MIN_HEIGHT],
+    extrapolate: 'clamp',
+  });
+
+  const textTranslateSize = scrollY.interpolate({
+    inputRange: [26, 36],
+    outputRange: [36, 20],
+    extrapolate: 'clamp',
+  });
+
+  const dateTranslateX = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE],
+    outputRange: [0, width / 1.5],
+    extrapolate: 'clamp',
+  });
 
   const userNutrients = useSelector(state => state.nutrition.nutritientSuggestions)
   const calorySuggestion = useSelector(state => state.nutrition.calorySuggestion)
@@ -155,38 +200,45 @@ useEffect(() => {
 
         </View>
       )}
-      <View style={styles.header}>
+      <Animated.View style={[styles.calendarWrap, {transform: [{translateX: dateTranslateX}]}]}>
+        <TouchableOpacity
+          onPress={() => {
+            setToggleDrop(true)
+          }}
+          style={styles.calendarButton}>
+          <FontAwesome5 size={30} color="#fff" name="calendar-alt"/>
+          <Text style={styles.calendarText}>{dateShown}</Text>
+        </TouchableOpacity>
+      </Animated.View>
 
-        <View style={styles.calendarWrap}>
-          <TouchableOpacity
-            onPress={() => {
-              setToggleDrop(true)
-            }}
-            style={styles.calendarButton}>
-            <FontAwesome5 size={30} color="#fff" name="calendar-alt"/>
-            <Text style={styles.calendarText}>{dateShown}</Text>
-          </TouchableOpacity>
-        </View>
+      <Animated.View
+        style={[styles.header, {transform: [{translateY: headerTranslateY}]}]}>
 
         <View style={styles.contentWrap}>
 
           <View style={styles.progressWrap}>
-            <ProgressCircle
+            <AnimatedCircle
                 percent={percent}
                 radius={height / 10}
                 borderWidth={7}
                 color={Colors.buttonColor}
                 shadowColor="#fff"
                 bgColor={Colors.primaryColor}
+                style={{opacity: barOpacity}}
                 >
-                <View style={styles.progressText}>
-                  <Text style={{ fontSize: 36, fontWeight: '600', fontStyle: 'italic', color: "#fff"}}>{calorySuggestion}</Text>
-                  <Text style={{ fontSize: 16, fontWeight: '400', fontStyle: 'italic', color: "#fff"}}>Calories left</Text>
-                </View>
-            </ProgressCircle>
+                {/* <View style={styles.progressText}>
+                  <Animated.Text style={{ fontSize: 36, fontWeight: '600', fontStyle: 'italic', color: "#fff"}}>{calorySuggestion}</Animated.Text>
+                  <Animated.Text style={{ fontSize: 16, fontWeight: '400', fontStyle: 'italic', color: "#fff"}}>Calories left</Animated.Text>
+                </View> */}
+            </AnimatedCircle>
           </View>
 
-          <View style={styles.barWrap}>
+          <Animated.View style={[styles.progressText2, {transform: [{translateY: textTranslateY}]}]}>
+            <Animated.Text style={styles.totalCals}>{calorySuggestion}</Animated.Text>
+            <Animated.Text style={styles.totalCalsDesc}>Calories left</Animated.Text>
+          </Animated.View>
+
+          <Animated.View style={[{...styles.barWrap, opacity: barOpacity}]}>
             <View style={styles.nutrientWrap}>
               <View style={{flexDirection: 'row'}}>
                 <Text style={styles.nutritionText}>Protein</Text>
@@ -217,16 +269,23 @@ useEffect(() => {
                 See details
               </Text>
             </TouchableOpacity>
-          </View>
+          </Animated.View>
 
         </View>
-      </View>
-      <View style={styles.cardWrapper}>
-        <ScrollView
-          onScroll={handleScroll}
-          contentContainerStyle={{width: '100%', alignItems: 'center', height: '100%'}}>
+      </Animated.View>
+      {/* <Animated.View style={[styles.cardWrapper, {transform: [{translateY: flatListTranslateY}]}]}> */}
+
+        <Animated.ScrollView
+          scrollEventThrottle={16}
+          snapToInterval={height / 2}
+          decelerationRate="fast"
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: scrollY } } }], // event.nativeEvent.contentOffset.x to scrollX
+            { useNativeDriver: true },
+          )}
+          contentContainerStyle={{...styles.cardWrapper, width: '100%', alignItems: 'center'}}>
           <View style={styles.titleWrap}>
-            <Text style={styles.title}>Summary</Text>
+            <Text style={styles.title}>Daily Summary</Text>
           </View>
 
             <TouchableOpacity style={styles.card}>
@@ -265,8 +324,16 @@ useEffect(() => {
               </View>
             </TouchableOpacity>
 
-        </ScrollView>
-      </View>
+            <View style={styles.titleWrap}>
+              <Text style={styles.title}>Weekly Summary</Text>
+            </View>
+            <View style={{}}>
+
+            </View>
+
+        </Animated.ScrollView>
+
+      {/* </Animated.View> */}
 
     </View>
   )
@@ -276,8 +343,8 @@ useEffect(() => {
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
   modal:{
     position: 'absolute',
@@ -310,11 +377,12 @@ const styles = StyleSheet.create({
   calendarWrap:{
     position: 'absolute',
     top: 60,
-    left: 20
+    left: 20,
+    zIndex: 9000,
   },
   titleWrap:{
     width: '90%',
-    marginVertical: 10
+    marginVertical: 10,
   },
   title:{
     fontSize: 22,
@@ -324,11 +392,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    // borderWidth: .5,
-    // paddingVertical: 10,
-    // paddingHorizontal: 20,
-    // borderColor: "#fff",
-    // borderRadius: 15
   },
   calendarText:{
     color: "#fff",
@@ -350,11 +413,31 @@ const styles = StyleSheet.create({
   },
   progressWrap:{
     marginLeft: 20,
-    marginBottom: 20
+    marginBottom: 20,
+    overflow: 'hidden'
+  },
+  totalCals:{
+    fontSize: 36,
+    fontWeight: '600',
+    fontStyle: 'italic',
+    color: "#fff"
+  },
+  totalCalsDesc:{
+    fontSize: 16,
+    fontWeight: '400',
+    fontStyle: 'italic',
+    color: "#fff"
   },
   progressText:{
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  progressText2:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 70,
+    left: 55
   },
   barWrap:{
     justifyContent: 'flex-start',
@@ -387,7 +470,7 @@ const styles = StyleSheet.create({
     color: "#fff"
   },
   cardWrapper:{
-    height: '100%',
+    height: height + HEADER_SCROLL_DISTANCE / 2,
     position: 'absolute',
     top: height / 2.6,
     width: '100%',
@@ -403,6 +486,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     shadowOffset: {height:2},
     shadowOpacity: 0.1,
+    zIndex: 1000,
   },
   cardTitle:{
     fontSize: 20,
