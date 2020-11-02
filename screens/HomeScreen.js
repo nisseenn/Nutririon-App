@@ -64,13 +64,7 @@ const HomeScreen = (props) => {
 
   const textTranslateY = scrollY.interpolate({
     inputRange: [0, HEADER_MAX_HEIGHT],
-    outputRange: [0, HEADER_MIN_HEIGHT],
-    extrapolate: 'clamp',
-  });
-
-  const textTranslateSize = scrollY.interpolate({
-    inputRange: [26, 36],
-    outputRange: [36, 20],
+    outputRange: [0, 100],
     extrapolate: 'clamp',
   });
 
@@ -85,6 +79,7 @@ const HomeScreen = (props) => {
   const caloryRef = useSelector(state => state.nutrition.caloryRef)
   const nutrients = useSelector(state => state.nutrition.nutrients)
   const todayMeal = useSelector(state => state.nutrition.todayMeal)
+  const weekSummary = useSelector(state => state.nutrition.weekSummary)
 
   const percent1 = 1 - (calorySuggestion / caloryRef)
   const percent = Math.round(percent1 * 100)
@@ -328,7 +323,10 @@ useEffect(() => {
               <Text style={styles.title}>Weekly Summary</Text>
             </View>
             <View style={{}}>
-
+              <Text>Calories: {weekSummary.summary.cals}</Text>
+              <Text>Carbs: {weekSummary.summary.carbs}</Text>
+              <Text>Protein: {weekSummary.summary.protein}</Text>
+              <Text>Fat: {weekSummary.summary.fat}</Text>
             </View>
 
         </Animated.ScrollView>
@@ -372,7 +370,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: height / 2.6,
     backgroundColor: Colors.primaryColor,
-    marginBottom: height / 2.6
+    marginBottom: height / 2.6,
+    zIndex: 4000,
+    overflow: 'hidden'
   },
   calendarWrap:{
     position: 'absolute',
@@ -474,6 +474,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: height / 2.6,
     width: '100%',
+    zIndex: -1000
   },
   card:{
     backgroundColor: '#fff',
