@@ -242,15 +242,15 @@ const GenderScreen = (props) => {
           <View style={{flexDirection: 'row'}}>
             <TouchableOpacity style={styles.button2} onPress={() => {
               //Calling second function to move view
-              moveSecondView(STRING.labor[4])
+              moveSecondView(STRINGS.labor[4])
             }}>
               <Text style={styles.buttonText2}>
-                {STRING.labor[4] /*physical hard*/}
+                {STRINGS.labor[4] /*physical hard*/}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button2} onPress={() => {
               //Calling second function to move view
-              moveSecondView(STRING.labor[1])
+              moveSecondView(STRINGS.labor[1])
             }}>
               <Text style={styles.buttonText2}>
                 {STRINGS.labor[1] /*bedridden*/}
@@ -266,7 +266,7 @@ const GenderScreen = (props) => {
         </Text>
         <View style={{flexDirection: 'column'}}>
           <View style={{flexDirection: 'row'}}>
-            
+
             <TouchableOpacity style={styles.button2} onPress={() => {
               props.navigation.navigate("info", {
                 //Passing props via navigation
@@ -279,8 +279,8 @@ const GenderScreen = (props) => {
                 {STRINGS.activity[1]}
               </Text>
             </TouchableOpacity>
-            
-            
+
+
             <TouchableOpacity style={styles.button2} onPress={() => {
               props.navigation.navigate("info", {
                 //Passing props via navigation
