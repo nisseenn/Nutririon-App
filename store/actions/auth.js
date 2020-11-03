@@ -109,7 +109,7 @@ export const signup = (email, password, name, gender, age, weight, userHeight, p
   //         age: age,
   //         weight: weight,
   //         userHeight: userHeight,
-  //         preference_id: preference,
+  //         preference: preference,
   //         work: userWork,
   //         freetime: userFreetime
   //       })
@@ -138,7 +138,7 @@ export const signup = (email, password, name, gender, age, weight, userHeight, p
       age: age,
       weight: weight,
       userHeight: userHeight,
-      preference_id: preference,
+      preference: preference,
       work: userWork,
       freetime: userFreetime
     }
