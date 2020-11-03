@@ -1,6 +1,8 @@
 import { AsyncStorage } from 'react-native'
 import firebase from 'firebase';
 
+import STRINGS from '../../constants/Strings'
+
 export const ADD_MEAL = 'ADD_MEAL'
 export const SET_USERMEAL = 'SET_USERMEAL'
 export const SET_SUGGESTION = 'SET_SUGGESTION'
@@ -41,24 +43,22 @@ export const fetchIngredients = () => {
 
       const nutritionData = Object.values(mealData)
 
-      let vegeterianer = false
-      let vegan = false
-      let pesc = false
       let foodGroups = []
 
-      if(userData.preference_id === "vegeterianer"){
-        vegeterianer = true
+      // Vegeterian
+      if(userData.preference === STRINGS.preference[1]){
         foodGroups = ["1","2","5","6","7","8"]
       }
-      if(userData.preference_id === "vegan"){
-        vegan = true
+      // Vegan
+      if(userData.preference === STRINGS.preference[2]){
         foodGroups = ["5","6","7"]
       }
-      if(userData.preference_id === "pesc"){
-        pesc = true
+      // Pesceterian
+      if(userData.preference === STRINGS.preference[3]){
         foodGroups = ["1","2","4","5","6","7","8"]
       }
-      if(userData.preference_id == null){
+      // None
+      if(userData.preference == STRINGS.preference[0]){
         foodGroups = ["1","2","3","4","5","6","7","8","9","10","11"]
       }
 
