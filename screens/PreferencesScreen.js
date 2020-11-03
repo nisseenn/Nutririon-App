@@ -23,7 +23,7 @@ const PreferencesScreen = (props) => {
   const [isVeganer, setIsVeganer] = useState(false)
   const [isPesc, setIsPesc] = useState(false)
   //State for the single select box
-  const [checked, setChecked] = useState(null);
+  const [preference, setPreference] = useState(null);
 
   return(
     <View style={{flex:1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff'}}>
@@ -49,9 +49,9 @@ const PreferencesScreen = (props) => {
         <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
           <RadioButton
             value={STRINGS.preference[1]}
-            status={ checked === STRINGS.preference[1] ? 'checked' : 'unchecked' }
+            status={ preference === STRINGS.preference[1] ? 'checked' : 'unchecked' }
             color={COLORS.primaryColor}
-            onPress={() => setChecked(STRINGS.preference[1])}
+            onPress={() => setPreference(STRINGS.preference[1])}
           />
         </View>
       </View>
@@ -67,9 +67,9 @@ const PreferencesScreen = (props) => {
         <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
           <RadioButton
             value={STRINGS.preference[2]}
-            status={ checked === STRINGS.preference[2] ? 'checked' : 'unchecked' }
+            status={ preference === STRINGS.preference[2] ? 'checked' : 'unchecked' }
             color={COLORS.primaryColor}
-            onPress={() => setChecked(STRINGS.preference[2])}
+            onPress={() => setPreference(STRINGS.preference[2])}
           />
         </View>
       </View>
@@ -85,10 +85,10 @@ const PreferencesScreen = (props) => {
         <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
           <RadioButton
             value={STRINGS.preference[3]}
-            status={ checked === STRINGS.preference[3] ? 'checked' : 'unchecked' }
+            status={ preference === STRINGS.preference[3] ? 'checked' : 'unchecked' }
             color={COLORS.primaryColor}
             onPress={() => {
-              setChecked(STRINGS.preference[3])
+              setPreference(STRINGS.preference[3])
             }}
           />
         </View>
@@ -105,7 +105,7 @@ const PreferencesScreen = (props) => {
               age: age,
               height: userHeight,
               weight: weight,
-              preference: checked
+              preference: preference
             })
           }}
           style={styles.buttonBottom}>
