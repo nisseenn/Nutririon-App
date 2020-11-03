@@ -36,9 +36,9 @@ const ProfileScreen = (props) => {
   const [isLoading, setIsLoading] = useState(false)
   const [saveLoad, setSaveLoad] = useState(false)
   //For the single choice
-  const [checked, setChecked] = useState(null);
+  const [preference, setPreference] = useState(null);
   
-	//For the activity details - int
+	//For the activity details
   const [labor, setLabor] = useState(null)
   const [activity, setActivity] = useState(null)
   const [hours, setHours] = useState(null)
@@ -49,16 +49,17 @@ const ProfileScreen = (props) => {
   const userPreference = useSelector(state => state.auth.preference)
   const userLabor = useSelector(state => state.auth.work)
   const userActivity = useSelector(state => state.auth.freetime)
+  let sliderLabor = STRINGS.labor.indexOf(userLabor);
   let sliderActivity = STRINGS.activity.indexOf(userActivity);
-  let sliderLabor = STRINGS.activity.indexOf(userLabor);
+  
 
   //Function to handle submit of preferences
   const submitHandler = async() => {
     try {
       setSaveLoad(true)
-      let objectReturn = await editPreference(checked, labor, activity)
+      let objectReturn = await editPreference(preference, labor, activity)
       await dispatch(objectReturn)
-      await dispatch(fetchIngredients())
+      //await dispatch(fetchIngredients())
       setSaveLoad(false)
       setToggleDrop(false)
     } catch (err) {
@@ -81,12 +82,10 @@ const ProfileScreen = (props) => {
   //Function to handle change of activity from user
   const submitActivityHandler = async() => {
     try{
-      console.log("ProfileScreen, submitActivityHandler:",labor);
-      console.log("ProfileScreen, submitActivityHandler:",activity);
 			//Setting state for the loader to work
       setSaveLoad(true)
       //Calling Redux funtion to handle the edit of preference in acitivity
-      let objectReturn = await editPreference(userPreference, userLabor, userActivity)
+      let objectReturn = await editPreference(preference, labor, activity)
       //Dispatching the Object which is created in Redux. Dispatching it to the Redux store
       await dispatch(objectReturn)
       //Setting the loading to false
@@ -185,7 +184,7 @@ const ProfileScreen = (props) => {
     <TouchableOpacity
       onPress={async() => {
         //Setting the state to the userPreference, so that it is checked when user loads modal
-        setChecked(userPreference)
+        setPreference(userPreference)
         //Setting state of toggleDrop to true to activate the modal pop up
         setToggleDrop(true)
       }}
@@ -318,9 +317,9 @@ const ProfileScreen = (props) => {
         <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
           <RadioButton
             value= {STRINGS.preference[1]}
-            status={ checked === STRINGS.preference[1] ? 'checked' : 'unchecked' }
+            status={ preference === STRINGS.preference[1] ? 'checked' : 'unchecked' }
             color={COLORS.primaryColor}
-            onPress={() => setChecked(STRINGS.preference[1])}
+            onPress={() => setPreference(STRINGS.preference[1])}
           />
         </View>
       </View>
@@ -335,9 +334,9 @@ const ProfileScreen = (props) => {
         <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
           <RadioButton
             value= {STRINGS.preference[2]}
-            status={ checked === STRINGS.preference[2] ? 'checked' : 'unchecked' }
+            status={ preference === STRINGS.preference[2] ? 'checked' : 'unchecked' }
             color={COLORS.primaryColor}
-            onPress={() => setChecked(STRINGS.preference[2])}
+            onPress={() => setPreference(STRINGS.preference[2])}
           />
         </View>
       </View>
@@ -352,9 +351,9 @@ const ProfileScreen = (props) => {
         <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
           <RadioButton
             value= {STRINGS.preference[3]}
-            status={ checked === STRINGS.preference[3] ? 'checked' : 'unchecked' }
+            status={ preference === STRINGS.preference[3] ? 'checked' : 'unchecked' }
             color={COLORS.primaryColor}
-            onPress={() => setChecked(STRINGS.preference[3])}
+            onPress={() => setPreference(STRINGS.preference[3])}
           />
         </View>
       </View>
