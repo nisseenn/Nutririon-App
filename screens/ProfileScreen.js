@@ -14,6 +14,7 @@ import * as Animatable from 'react-native-animatable';
 import Animated from 'react-native-reanimated';
 import { RadioButton, Checkbox } from 'react-native-paper';
 import Slider from '@react-native-community/slider';
+import { Switch } from 'react-native-switch';
 
 //import constants
 import COLORS from '../constants/Colors'
@@ -57,7 +58,7 @@ const ProfileScreen = (props) => {
   const submitHandler = async() => {
     try {
       setSaveLoad(true)
-      let objectReturn = await editPreference(preference, labor, activity)
+      let objectReturn = await editPreference(preference, userLabor, userActivity)
       await dispatch(objectReturn)
       //await dispatch(fetchIngredients())
       setSaveLoad(false)
@@ -85,7 +86,7 @@ const ProfileScreen = (props) => {
 			//Setting state for the loader to work
       setSaveLoad(true)
       //Calling Redux funtion to handle the edit of preference in acitivity
-      let objectReturn = await editPreference(preference, labor, activity)
+      let objectReturn = await editPreference(userPreference, labor, activity)
       //Dispatching the Object which is created in Redux. Dispatching it to the Redux store
       await dispatch(objectReturn)
       //Setting the loading to false
@@ -155,239 +156,79 @@ const ProfileScreen = (props) => {
     setIsLoading(false)
   }
 
-  return(
+  return (
+      // Profile menu - top of stack navigation
+      <View style={styles.container}>
 
-    // Profile menu - top of stack navigation
-    <View style={styles.container}>
-
-        <View style={{zIndex: 1000, position: 'absolute', width: '100%', justifyContent: 'center', alignItems: 'center', top: 100}}>
-          <View style={{zIndex: 1000, backgroundColor: COLORS.accentColor, width: width / 3, height: width / 3, borderRadius: 300, alignItems: 'center', justifyContent: 'center'}}>
-            <Text
-              style={styles.settingsText}>
-              {/* Displaying our beautiful character(s) */}
-              {displayName}
-            </Text>
+          <View style={{zIndex: 1000, position: 'absolute', width: '100%', justifyContent: 'center', alignItems: 'center', top: 100}}>
+            <View style={{zIndex: 1000, backgroundColor: COLORS.accentColor, width: width / 3, height: width / 3, borderRadius: 300, alignItems: 'center', justifyContent: 'center'}}>
+              <Text
+                style={styles.settingsText}>
+                {/* Displaying our beautiful character(s) */}
+                {displayName}
+              </Text>
+            </View>
           </View>
+
+        <View style={styles.backgroundTop}>
+          <LinearGradient
+              colors={[COLORS.primaryColor, COLORS.accentColor]}
+              style={{
+                // flex:1,
+                height: height / 3
+              }}
+            />
         </View>
-
-      <View style={styles.backgroundTop}>
-        <LinearGradient
-            colors={[COLORS.primaryColor, COLORS.accentColor]}
-            style={{
-              // flex:1,
-              height: height / 3
-            }}
-          />
-      </View>
-  {/* OBJECT DESTRUCTURING, GETTING ALL STYLES FROM PREFERENCES AND ADDING BOTTOM */}
-  <View style={{...styles.preferences, bottom: 340}}>
-    <TouchableOpacity
-      onPress={async() => {
-        //Setting the state to the userPreference, so that it is checked when user loads modal
-        setPreference(userPreference)
-        //Setting state of toggleDrop to true to activate the modal pop up
-        setToggleDrop(true)
-      }}
-      style={styles.preferencesButton}>
-      <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-        Change Preference
-      </Text>
-      <MaterialIcons name="navigate-next" size={26} color="#000"/>
-    </TouchableOpacity>
-  </View>
-
-  <View style={{...styles.preferences, bottom: 270}}>
-    <TouchableOpacity
-      onPress={() => {
-
-        //Setting state of work and userActivity to info got from Redux so user gets info on modal pop up
-        setLabor( userLabor )
-        setActivity( userActivity )
-        //Activating the modal pop up
-        setToggleActivity(true)
-      }}
-      style={styles.preferencesButton}>
-      <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-        Change Activity Details
-      </Text>
-      <MaterialIcons name="navigate-next" size={26} color="#000"/>
-    </TouchableOpacity>
-  </View>
-
-  <View style={styles.preferences}>
-    <TouchableOpacity style={styles.preferencesButton}>
-      <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-        View Privacy Policy
-      </Text>
-      <MaterialIcons name="navigate-next" size={26} color="#000"/>
-    </TouchableOpacity>
-  </View>
-
-  <View style={{...styles.preferences, bottom: 130}}>
-    <TouchableOpacity
-      onPress={() => {
-        // Asking user if they are sure to log out
-        Alert.alert(
-        'Are you sure you want to log out?',
-        '',
-        [
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel'
-          },
-          {
-            text: 'Yes',
-            onPress: () => {
-              //If so..
-              //Dispatch to redux to call logout function
-              dispatch(logout())
-              //Navigating to startscreen
-              props.navigation.navigate('Auth')
-            }
-          },
-        ],
-        { cancelable: true }
-        );
-
-      }}
-      style={{...styles.preferencesButton, backgroundColor: COLORS.buttonColor}}>
-      <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-        Log Out
-      </Text>
-      <MaterialIcons name="navigate-next" size={26} color="#000"/>
-    </TouchableOpacity>
-  </View>
-
-  <View style={{...styles.preferences, bottom: 60}}>
-    <TouchableOpacity
-      onPress={() => {
-        //Asking user to verify deleting account
-        Alert.alert(
-        'Are you sure you want to delete your account?',
-        'All data about you will be deleted',
-        [
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel'
-          },
-          {
-            text: 'Yes',
-            onPress: () => deleteHandler()
-          },
-        ],
-        { cancelable: true }
-        );
-      }}
-      style={{...styles.preferencesButton, backgroundColor: '#ff5656'}}>
-      <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-        Delete Account
-      </Text>
-      <MaterialIcons name="navigate-next" size={26} color="#000"/>
-    </TouchableOpacity>
-  </View>
-
-
-
-
-{/* Stack navigations- preference - activity */}
-
-
-
-
-
-{/* If toggleDrop is true, show this */}
-  {toggleDrop ? (
-    <Animatable.View
-      useNativeDriver
-      duration={200}
-      animation={animation}
-      style={styles.modal}>
-
-    <Animatable.View
-      style={{width: '100%', justifyContent: 'center', alignItems: 'center', position: 'absolute', bottom: 20}}>
-      <View style={styles.boxWrap}>
-        <View style={styles.textWrap}>
-          <Text style={styles.boxText}>
-            {STRINGS.preference[1] /*vegeterian*/}
-          </Text>
-        </View>
-
-        <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
-          <RadioButton
-            value= {STRINGS.preference[1]}
-            status={ preference === STRINGS.preference[1] ? 'checked' : 'unchecked' }
-            color={COLORS.primaryColor}
-            onPress={() => setPreference(STRINGS.preference[1])}
-          />
-        </View>
-      </View>
-
-      <View style={styles.boxWrap}>
-        <View style={styles.textWrap}>
-          <Text style={styles.boxText}>
-            {STRINGS.preference[2] /*Vegan*/}
-          </Text>
-        </View>
-
-        <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
-          <RadioButton
-            value= {STRINGS.preference[2]}
-            status={ preference === STRINGS.preference[2] ? 'checked' : 'unchecked' }
-            color={COLORS.primaryColor}
-            onPress={() => setPreference(STRINGS.preference[2])}
-          />
-        </View>
-      </View>
-
-      <View style={styles.boxWrap}>
-        <View style={styles.textWrap}>
-          <Text style={styles.boxText}>
-            {STRINGS.preference[3]}
-          </Text>
-        </View>
-
-        <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
-          <RadioButton
-            value= {STRINGS.preference[3]}
-            status={ preference === STRINGS.preference[3] ? 'checked' : 'unchecked' }
-            color={COLORS.primaryColor}
-            onPress={() => setPreference(STRINGS.preference[3])}
-          />
-        </View>
-      </View>
-
-      <View style={{height: 10}}>
-      </View>
-        {saveLoad ? (
-          <TouchableOpacity
-            onPress={submitHandler}
-            style={{...styles.modalButton, borderWidth: 0, backgroundColor: COLORS.buttonColor}}>
-          <ActivityIndicator size="small" color="black"/>
-        </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            onPress={submitHandler}
-            style={{...styles.modalButton, borderWidth: 0, backgroundColor: COLORS.buttonColor}}>
-            <Text style={{fontSize: 16, fontWeight: '700', color: "black"}}>
-              Save
-            </Text>
-          </TouchableOpacity>
-        )}
-
+    {/* OBJECT DESTRUCTURING, GETTING ALL STYLES FROM PREFERENCES AND ADDING BOTTOM */}
+    <View style={{...styles.preferences, bottom: 340}}>
       <TouchableOpacity
-        onPress={() => setToggleDrop(false)}
-        style={styles.modalButton}>
-        <Text style={{fontSize: 16, fontWeight: '700'}}>
-          Cancel
+        onPress={async() => {
+          //Setting the state to the userPreference, so that it is checked when user loads modal
+          setPreference(userPreference)
+          //Setting state of toggleDrop to true to activate the modal pop up
+          setToggleDrop(true)
+        }}
+        style={styles.preferencesButton}>
+        <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+          Change Preference
         </Text>
+        <MaterialIcons name="navigate-next" size={26} color="#000"/>
       </TouchableOpacity>
+    </View>
 
+    <View style={{...styles.preferences, bottom: 270}}>
       <TouchableOpacity
         onPress={() => {
+
+          //Setting state of work and userActivity to info got from Redux so user gets info on modal pop up
+          setLabor( userLabor )
+          setActivity( userActivity )
+          //Activating the modal pop up
+          setToggleActivity(true)
+        }}
+        style={styles.preferencesButton}>
+        <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+          Change Activity Details
+        </Text>
+        <MaterialIcons name="navigate-next" size={26} color="#000"/>
+      </TouchableOpacity>
+    </View>
+
+    <View style={styles.preferences}>
+      <TouchableOpacity style={styles.preferencesButton}>
+        <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+          View Privacy Policy
+        </Text>
+        <MaterialIcons name="navigate-next" size={26} color="#000"/>
+      </TouchableOpacity>
+    </View>
+
+    <View style={{...styles.preferences, bottom: 130}}>
+      <TouchableOpacity
+        onPress={() => {
+          // Asking user if they are sure to log out
           Alert.alert(
-          'Are you sure you want to delete preferences?',
+          'Are you sure you want to log out?',
           '',
           [
             {
@@ -398,153 +239,345 @@ const ProfileScreen = (props) => {
             {
               text: 'Yes',
               onPress: () => {
-                deletePreferenceHandler()
+                //If so..
+                //Dispatch to redux to call logout function
+                dispatch(logout())
+                //Navigating to startscreen
+                props.navigation.navigate('Auth')
               }
             },
           ],
           { cancelable: true }
           );
+
         }}
-        style={{marginBottom: 10, marginTop: 20}}>
-        <Text style={{fontWeight: 'bold', color: "#da2626" }}>
-          Delete preferences
+        style={{...styles.preferencesButton, backgroundColor: COLORS.buttonColor}}>
+        <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+          Log Out
         </Text>
+        <MaterialIcons name="navigate-next" size={26} color="#000"/>
       </TouchableOpacity>
-
-    </Animatable.View>
-  </Animatable.View>
-  ) : (
-    <View>
-
     </View>
-  )}
+
+    <View style={{...styles.preferences, bottom: 60}}>
+      <TouchableOpacity
+        onPress={() => {
+          //Asking user to verify deleting account
+          Alert.alert(
+          'Are you sure you want to delete your account?',
+          'All data about you will be deleted',
+          [
+            {
+              text: 'Cancel',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel'
+            },
+            {
+              text: 'Yes',
+              onPress: () => deleteHandler()
+            },
+          ],
+          { cancelable: true }
+          );
+        }}
+        style={{...styles.preferencesButton, backgroundColor: '#ff5656'}}>
+        <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+          Delete Account
+        </Text>
+        <MaterialIcons name="navigate-next" size={26} color="#000"/>
+      </TouchableOpacity>
+    </View>
+
+
+
+
+  {/* Stack navigations- preference - activity */}
 
 
 
 
 
+  {/* If toggleDrop is true, show this */}
+    {toggleDrop ? (
+      <Animatable.View
+        useNativeDriver
+        duration={200}
+        animation={animation}
+        style={styles.modal}>
 
+      <Animatable.View
+        style={{width: '100%', justifyContent: 'center', alignItems: 'center', position: 'absolute', bottom: 20}}>
+        <View style={styles.boxWrap}>
+          <View style={styles.textWrap}>
+            <Text style={styles.boxText}>
+              {STRINGS.preference[1] /*vegeterian*/}
+            </Text>
+          </View>
 
+          <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
+            <Switch
+                value={preference === STRINGS.preference[1] ? true : false}
+                onValueChange={() => setPreference(STRINGS.preference[1])}
+                barHeight={10}
+                activeText={''}
+                inActiveText={''}
+                circleBorderWidth={0.5}
+                backgroundActive={COLORS.accentColor}
+                backgroundInactive={'gray'}
+                circleActiveColor={COLORS.primaryColor}
+                circleInActiveColor={'lightgrey'}
+                changeValueImmediately={true}
+                switchWidthMultiplier={2}
+            />
+          </View>
+          
+        </View>
 
+        <View style={styles.boxWrap}>
+          <View style={styles.textWrap}>
+            <Text style={styles.boxText}>
+              {STRINGS.preference[2] /*Vegan*/}
+            </Text>
+          </View>
 
+          <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
+            <Switch
+                value={preference === STRINGS.preference[2] ? true : false}
+                onValueChange={() => setPreference(STRINGS.preference[2])}
+                barHeight={10}
+                activeText={''}
+                inActiveText={''}
+                circleBorderWidth={0.5}
+                backgroundActive={COLORS.accentColor}
+                backgroundInactive={'gray'}
+                circleActiveColor={COLORS.primaryColor}
+                circleInActiveColor={'lightgrey'}
+                changeValueImmediately={true}
+                switchWidthMultiplier={2}
+            />
+          </View>
+          
+        </View>
 
-{/* If activittoggle is true, show this*/}
-  {toggleActivity ? (
-    <Animatable.View
-      useNativeDriver
-      duration={200}
-      animation={animation}
-      style={styles.modal}>
+        <View style={styles.boxWrap}>
+          <View style={styles.textWrap}>
+            <Text style={styles.boxText}>
+              {STRINGS.preference[3]}
+            </Text>
+          </View>
 
-    <Animatable.View
-      style={{width: '100%', justifyContent: 'center', alignItems: 'center', position: 'absolute', top: 20}}>
+          <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
+            {/*<RadioButton
+              value= {STRINGS.preference[3]}
+              status={ preference === STRINGS.preference[3] ? 'checked' : 'unchecked' }
+              color={COLORS.primaryColor}
+              onPress={() => setPreference(STRINGS.preference[3])}
+            />*/}
+            <Switch
+                value={preference === STRINGS.preference[3] ? true : false}
+                onValueChange={() => setPreference(STRINGS.preference[3])}
+                barHeight={10}
+                activeText={''}
+                inActiveText={''}
+                circleBorderWidth={0.5}
+                backgroundActive={COLORS.accentColor}
+                backgroundInactive={'gray'}
+                circleActiveColor={COLORS.primaryColor}
+                circleInActiveColor={'lightgrey'}
+                changeValueImmediately={true}
+                switchWidthMultiplier={2}
+            />
+          </View>
+          
+        </View>
 
-      <Text style={{marginBottom: 5, fontWeight: 'bold', fontSize: 20}}>
-        Work activity
-      </Text>
+        <View style={{height: 10}}>
+        </View>
+          {saveLoad ? (
+            <TouchableOpacity
+              onPress={submitHandler}
+              style={{...styles.modalButton, borderWidth: 0, backgroundColor: COLORS.buttonColor}}>
+            <ActivityIndicator size="small" color="black"/>
+          </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              onPress={submitHandler}
+              style={{...styles.modalButton, borderWidth: 0, backgroundColor: COLORS.buttonColor}}>
+              <Text style={{fontSize: 16, fontWeight: '700', color: "black"}}>
+                Save
+              </Text>
+            </TouchableOpacity>
+          )}
 
-      <Text style={{marginBottom: 5, fontWeight: 'bold', fontSize: 15}}>
-        {labor}
-      </Text>
-
-      <View>   
-        {/*Slider with max, min, step and initial value*/}
-        <Slider
-          maximumValue={4}
-          minimumValue={1}
-          thumbTintColor={COLORS.primaryColor}
-          minimumTrackTintColor= {COLORS.accentColor}
-          maximumTrackTintColor="#000000"
-          step={1}
-          value={sliderLabor}
-          onValueChange={(sliderLabor) =>  setLabor(STRINGS.labor[sliderLabor])}
-          style={{ width: 330, height: 50}}
-        />
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        	<Text style={{marginTop: -10, marginBottom: 20}}>
-          Light
-          </Text>
-          <Text style={{marginTop: -10, marginBottom: 20}}>
-          Hard
-          </Text>
-      	</View>
-      </View>
-
-      <Text style={{marginTop: 30, fontWeight: 'bold', fontSize: 20}}>
-        Weekly free time activity
-      </Text>
-
-      <Text style={{marginTop: 5, marginBottom: -10, fontWeight: 'bold', fontSize: 15}}>
-        {activity}
-      </Text>
-
-      <View>
-				
-        {/**/}
-        <Slider
-          maximumValue={3}
-          minimumValue={0}
-          thumbTintColor={COLORS.primaryColor}
-          minimumTrackTintColor= {COLORS.accentColor}
-          maximumTrackTintColor={COLORS.GREY}
-          step={1}
-          value={sliderActivity}
-          onValueChange={(sliderActivity) =>  setActivity(STRINGS.activity[sliderActivity])}
-          style={{width: 330, height: 50 }}
-        />
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        	<Text style={{marginTop: -10, marginBottom: 20}}>
-          Less
-          </Text>
-          <Text style={{marginTop: 5, marginBottom: -10, fontWeight: 'bold'}}>
-        	{STRINGS.hours[STRINGS.activity.indexOf(activity)]}
-          </Text>
-          <Text style={{marginTop: -10, marginBottom: 20}}>
-          More
-          </Text>
-      	</View>
-      </View>
-
-
-
-			{/*cancel and save buttons*/}
-
-      <View style={{width: '100%', flexDirection: 'row', bottom: -30, marginTop: 30, justifyContent: 'center', alignItems: 'center'}}>
         <TouchableOpacity
-          onPress={() => setToggleActivity(false)}
-          style={styles.modalButton2}>
+          onPress={() => setToggleDrop(false)}
+          style={styles.modalButton}>
           <Text style={{fontSize: 16, fontWeight: '700'}}>
             Cancel
           </Text>
         </TouchableOpacity>
-        {/* IF save button is pressed, ActivityIndicator will replace the text */}
-        {saveLoad ? (
-          <TouchableOpacity
-            onPress={submitActivityHandler}
-            style={{...styles.modalButton2, borderColor: COLORS.buttonColor}}>
-          <ActivityIndicator size="small" color="black"/>
+
+        <TouchableOpacity
+          onPress={() => {
+            Alert.alert(
+            'Are you sure you want to delete preferences?',
+            '',
+            [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel'
+              },
+              {
+                text: 'Yes',
+                onPress: () => {
+                  deletePreferenceHandler()
+                }
+              },
+            ],
+            { cancelable: true }
+            );
+          }}
+          style={{marginBottom: 10, marginTop: 20}}>
+          <Text style={{fontWeight: 'bold', color: "#da2626" }}>
+            Delete preferences
+          </Text>
         </TouchableOpacity>
-        // Else it will show the text
-        ) : (
+
+      </Animatable.View>
+    </Animatable.View>
+    ) : (
+      <View>
+
+      </View>
+    )}
+
+
+
+
+
+
+
+
+
+
+  {/* If activittoggle is true, show this*/}
+    {toggleActivity ? (
+      <Animatable.View
+        useNativeDriver
+        duration={200}
+        animation={animation}
+        style={styles.modal}>
+
+      <Animatable.View
+        style={{width: '100%', justifyContent: 'center', alignItems: 'center', position: 'absolute', top: 20}}>
+
+        <Text style={{marginBottom: 5, fontWeight: 'bold', fontSize: 20}}>
+          Work activity
+        </Text>
+
+        <Text style={{marginBottom: 5, fontWeight: 'bold', fontSize: 15}}>
+          {labor}
+        </Text>
+
+        <View>   
+          {/*Slider with max, min, step and initial value*/}
+          <Slider
+            maximumValue={4}
+            minimumValue={1}
+            thumbTintColor={COLORS.primaryColor}
+            minimumTrackTintColor= {COLORS.accentColor}
+            maximumTrackTintColor="#000000"
+            step={1}
+            value={sliderLabor}
+            onValueChange={(sliderLabor) =>  setLabor(STRINGS.labor[sliderLabor])}
+            style={{ width: 330, height: 50}}
+          />
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              <Text style={{marginTop: -10, marginBottom: 20}}>
+            Light
+            </Text>
+            <Text style={{marginTop: -10, marginBottom: 20}}>
+            Hard
+            </Text>
+          </View>
+        </View>
+
+        <Text style={{marginTop: 30, fontWeight: 'bold', fontSize: 20}}>
+          Weekly free time activity
+        </Text>
+
+        <Text style={{marginTop: 5, marginBottom: -10, fontWeight: 'bold', fontSize: 15}}>
+          {activity}
+        </Text>
+
+        <View>
+                  
+          {/**/}
+          <Slider
+            maximumValue={3}
+            minimumValue={0}
+            thumbTintColor={COLORS.primaryColor}
+            minimumTrackTintColor= {COLORS.accentColor}
+            maximumTrackTintColor={COLORS.GREY}
+            step={1}
+            value={sliderActivity}
+            onValueChange={(sliderActivity) =>  setActivity(STRINGS.activity[sliderActivity])}
+            style={{width: 330, height: 50 }}
+          />
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              <Text style={{marginTop: -10, marginBottom: 20}}>
+            Less
+            </Text>
+            <Text style={{marginTop: 5, marginBottom: -10, fontWeight: 'bold'}}>
+              {STRINGS.hours[STRINGS.activity.indexOf(activity)]}
+            </Text>
+            <Text style={{marginTop: -10, marginBottom: 20}}>
+            More
+            </Text>
+          </View>
+        </View>
+
+
+
+              {/*cancel and save buttons*/}
+
+        <View style={{width: '100%', flexDirection: 'row', bottom: -30, marginTop: 30, justifyContent: 'center', alignItems: 'center'}}>
           <TouchableOpacity
-            onPress={submitActivityHandler}
-            style={{...styles.modalButton2, borderColor: COLORS.buttonColor}}>
-            <Text style={{fontSize: 16, fontWeight: '700', color: "black"}}>
-              Save
+            onPress={() => setToggleActivity(false)}
+            style={styles.modalButton2}>
+            <Text style={{fontSize: 16, fontWeight: '700'}}>
+              Cancel
             </Text>
           </TouchableOpacity>
-        )}
-      </View>
+          {/* IF save button is pressed, ActivityIndicator will replace the text */}
+          {saveLoad ? (
+            <TouchableOpacity
+              onPress={submitActivityHandler}
+              style={{...styles.modalButton2, borderColor: COLORS.buttonColor}}>
+            <ActivityIndicator size="small" color="black"/>
+          </TouchableOpacity>
+          // Else it will show the text
+          ) : (
+            <TouchableOpacity
+              onPress={submitActivityHandler}
+              style={{...styles.modalButton2, borderColor: COLORS.buttonColor}}>
+              <Text style={{fontSize: 16, fontWeight: '700', color: "black"}}>
+                Save
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      </Animatable.View>
     </Animatable.View>
-  </Animatable.View>
-  ) : (
-    <View>
+    ) : (
+      <View>
 
-    </View>
-  )}
+      </View>
+    )}
 
-   </View>
-  )
+     </View>
+  );
 }
 
 const styles = StyleSheet.create({
