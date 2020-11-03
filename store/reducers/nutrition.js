@@ -11,7 +11,7 @@ const initialState = {
   ingredients: [],
   nutritientSuggestions: [],
   todayMeal: {},
-  weekSummary: {},
+  weekSummary: [],
   userMeals: [],
   calorySuggestion: null,
   caloryRef: null,
@@ -45,7 +45,7 @@ const nutritionReducer = (state = initialState, action) => {
       let weekCarbs = 0;
 
       let mealsOfDay = {}
-      let summary = {}
+      let summary = []
 
       const preference = action.preference
       const freetime = action.freetime
@@ -138,11 +138,12 @@ const nutritionReducer = (state = initialState, action) => {
             fatTotal += parseInt(fat)
             carbsTotal += parseInt(carbs)
             proteinTotal += parseInt(protein)
-            mealsOfDay[meals[meal].mealType] = calories.split('.')[0]
+            console.log(meals[meal].mealType.values());
+            // mealsOfDay[meals[meal].mealType] = meals[meal].mealTypeparseInt(calories)
           }
         }
       }
-      summary['summary'] = {cals: weekCals, protein: weekProtein, carbs: weekCarbs, fat: weekFat}
+      summary.push({cals: weekCals, protein: weekProtein, carbs: weekCarbs, fat: weekFat})
 
       let nutrientsObj = {
         total: nutrientsTotal,

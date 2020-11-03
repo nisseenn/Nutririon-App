@@ -12,6 +12,7 @@ import { fetchUserMeals } from '../store/actions/nutrition'
 import { useDispatch, useSelector } from 'react-redux'
 import Colors from '../constants/Colors'
 import Calendar from '../components/Calendar'
+import Carousel from '../components/Carousel'
 import ProgressCircle from 'react-native-progress-circle'
 import { Ionicons, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { ProgressBar } from 'react-native-paper';
@@ -51,8 +52,8 @@ const HomeScreen = (props) => {
   });
 
   const flatListTranslateY = scrollY.interpolate({
-    inputRange: [0, HEADER_SCROLL_DISTANCE  * .95],
-    outputRange: [0, -HEADER_SCROLL_DISTANCE * 1.05],
+    inputRange: [0, HEADER_SCROLL_DISTANCE * 2],
+    outputRange: [0, -HEADER_SCROLL_DISTANCE * .9],
     extrapolate: 'clamp',
   });
 
@@ -70,7 +71,7 @@ const HomeScreen = (props) => {
 
   const dateTranslateX = scrollY.interpolate({
     inputRange: [0, HEADER_SCROLL_DISTANCE],
-    outputRange: [0, width / 1.5],
+    outputRange: [0, width / 2],
     extrapolate: 'clamp',
   });
 
@@ -146,10 +147,6 @@ const handleSelectDate = async(date) => {
   }
   await dispatch(fetchUserMeals(day, month, year))
   setToggleDrop(false)
-}
-
-const handleScroll = () => {
-  console.log('scrolling');
 }
 
 //Calling the function before render with useEffect
@@ -268,7 +265,6 @@ useEffect(() => {
 
         </View>
       </Animated.View>
-      {/* <Animated.View style={[styles.cardWrapper, {transform: [{translateY: flatListTranslateY}]}]}> */}
 
         <Animated.ScrollView
           scrollEventThrottle={16}
@@ -278,7 +274,8 @@ useEffect(() => {
             [{ nativeEvent: { contentOffset: { y: scrollY } } }], // event.nativeEvent.contentOffset.x to scrollX
             { useNativeDriver: true },
           )}
-          contentContainerStyle={{...styles.cardWrapper, width: '100%', alignItems: 'center'}}>
+          style={[{transform: [{translateY: flatListTranslateY}]}]}
+          contentContainerStyle={styles.cardWrapper}>
           <View style={styles.titleWrap}>
             <Text style={styles.title}>Daily Summary</Text>
           </View>
@@ -323,15 +320,20 @@ useEffect(() => {
               <Text style={styles.title}>Weekly Summary</Text>
             </View>
             <View style={{}}>
-              <Text>Calories: {weekSummary.summary.cals}</Text>
-              <Text>Carbs: {weekSummary.summary.carbs}</Text>
-              <Text>Protein: {weekSummary.summary.protein}</Text>
-              <Text>Fat: {weekSummary.summary.fat}</Text>
+              {weekSummary.length == 0 ? (
+                <ActivityIndicator size="small" color={Colors.primaryColor}></ActivityIndicator>
+              ) : (
+                <Carousel
+                  style={{zIndex: 30000, position: 'absolute', backgroundColor: 'red'}}
+                  cals={weekSummary[0].cals}
+                  carbs={weekSummary[0].carbs}
+                  protein={weekSummary[0].protein}
+                  fat={weekSummary[0].fat}
+                />
+              )}
             </View>
 
         </Animated.ScrollView>
-
-      {/* </Animated.View> */}
 
     </View>
   )
@@ -474,7 +476,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: height / 2.6,
     width: '100%',
-    zIndex: -1000
+    zIndex: -1000,
+    width: '100%',
+    alignItems: 'center',
   },
   card:{
     backgroundColor: '#fff',

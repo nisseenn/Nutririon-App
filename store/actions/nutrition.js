@@ -91,7 +91,7 @@ export const fetchUserMeals = (userDay, userMonth, userYear) => {
     let day;
     let month;
     let year;
- 
+
     if(userDay == undefined || userMonth == undefined || userYear == undefined){
       date = new Date();
       day = date.getDate()
