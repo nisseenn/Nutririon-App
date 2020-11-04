@@ -3,6 +3,7 @@ import React, { useState, useReducer, useCallback, useEffect, useRef } from 'rea
 import { ScrollView, View, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { RadioButton, Checkbox } from 'react-native-paper';
+import { Switch } from 'react-native-switch';
 
 // constants imports
 import COLORS from '../constants/Colors'
@@ -38,61 +39,107 @@ const PreferencesScreen = (props) => {
         </Text>
       </View>
 
-      {/*Vegeterian -> STRINGS.preference[1] */}
       <View style={styles.boxWrap}>
-        <View style={styles.textWrap}>
-          <Text style={styles.boxText}>
-            {STRINGS.preference[1]}
-          </Text>
+          <View style={styles.textWrap}>
+            <Text style={styles.boxText}>
+              {STRINGS.preference[1] /*vegeterian*/}
+            </Text>
+          </View>
+
+      <View style={{position: 'absolute', right: 0}}>
+            <Switch
+                value={preference === STRINGS.preference[1] ? true : false}
+                onValueChange={() => setPreference(STRINGS.preference[1])}
+                //barHeight={10}
+                renderActiveText={false}
+                renderInActiveText={false}
+                circleBorderWidth={0}
+                backgroundActive={COLORS.accentColor}
+                backgroundInactive={'gray'}
+                circleActiveColor={COLORS.primaryColor}
+                circleInActiveColor={'lightgrey'}
+                changeValueImmediately={true}
+                switchWidthMultiplier={2}
+            />
+          </View>
+          
         </View>
 
-        <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
-          <RadioButton
-            value={STRINGS.preference[1]}
-            status={ preference === STRINGS.preference[1] ? 'checked' : 'unchecked' }
-            color={COLORS.primaryColor}
-            onPress={() => setPreference(STRINGS.preference[1])}
-          />
-        </View>
-      </View>
+        <View style={styles.boxWrap}>
+          <View style={styles.textWrap}>
+            <Text style={styles.boxText}>
+              {STRINGS.preference[2] /*Vegan*/}
+            </Text>
+          </View>
 
-      {/*Vegan -> STRINGS.preference[2] */}
-      <View style={styles.boxWrap}>
-        <View style={styles.textWrap}>
-          <Text style={styles.boxText}>
-            {STRINGS.preference[2]}
-          </Text>
-        </View>
-
-        <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
-          <RadioButton
-            value={STRINGS.preference[2]}
-            status={ preference === STRINGS.preference[2] ? 'checked' : 'unchecked' }
-            color={COLORS.primaryColor}
-            onPress={() => setPreference(STRINGS.preference[2])}
-          />
-        </View>
-      </View>
-
-      {/*Pescetarian*/}
-      <View style={styles.boxWrap}>
-        <View style={styles.textWrap}>
-          <Text style={styles.boxText}>
-            {STRINGS.preference[3]}
-          </Text>
+          <View style={{position: 'absolute', right: 0}}>
+            <Switch
+                value={preference === STRINGS.preference[2] ? true : false}
+                onValueChange={() => setPreference(STRINGS.preference[2])}
+                //barHeight={10}
+                renderActiveText={false}
+                renderInActiveText={false}
+                circleBorderWidth={0}
+                backgroundActive={COLORS.accentColor}
+                backgroundInactive={'gray'}
+                circleActiveColor={COLORS.primaryColor}
+                circleInActiveColor={'lightgrey'}
+                changeValueImmediately={true}
+                switchWidthMultiplier={2}
+            />
+          </View>
+          
         </View>
 
-        <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
-          <RadioButton
-            value={STRINGS.preference[3]}
-            status={ preference === STRINGS.preference[3] ? 'checked' : 'unchecked' }
-            color={COLORS.primaryColor}
-            onPress={() => {
-              setPreference(STRINGS.preference[3])
-            }}
-          />
+        <View style={styles.boxWrap}>
+          <View style={styles.textWrap}>
+            <Text style={styles.boxText}>
+              {STRINGS.preference[3]}
+            </Text>
+          </View>
+
+          <View style={{position: 'absolute', right: 0}}>
+            <Switch
+                value={preference === STRINGS.preference[3] ? true : false}
+                onValueChange={() => setPreference(STRINGS.preference[3])}
+                //barHeight={10}
+                renderActiveText={false}
+                renderInActiveText={false}
+                circleBorderWidth={0}
+                backgroundActive={COLORS.accentColor}
+                backgroundInactive={'gray'}
+                circleActiveColor={COLORS.primaryColor}
+                circleInActiveColor={'lightgrey'}
+                changeValueImmediately={true}
+                switchWidthMultiplier={2}
+            />
+          </View>
         </View>
-      </View>
+
+          <View style={styles.boxWrap}>
+          <View style={styles.textWrap}>
+            <Text style={styles.boxText}>
+              {STRINGS.preference[0]}
+            </Text>
+          </View>
+
+          <View style={{position: 'absolute', right: 0}}>
+            <Switch
+                value={preference === STRINGS.preference[0] ? true : false}
+                onValueChange={() => setPreference(STRINGS.preference[0])}
+                //barHeight={10}
+                renderActiveText={false}
+                renderInActiveText={false}
+                circleBorderWidth={0}
+                backgroundActive={COLORS.accentColor}
+                backgroundInactive={'gray'}
+                circleActiveColor={COLORS.primaryColor}
+                circleInActiveColor={'lightgrey'}
+                changeValueImmediately={true}
+                switchWidthMultiplier={2}
+            />
+          </View>
+        </View>
 
       <View style={styles.bottomButtonWrap}>
         <TouchableOpacity
