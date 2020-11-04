@@ -306,7 +306,7 @@ const ProfileScreen = (props) => {
         style={styles.modal}>
 
       <Animatable.View
-        style={{width: '100%', justifyContent: 'center', alignItems: 'center', position: 'absolute', bottom: 20}}>
+        style={{width: '100%', justifyContent: 'center', alignItems: 'center', bottom: 20}}>
         <View style={styles.boxWrap}>
           <View style={styles.textWrap}>
             <Text style={styles.boxText}>
@@ -314,14 +314,14 @@ const ProfileScreen = (props) => {
             </Text>
           </View>
 
-          <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
+          <View style={{position: 'absolute', right: 0}}>
             <Switch
                 value={preference === STRINGS.preference[1] ? true : false}
                 onValueChange={() => setPreference(STRINGS.preference[1])}
-                barHeight={10}
-                activeText={''}
-                inActiveText={''}
-                circleBorderWidth={0.5}
+                //barHeight={10}
+                renderActiveText={false}
+                renderInActiveText={false}
+                circleBorderWidth={0}
                 backgroundActive={COLORS.accentColor}
                 backgroundInactive={'gray'}
                 circleActiveColor={COLORS.primaryColor}
@@ -340,14 +340,14 @@ const ProfileScreen = (props) => {
             </Text>
           </View>
 
-          <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
+          <View style={{position: 'absolute', right: 0}}>
             <Switch
                 value={preference === STRINGS.preference[2] ? true : false}
                 onValueChange={() => setPreference(STRINGS.preference[2])}
-                barHeight={10}
-                activeText={''}
-                inActiveText={''}
-                circleBorderWidth={0.5}
+                //barHeight={10}
+                renderActiveText={false}
+                renderInActiveText={false}
+                circleBorderWidth={0}
                 backgroundActive={COLORS.accentColor}
                 backgroundInactive={'gray'}
                 circleActiveColor={COLORS.primaryColor}
@@ -366,20 +366,14 @@ const ProfileScreen = (props) => {
             </Text>
           </View>
 
-          <View style={{borderWidth: 1, borderRadius: 100, borderColor: "#000", position: 'absolute', right: 0}}>
-            {/*<RadioButton
-              value= {STRINGS.preference[3]}
-              status={ preference === STRINGS.preference[3] ? 'checked' : 'unchecked' }
-              color={COLORS.primaryColor}
-              onPress={() => setPreference(STRINGS.preference[3])}
-            />*/}
+          <View style={{position: 'absolute', right: 0}}>
             <Switch
                 value={preference === STRINGS.preference[3] ? true : false}
                 onValueChange={() => setPreference(STRINGS.preference[3])}
-                barHeight={10}
-                activeText={''}
-                inActiveText={''}
-                circleBorderWidth={0.5}
+                //barHeight={10}
+                renderActiveText={false}
+                renderInActiveText={false}
+                circleBorderWidth={0}
                 backgroundActive={COLORS.accentColor}
                 backgroundInactive={'gray'}
                 circleActiveColor={COLORS.primaryColor}
@@ -388,62 +382,59 @@ const ProfileScreen = (props) => {
                 switchWidthMultiplier={2}
             />
           </View>
-          
         </View>
 
-        <View style={{height: 10}}>
+          <View style={styles.boxWrap}>
+          <View style={styles.textWrap}>
+            <Text style={styles.boxText}>
+              {STRINGS.preference[0]}
+            </Text>
+          </View>
+
+          <View style={{position: 'absolute', right: 0}}>
+            <Switch
+                value={preference === STRINGS.preference[0] ? true : false}
+                onValueChange={() => setPreference(STRINGS.preference[0])}
+                //barHeight={10}
+                renderActiveText={false}
+                renderInActiveText={false}
+                circleBorderWidth={0}
+                backgroundActive={COLORS.accentColor}
+                backgroundInactive={'gray'}
+                circleActiveColor={COLORS.primaryColor}
+                circleInActiveColor={'lightgrey'}
+                changeValueImmediately={true}
+                switchWidthMultiplier={2}
+            />
+          </View>
         </View>
+
+        <View style={{position: 'absolute', bottom: -100, width: '100%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+          <TouchableOpacity
+            onPress={() => setToggleDrop(false)}
+            style={styles.modalButton2}>
+            <Text style={{fontSize: 16, fontWeight: '700'}}>
+              Cancel
+            </Text>
+          </TouchableOpacity>
+          {/* IF save button is pressed, ActivityIndicator will replace the text */}
           {saveLoad ? (
             <TouchableOpacity
               onPress={submitHandler}
-              style={{...styles.modalButton, borderWidth: 0, backgroundColor: COLORS.buttonColor}}>
+              style={{...styles.modalButton2, borderColor: COLORS.buttonColor}}>
             <ActivityIndicator size="small" color="black"/>
           </TouchableOpacity>
+          // Else it will show the text
           ) : (
             <TouchableOpacity
               onPress={submitHandler}
-              style={{...styles.modalButton, borderWidth: 0, backgroundColor: COLORS.buttonColor}}>
+              style={{...styles.modalButton2, borderColor: COLORS.buttonColor}}>
               <Text style={{fontSize: 16, fontWeight: '700', color: "black"}}>
                 Save
               </Text>
             </TouchableOpacity>
           )}
-
-        <TouchableOpacity
-          onPress={() => setToggleDrop(false)}
-          style={styles.modalButton}>
-          <Text style={{fontSize: 16, fontWeight: '700'}}>
-            Cancel
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => {
-            Alert.alert(
-            'Are you sure you want to delete preferences?',
-            '',
-            [
-              {
-                text: 'Cancel',
-                onPress: () => console.log('Cancel Pressed'),
-                style: 'cancel'
-              },
-              {
-                text: 'Yes',
-                onPress: () => {
-                  deletePreferenceHandler()
-                }
-              },
-            ],
-            { cancelable: true }
-            );
-          }}
-          style={{marginBottom: 10, marginTop: 20}}>
-          <Text style={{fontWeight: 'bold', color: "#da2626" }}>
-            Delete preferences
-          </Text>
-        </TouchableOpacity>
-
+        </View>
       </Animatable.View>
     </Animatable.View>
     ) : (
@@ -451,14 +442,6 @@ const ProfileScreen = (props) => {
 
       </View>
     )}
-
-
-
-
-
-
-
-
 
 
   {/* If activittoggle is true, show this*/}
@@ -491,13 +474,13 @@ const ProfileScreen = (props) => {
             step={1}
             value={sliderLabor}
             onValueChange={(sliderLabor) =>  setLabor(STRINGS.labor[sliderLabor])}
-            style={{ width: 330, height: 50}}
+            style={{ width: width - 80, height: 70}}
           />
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Text style={{marginTop: -10, marginBottom: 20}}>
+              <Text style={{marginTop: -10}}>
             Light
             </Text>
-            <Text style={{marginTop: -10, marginBottom: 20}}>
+            <Text style={{marginTop: -10}}>
             Hard
             </Text>
           </View>
@@ -523,16 +506,16 @@ const ProfileScreen = (props) => {
             step={1}
             value={sliderActivity}
             onValueChange={(sliderActivity) =>  setActivity(STRINGS.activity[sliderActivity])}
-            style={{width: 330, height: 50 }}
+            style={{width: width - 80, height: 70 }}
           />
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Text style={{marginTop: -10, marginBottom: 20}}>
+              <Text style={{marginTop: -10}}>
             Less
             </Text>
             <Text style={{marginTop: 5, marginBottom: -10, fontWeight: 'bold'}}>
               {STRINGS.hours[STRINGS.activity.indexOf(activity)]}
             </Text>
-            <Text style={{marginTop: -10, marginBottom: 20}}>
+            <Text style={{marginTop: -10}}>
             More
             </Text>
           </View>
@@ -542,7 +525,7 @@ const ProfileScreen = (props) => {
 
               {/*cancel and save buttons*/}
 
-        <View style={{width: '100%', flexDirection: 'row', bottom: -30, marginTop: 30, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{position: 'absolute', bottom: -100, width: '100%', flexDirection: 'row',justifyContent: 'center', alignItems: 'center'}}>
           <TouchableOpacity
             onPress={() => setToggleActivity(false)}
             style={styles.modalButton2}>
