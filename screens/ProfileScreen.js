@@ -409,7 +409,7 @@ const ProfileScreen = (props) => {
           </View>
         </View>
 
-        <View style={{position: 'absolute', bottom: -100, width: '100%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{position: 'absolute', bottom: -110, width: '100%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
           <TouchableOpacity
             onPress={() => setToggleDrop(false)}
             style={styles.modalButton2}>
