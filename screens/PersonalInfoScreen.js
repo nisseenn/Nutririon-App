@@ -1,7 +1,7 @@
 //Importing the react native and react components
 import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
 import { ScrollView, View, TextInput, Keyboard, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
-import Colors from '../constants/Colors'
+import COLORS from '../constants/Colors'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 
@@ -66,7 +66,7 @@ const PersonalInfoScreen = (props) => {
          setFirstFocus(true)
          setAge(text)
        }}
-       selectionColor = {Colors.buttonColor}
+       selectionColor = {COLORS.buttonColor}
        maxLength={60}
        returnKeyType="done"
        placeholder="Your age"
@@ -102,7 +102,7 @@ const PersonalInfoScreen = (props) => {
         setSecondFocus(true)
         setHeight(text)
       }}
-      selectionColor = {Colors.buttonColor}
+      selectionColor = {COLORS.buttonColor}
       maxLength={60}
       returnKeyType="done"
       placeholder="Your height (cm)"
@@ -139,7 +139,7 @@ const PersonalInfoScreen = (props) => {
        setThirdFocus(true)
        setWeight(text)
      }}
-     selectionColor = {Colors.buttonColor}
+     selectionColor = {COLORS.buttonColor}
      maxLength={60}
      returnKeyType="done"
      placeholder="Your weight (kg)"
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   button:{
-    backgroundColor: Colors.buttonColor,
+    backgroundColor: COLORS.buttonColor,
     paddingHorizontal: 40,
     paddingVertical: 15,
     borderRadius: 30,
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
    height: 40,
    fontSize: 24,
    textAlign: 'left',
-   borderColor: Colors.buttonColor,
+   borderColor: COLORS.buttonColor,
    borderBottomWidth: 1.5,
    color:"black",
    marginVertical: 20,
@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   buttonBottom:{
-    backgroundColor: Colors.buttonColor,
+    backgroundColor: COLORS.buttonColor,
     paddingHorizontal: width / 3,
     paddingVertical: 15,
     borderRadius: 100

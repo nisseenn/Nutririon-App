@@ -8,7 +8,7 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import Animated from 'react-native-reanimated';
 //Importing the colors we are going to use
-import Colors from '../constants/Colors'
+import COLORS from '../constants/Colors'
 //Importing our customized, amazing component, which can be used in multiple other components
 import Input from '../components/Input'
 
@@ -168,7 +168,7 @@ const LoginScreen = (props) => {
       keyboardVerticalOffset={-200}
       style={styles.screen}>
       <LinearGradient
-          colors={[Colors.primaryColor, '#70ffe1']}
+          colors={[COLORS.primaryColor, '#70ffe1']}
           style={{
             position: 'absolute',
             left: 0,
@@ -196,7 +196,7 @@ const LoginScreen = (props) => {
           <Text style={styles.inputTitle}>Email</Text>
           <View style={styles.inputcontainer}>
             <View style={styles.iconcont}>
-              <MaterialIcons name="person-outline" size={30} color={Colors.iconColor}/>
+              <MaterialIcons name="person-outline" size={30} color={COLORS.iconColor}/>
             </View>
             <Input
               id="email"
@@ -220,7 +220,7 @@ const LoginScreen = (props) => {
             </View>
             <View style={styles.inputcontainer}>
               <View style={styles.iconcont}>
-                <MaterialIcons name="lock-outline" size={30} color={Colors.iconColor}/>
+                <MaterialIcons name="lock-outline" size={30} color={COLORS.iconColor}/>
               </View>
                 <Input
                   id="password"
@@ -240,14 +240,14 @@ const LoginScreen = (props) => {
             {isLoading ? (
               <TouchableOpacity
                 onPress={authHandler}
-                style={{...styles.button, backgroundColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
+                style={{...styles.button, backgroundColor: COLORS.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
                 <ActivityIndicator size="small" color="black"/>
               </TouchableOpacity>
             )
             : (
             <TouchableOpacity
               onPress={authHandler}
-              style={{...styles.button, backgroundColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
+              style={{...styles.button, backgroundColor: COLORS.buttonColor, flexDirection: 'row', justifyContent: 'center'}}>
               <Text style={{fontSize: 20, fontWeight: 'bold', color: '#000'}}>Log in</Text>
               <MaterialIcons name="navigate-next" size={26} color="#000"/>
             </TouchableOpacity>
@@ -259,12 +259,12 @@ const LoginScreen = (props) => {
               <View>
                 <TouchableOpacity
                   style={{
-                    ...styles.button2, borderColor: Colors.buttonColor, borderWidth: 1, flexDirection: 'row', justifyContent: 'center'
+                    ...styles.button2, borderColor: COLORS.buttonColor, borderWidth: 1, flexDirection: 'row', justifyContent: 'center'
                   }}
                   onPress={() => {
                     props.navigation.navigate("signup")
                   }}>
-                  <Text style={{fontSize: 20, fontWeight: 'bold', color: Colors.buttonColor}}>
+                  <Text style={{fontSize: 20, fontWeight: 'bold', color: COLORS.buttonColor}}>
                     Sign up
                   </Text>
                 </TouchableOpacity>
@@ -284,7 +284,7 @@ const LoginScreen = (props) => {
               <View>
                 <Button
                 title='Sign Up'
-                color={Colors.iconColor}
+                color={COLORS.iconColor}
                 onPress={() => {
                   props.navigation.navigate("signup")
                 }}/>

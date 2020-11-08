@@ -8,7 +8,7 @@ import { addIngredient } from '../store/actions/nutrition'
 import { useDispatch, useSelector } from 'react-redux'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient'
-import Colors from '../constants/Colors'
+import COLORS from '../constants/Colors'
 import ProgressCircle from 'react-native-progress-circle'
 
 const {width,height} = Dimensions.get('window')
@@ -92,7 +92,7 @@ const IngredientDetailScreen = (props) => {
                 percent={protein}
                 radius={50}
                 borderWidth={10}
-                color={Colors.primaryColor}
+                color={COLORS.primaryColor}
                 shadowColor="#ccc"
                 bgColor="#fff"
             >
@@ -106,7 +106,7 @@ const IngredientDetailScreen = (props) => {
                 percent={fett}
                 radius={50}
                 borderWidth={10}
-                color={Colors.primaryColor}
+                color={COLORS.primaryColor}
                 shadowColor="#ccc"
                 bgColor="#fff"
             >
@@ -120,7 +120,7 @@ const IngredientDetailScreen = (props) => {
                 percent={karbo}
                 radius={50}
                 borderWidth={10}
-                color={Colors.primaryColor}
+                color={COLORS.primaryColor}
                 shadowColor="#ccc"
                 bgColor="#fff"
             >
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Colors.buttonColor
+    backgroundColor: COLORS.buttonColor
   },
   buttonText:{
     fontSize: 18,

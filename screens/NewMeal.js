@@ -13,7 +13,7 @@ import { addMeal } from '../store/actions/nutrition'
 
 import ListButton from '../components/ListButton'
 import IngredientItem from '../components/IngredientItem'
-import Colors from '../constants/Colors'
+import COLORS from '../constants/Colors'
 
 const {width,height} = Dimensions.get('window')
 
@@ -85,9 +85,9 @@ const NewMeal = (props) => {
   }
 
   const submitHandler = async() => {
-    console.log('hei');
-    await dispatch(addMeal())
+    await dispatch(addMeal(mealType))
     handleAnimation()
+    dispatch(fetchIngredients())
   }
 
   const handleAnimation = async() => {
@@ -143,7 +143,7 @@ const NewMeal = (props) => {
   if(isLoading){
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color={Colors.iconColor} />
+        <ActivityIndicator size="large" color={COLORS.iconColor} />
       </View>
     );
   }
@@ -155,7 +155,7 @@ const NewMeal = (props) => {
           <Text style={styles.mealText}>{mealType}</Text>
         </View>
         <LinearGradient
-            colors={[Colors.primaryColor, Colors.accentColor]}
+            colors={[COLORS.primaryColor, COLORS.accentColor]}
             style={{
               // flex:1,
               height: height / 3
@@ -170,7 +170,7 @@ const NewMeal = (props) => {
           placeholder="Search here..."
           onChangeText={text => searchIngredients(text)}
           value={search}
-          searchIcon={{color: Colors.iconColor}}
+          searchIcon={{color: COLORS.iconColor}}
         />
       </View>
       <FlatList
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
   ingListButton:{
     paddingVertical: 15,
     borderRadius: 30,
-    backgroundColor: Colors.buttonColor,
+    backgroundColor: COLORS.buttonColor,
     paddingHorizontal: 15,
     shadowOffset: {
       width: 0,

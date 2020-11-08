@@ -1,7 +1,7 @@
 import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
 import { ScrollView, View, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
 import { Ionicons, MaterialIcons, FontAwesome } from '@expo/vector-icons';
-import Colors from '../constants/Colors'
+import COLORS from '../constants/Colors'
 
 const {width,height} = Dimensions.get('window')
 
@@ -72,7 +72,7 @@ const SignUpMethodScreen = (props) => {
               preference: preference
             })
           }}
-          style={{...styles.buttonBottom, backgroundColor: Colors.primaryColor}}>
+          style={{...styles.buttonBottom, backgroundColor: COLORS.primaryColor}}>
           <FontAwesome
             name="facebook"
             color="#fff"
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingLeft: 70,
     alignItems: 'center',
-    backgroundColor: Colors.buttonColor,
+    backgroundColor: COLORS.buttonColor,
     flexDirection: 'row',
     // paddingHorizontal: width / 3,
     width: width / 1.2,

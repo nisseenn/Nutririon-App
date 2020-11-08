@@ -35,7 +35,7 @@ export const fetchUserData = () => {
       //transforming data from response
       const resData = await response.json();
       //Dispatching the preference to the Redux Store
-      dispatch({ type: SET_PREFERENCE, token: token, userId: userId, preference: resData.preference, freetime: resData.freetime, work: resData.work })
+      dispatch({ type: SET_PREFERENCE, token: token, userId: userId, preference: resData.preference, freetime: resData.freetime, work: resData.work, age: resData.age, gender: resData.gender })
 
     } catch (err) {
       throw err;
@@ -109,7 +109,7 @@ export const signup = (email, password, name, gender, age, weight, userHeight, p
   //         age: age,
   //         weight: weight,
   //         userHeight: userHeight,
-  //         preference_id: preference,
+  //         preference: preference,
   //         work: userWork,
   //         freetime: userFreetime
   //       })
@@ -138,7 +138,7 @@ export const signup = (email, password, name, gender, age, weight, userHeight, p
       age: age,
       weight: weight,
       userHeight: userHeight,
-      preference_id: preference,
+      preference: preference,
       work: userWork,
       freetime: userFreetime
     }
