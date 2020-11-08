@@ -110,6 +110,7 @@ export const fetchUserMeals = (userDay, userMonth, userYear) => {
     }
 
     const mealData = await userNutrition.json()
+    console.log(mealData);
 
     const nutritionData = Object.values(mealData)
 

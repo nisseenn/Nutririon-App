@@ -138,7 +138,6 @@ const nutritionReducer = (state = initialState, action) => {
             fatTotal += parseInt(fat)
             carbsTotal += parseInt(carbs)
             proteinTotal += parseInt(protein)
-            console.log(meals[meal].mealType.values());
             // mealsOfDay[meals[meal].mealType] = meals[meal].mealTypeparseInt(calories)
           }
         }
