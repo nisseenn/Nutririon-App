@@ -40,12 +40,6 @@ const HomeScreenNavigator = createStackNavigator({
       headerShown: false
     }
   },
-  calendar: {
-    screen: CalendarScreen,
-    navigationOptions:{
-      headerShown: false
-    }
-  },
   nutrientdetail:{
     screen: NutrientDetailScreen,
     navigationOptions:{
