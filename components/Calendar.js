@@ -4,7 +4,7 @@ import { fetchUserData } from '../store/actions/auth'
 import { fetchIngredients } from '../store/actions/nutrition'
 import { useDispatch, useSelector } from 'react-redux'
 import CalendarStrip from 'react-native-calendar-strip';
-import Colors from '../constants/Colors'
+import COLORS from '../constants/Colors'
 import * as Animatable from 'react-native-animatable';
 
 const {width,height} = Dimensions.get('window')
@@ -24,7 +24,7 @@ const Calendar = (props) => {
         scrollable
         minDate={'2020-10-01'}
         maxDate={'2021-10-01'}
-        daySelectionAnimation={{type: 'background', highlightColor: Colors.accentColor}}
+        daySelectionAnimation={{type: 'background', highlightColor: COLORS.accentColor}}
         calendarColor={{color: 'white'}}
         calendarHeaderStyle={{color: "#000", fontSize: width / 14}}
         dateNumberStyle={{color: "#000", fontSize: 22}}
