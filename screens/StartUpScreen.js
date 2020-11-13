@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 
-import Colors from '../constants/Colors';
+import COLORS from '../constants/Colors';
 import { authenticate } from '../store/actions/auth';
 
 const StartupScreen = props => {
@@ -34,7 +34,7 @@ const StartupScreen = props => {
 
   return (
     <View style={styles.screen}>
-      <ActivityIndicator size="large" color={Colors.primaryColor} />
+      <ActivityIndicator size="large" color={COLORS.primaryColor} />
     </View>
   );
 };

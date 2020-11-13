@@ -10,9 +10,13 @@ import { fetchUserData } from '../store/actions/auth'
 import { fetchIngredients } from '../store/actions/nutrition'
 import { fetchUserMeals } from '../store/actions/nutrition'
 import { useDispatch, useSelector } from 'react-redux'
-import Colors from '../constants/Colors'
+<<<<<<< screens/HomeScreen.js
+import COLORS from '../constants/Colors'
 import Calendar from '../components/Calendar'
 import Carousel from '../components/Carousel'
+=======
+import COLORS from '../constants/Colors'
+>>>>>>> screens/HomeScreen.js
 import ProgressCircle from 'react-native-progress-circle'
 import { Ionicons, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { ProgressBar } from 'react-native-paper';
@@ -213,10 +217,14 @@ useEffect(() => {
                 percent={percent}
                 radius={height / 10}
                 borderWidth={7}
-                color={Colors.buttonColor}
+                color={COLORS.buttonColor}
                 shadowColor="#fff"
+<<<<<<< screens/HomeScreen.js
                 bgColor={Colors.primaryColor}
                 style={{opacity: barOpacity}}
+=======
+                bgColor={COLORS.primaryColor}
+>>>>>>> screens/HomeScreen.js
                 >
                 {/* <View style={styles.progressText}>
                   <Animated.Text style={{ fontSize: 36, fontWeight: '600', fontStyle: 'italic', color: "#fff"}}>{calorySuggestion}</Animated.Text>
@@ -236,21 +244,25 @@ useEffect(() => {
                 <Text style={styles.nutritionText}>Protein</Text>
                 <Text style={styles.nutritionText2}>{nutrients.protein}g / {nutrients.total}g</Text>
               </View>
+<<<<<<< screens/HomeScreen.js
               <ProgressBar progress={proteinPercent} style={styles.progressBar} color={Colors.buttonColor} />
+=======
+              <ProgressBar progress={0.5} style={styles.progressBar} color={COLORS.buttonColor} />
+>>>>>>> screens/HomeScreen.js
             </View>
             <View style={styles.nutrientWrap}>
               <View style={{flexDirection: 'row'}}>
                 <Text style={styles.nutritionText}>Fat</Text>
                 <Text style={styles.nutritionText2}>{nutrients.fat}g / {nutrients.total}g</Text>
               </View>
-              <ProgressBar progress={fatPercent} style={styles.progressBar} color={Colors.buttonColor} />
+              <ProgressBar progress={fatPercent} style={styles.progressBar} color={COLORS.buttonColor} />
             </View>
             <View style={styles.nutrientWrap}>
               <View style={{flexDirection: 'row'}}>
                 <Text style={styles.nutritionText}>Carbs</Text>
                 <Text style={styles.nutritionText2}>{nutrients.carbs}g / {nutrients.total}g</Text>
               </View>
-              <ProgressBar progress={carbsPercent} style={styles.progressBar} color={Colors.buttonColor} />
+              <ProgressBar progress={carbsPercent} style={styles.progressBar} color={COLORS.buttonColor} />
             </View>
             <TouchableOpacity
               onPress={() => {
@@ -371,10 +383,15 @@ const styles = StyleSheet.create({
     top:0,
     width: '100%',
     height: height / 2.6,
+<<<<<<< screens/HomeScreen.js
     backgroundColor: Colors.primaryColor,
     marginBottom: height / 2.6,
     zIndex: 4000,
     overflow: 'hidden'
+=======
+    backgroundColor: COLORS.primaryColor,
+    marginBottom: height / 2.6
+>>>>>>> screens/HomeScreen.js
   },
   calendarWrap:{
     position: 'absolute',

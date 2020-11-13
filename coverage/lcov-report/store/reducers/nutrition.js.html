@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>14/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/5</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">84.62% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>11/13</span>
             </div>
         
             
@@ -87,7 +87,30 @@
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -99,11 +122,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -115,33 +141,70 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ADD_MEAL } from '../actions/nutrition'
 import { SET_USERMEAL } from '../actions/nutrition'
 import { SET_SUGGESTION } from '../actions/nutrition'
 import { SET_INGREDIENTS } from '../actions/nutrition'
+import { ADD_INGREDIENT } from '../actions/nutrition'
+import { DELETE_INGREDIENT } from '../actions/nutrition'
 &nbsp;
 const initialState = {
   ingredients: [],
   foodSuggestions: [],
   userMeals: [],
   calorySuggestion: null,
+  mealIngredients: []
 }
 &nbsp;
 const nutritionReducer = (state = <span class="branch-0 cbranch-no" title="branch not covered" >initialState,</span> action) =&gt; {
   switch (action.type) {
     case SET_INGREDIENTS:
-      return { ingredients: action.ingredients }
+      return { ingredients: action.ingredients, mealIngredients: action.mealIngredients }
 &nbsp;
     case ADD_MEAL:
-&nbsp;
+      return { ...state, mealIngredients: [] }
 &nbsp;
     case SET_SUGGESTION:
 &nbsp;
 &nbsp;
     case SET_USERMEAL:
 &nbsp;
+&nbsp;
+    case ADD_INGREDIENT:
+      //Finding the ingredient we want to add
+      const ingredientToAdd = state.ingredients.find(ingredient =&gt; ingredient.id === action.ingredientId);
+      // const isInList = state.mealIngredients.some(ingredient =&gt; ingredient === ingredientToAdd);
+      return { ...state, mealIngredients: state.mealIngredients.concat(ingredientToAdd) }
+&nbsp;
+    case DELETE_INGREDIENT:
+      //Finding the ingredient in the list of ingredients in user meal
+      const ingredientToRemove = state.mealIngredients.find(ingredient =&gt; ingredient.id === action.ingredientId);
+      //Creating a replica of the state, to not mutate state directyl, (cuz dats bad man)
+      const ingredientHolder = [...state.mealIngredients]
+      //Getting the index of the ingredient we want to delete
+      const updatedIndex = ingredientHolder.findIndex(ingredient =&gt; ingredient.id === ingredientToRemove.id)
+      //Removing the index matching out ingredient from out replicated state
+<span class="cstat-no" title="statement not covered" >      ingredientHolder.splice(updatedIndex, 1)</span>
+      //Returning a object with the new state for ingredient
+<span class="cstat-no" title="statement not covered" >      return { ...state, mealIngredients: ingredientHolder }</span>
   }
   return state;
 }
@@ -154,7 +217,7 @@ export default nutritionReducer
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Oct 19 2020 21:05:24 GMT+0200 (GMT+02:00)
+                at Sun Oct 25 2020 21:29:04 GMT+0100 (GMT+01:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>

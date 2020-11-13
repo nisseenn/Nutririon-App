@@ -1,9 +1,11 @@
 //Importing the react native and react components
 import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
 import { ScrollView, View, StyleSheet, Animated, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
-import Colors from '../constants/Colors'
-
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+
+//import constants
+import COLORS from '../constants/Colors'
+import {SEX, LABOR, ACTIVITY} from '../constants/Strings'
 
 const {width,height} = Dimensions.get('window')
 //Defining HomeScreen functional component
@@ -196,19 +198,19 @@ const GenderScreen = (props) => {
           <TouchableOpacity style={styles.button} onPress={() => {
             //Calling the first animation function when gender is chosen
             //Also passing the gender which is chosen (because setting state fuckes up somehow)
-            const gender = moveView('male')
+            const gender = moveView(STRINGS.sex[0]) //male
           }}>
             <Text style={styles.buttonText}>
-              MALE
+              {STRINGS.sex[0] /*male*/}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={async() => {
             //Calling the first animation function when gender is chosen
             //Also passing the gender which is chosen (because setting state fuckes up somehow)
-            const gender = moveView('female')
+            const gender = moveView(STRINGS.sex[1]) //female
           }}>
             <Text style={styles.buttonText}>
-              FEMALE
+              {STRINGS.sex[1] /*female*/}
             </Text>
           </TouchableOpacity>
         </View>
@@ -222,36 +224,36 @@ const GenderScreen = (props) => {
           <View style={{flexDirection: 'row'}}>
             <TouchableOpacity style={styles.button2} onPress={() => {
               //Calling second function to move view
-              moveSecondView('sitting')
+              moveSecondView(STRINGS.labor[2])
             }}>
               <Text style={styles.buttonText2}>
-                SITTING
+                {STRINGS.labor[2] /*sitting*/}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button2} onPress={() => {
               //Calling second function to move view
-              moveSecondView('standing')
+              moveSecondView(STRINGS.labor[3])
             }}>
               <Text style={styles.buttonText2}>
-                STANDING
+                {STRINGS.labor[3] /*standing*/}
               </Text>
             </TouchableOpacity>
           </View>
           <View style={{flexDirection: 'row'}}>
             <TouchableOpacity style={styles.button2} onPress={() => {
               //Calling second function to move view
-              moveSecondView('physical')
+              moveSecondView(STRINGS.labor[4])
             }}>
               <Text style={styles.buttonText2}>
-                PHYSICAL HARD
+                {STRINGS.labor[4] /*physical hard*/}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button2} onPress={() => {
               //Calling second function to move view
-              moveSecondView('beddriven')
+              moveSecondView(STRINGS.labor[1])
             }}>
               <Text style={styles.buttonText2}>
-                BEDDRIVEN
+                {STRINGS.labor[1] /*bedridden*/}
               </Text>
             </TouchableOpacity>
           </View>
@@ -264,28 +266,31 @@ const GenderScreen = (props) => {
         </Text>
         <View style={{flexDirection: 'column'}}>
           <View style={{flexDirection: 'row'}}>
+
             <TouchableOpacity style={styles.button2} onPress={() => {
               props.navigation.navigate("info", {
                 //Passing props via navigation
                 gender: userGender,
                 work: userWork,
-                freetime: 'lessactive'
+                freetime: STRINGS.activity[1] //less active
               })
             }}>
               <Text style={styles.buttonText2}>
-                LESS ACTIVE
+                {STRINGS.activity[1]}
               </Text>
             </TouchableOpacity>
+
+
             <TouchableOpacity style={styles.button2} onPress={() => {
               props.navigation.navigate("info", {
                 //Passing props via navigation
                 gender: userGender,
                 work: userWork,
-                freetime: 'active'
+                freetime: STRINGS.activity[2]
               })
             }}>
               <Text style={styles.buttonText2}>
-                ACTIVE
+                {STRINGS.activity[2]}
               </Text>
             </TouchableOpacity>
           </View>
@@ -295,11 +300,11 @@ const GenderScreen = (props) => {
                 //Passing props via navigation
                 gender: userGender,
                 work: userWork,
-                freetime: 'veryactive'
+                freetime: STRINGS.activity[3]
               })
             }}>
               <Text style={styles.buttonText2}>
-                VERY ACTIVE
+                {STRINGS.activity[2]}
               </Text>
             </TouchableOpacity>
           </View>
@@ -334,7 +339,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button:{
-    backgroundColor: Colors.buttonColor,
+    backgroundColor: COLORS.buttonColor,
     paddingHorizontal: 40,
     paddingVertical: 15,
     borderRadius: 30,
@@ -344,7 +349,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5
   },
   button2:{
-    backgroundColor: Colors.buttonColor,
+    backgroundColor: COLORS.buttonColor,
     // paddingHorizontal: 40,
     paddingVertical: 15,
     borderRadius: 30,
