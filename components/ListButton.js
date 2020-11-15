@@ -1,8 +1,8 @@
 // A custom button for the bottomnavigator, to make it more sexy
-import React, { useEffect } from 'react'
-import { View, Text, FlatList, StyleSheet, Image, Dimensions, TouchableOpacity, TouchableHighlight, Animated, Vibration } from 'react-native'
-import { Ionicons, MaterialIcons, FontAwesome5, Feather } from '@expo/vector-icons';
-import Colors from '../constants/Colors'
+import React from 'react'
+import { View, Text, FlatList, StyleSheet, Dimensions, TouchableOpacity, Animated } from 'react-native'
+import { MaterialIcons } from '@expo/vector-icons';
+import COLORS from '../constants/Colors'
 import * as Haptics from 'expo-haptics';
 
 const {width,height} = Dimensions.get('window')
@@ -132,7 +132,7 @@ export default class ListButton extends React.Component {
 
         </Animated.View>
 
-        <Animated.View style={[styles.button, {backgroundColor: Colors.buttonColor}]}>
+        <Animated.View style={[styles.button, {backgroundColor: COLORS.buttonColor}]}>
           <TouchableOpacity
             style={{width: "100%", height: '100%', justifyContent: 'center', alignItems: 'center'}}
             onPress={this.handlePress} underlayColor="transparent">
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
   },
   doneButton:{
     width: '50%',
-    backgroundColor: Colors.buttonColor,
+    backgroundColor: COLORS.buttonColor,
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 15,
