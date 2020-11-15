@@ -10,13 +10,10 @@ import { fetchUserData } from '../store/actions/auth'
 import { fetchIngredients } from '../store/actions/nutrition'
 import { fetchUserMeals } from '../store/actions/nutrition'
 import { useDispatch, useSelector } from 'react-redux'
-<<<<<<< screens/HomeScreen.js
 import COLORS from '../constants/Colors'
 import Calendar from '../components/Calendar'
 import Carousel from '../components/Carousel'
-=======
-import COLORS from '../constants/Colors'
->>>>>>> screens/HomeScreen.js
+
 import ProgressCircle from 'react-native-progress-circle'
 import { Ionicons, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { ProgressBar } from 'react-native-paper';
@@ -219,12 +216,8 @@ useEffect(() => {
                 borderWidth={7}
                 color={COLORS.buttonColor}
                 shadowColor="#fff"
-<<<<<<< screens/HomeScreen.js
-                bgColor={Colors.primaryColor}
-                style={{opacity: barOpacity}}
-=======
                 bgColor={COLORS.primaryColor}
->>>>>>> screens/HomeScreen.js
+                style={{opacity: barOpacity}}
                 >
                 {/* <View style={styles.progressText}>
                   <Animated.Text style={{ fontSize: 36, fontWeight: '600', fontStyle: 'italic', color: "#fff"}}>{calorySuggestion}</Animated.Text>
@@ -244,11 +237,7 @@ useEffect(() => {
                 <Text style={styles.nutritionText}>Protein</Text>
                 <Text style={styles.nutritionText2}>{nutrients.protein}g / {nutrients.total}g</Text>
               </View>
-<<<<<<< screens/HomeScreen.js
-              <ProgressBar progress={proteinPercent} style={styles.progressBar} color={Colors.buttonColor} />
-=======
-              <ProgressBar progress={0.5} style={styles.progressBar} color={COLORS.buttonColor} />
->>>>>>> screens/HomeScreen.js
+              <ProgressBar progress={proteinPercent} style={styles.progressBar} color={COLORS.buttonColor} />
             </View>
             <View style={styles.nutrientWrap}>
               <View style={{flexDirection: 'row'}}>
@@ -333,7 +322,7 @@ useEffect(() => {
             </View>
             <View style={{}}>
               {weekSummary.length == 0 ? (
-                <ActivityIndicator size="small" color={Colors.primaryColor}></ActivityIndicator>
+                <ActivityIndicator size="small" color={COLORS.primaryColor}></ActivityIndicator>
               ) : (
                 <Carousel
                   style={{zIndex: 30000, position: 'absolute', backgroundColor: 'red'}}
@@ -383,15 +372,10 @@ const styles = StyleSheet.create({
     top:0,
     width: '100%',
     height: height / 2.6,
-<<<<<<< screens/HomeScreen.js
-    backgroundColor: Colors.primaryColor,
+    backgroundColor: COLORS.primaryColor,
     marginBottom: height / 2.6,
     zIndex: 4000,
     overflow: 'hidden'
-=======
-    backgroundColor: COLORS.primaryColor,
-    marginBottom: height / 2.6
->>>>>>> screens/HomeScreen.js
   },
   calendarWrap:{
     position: 'absolute',
