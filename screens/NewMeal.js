@@ -1,10 +1,10 @@
-import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
-import { ScrollView, View, TextInput, StyleSheet, FlatList, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
+import { View, StyleSheet, FlatList, Text, ActivityIndicator, Dimensions } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import * as Animatable from 'react-native-animatable';
 import { SearchBar } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import { fetchIngredients } from '../store/actions/nutrition'
 import { fetchUserMeals } from '../store/actions/nutrition'
