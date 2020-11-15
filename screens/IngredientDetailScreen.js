@@ -1,12 +1,9 @@
-import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
-import { ScrollView, SafeAreaView, View, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
-
-import { fetchUserData } from '../store/actions/auth'
-import { fetchIngredients } from '../store/actions/nutrition'
+import React, { useState } from 'react'
+import { ScrollView, View, StyleSheet, TextInput, TouchableOpacity, Text, Dimensions } from 'react-native'
 import { addIngredient } from '../store/actions/nutrition'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { useDispatch } from 'react-redux'
+import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient'
 import COLORS from '../constants/Colors'
 import ProgressCircle from 'react-native-progress-circle'
