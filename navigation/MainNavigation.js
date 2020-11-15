@@ -1,13 +1,12 @@
 //Importing react components
 import React from 'react'
-import { View, Text, Button, Platform } from 'react-native'
+import { View } from 'react-native'
 //Importing react navigation components to create a bottom tab navigator
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 //Importing iconsetß
-import { Ionicons, AntDesign } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors'
 
@@ -17,7 +16,6 @@ import SignupScreen from '../screens/SignupScreen'
 import StartScreen from '../screens/StartScreen'
 import NewMeal from '../screens/NewMeal'
 import HomeScreen from '../screens/HomeScreen'
-import CalendarScreen from '../screens/CalendarScreen'
 import ProfileScreen from '../screens/ProfileScreen'
 import GenderScreen from '../screens/GenderScreen'
 import PersonalInfoScreen from '../screens/PersonalInfoScreen'
