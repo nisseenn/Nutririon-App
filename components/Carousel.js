@@ -1,12 +1,6 @@
-import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
-import { ScrollView, View, StyleSheet, FlatList, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
-import { fetchUserData } from '../store/actions/auth'
-import { fetchIngredients } from '../store/actions/nutrition'
-import { useDispatch, useSelector } from 'react-redux'
-import CalendarStrip from 'react-native-calendar-strip';
-import Colors from '../constants/Colors'
-import * as Animatable from 'react-native-animatable';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
+import React, { useState, useRef } from 'react'
+import { View, StyleSheet, Text, Image, Dimensions } from 'react-native'
+import Carousel from 'react-native-snap-carousel';
 
 const proteinPic = require('../assets/protein.png')
 const carbPic = require('../assets/wheat.png')
@@ -110,4 +104,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default CarouselComponent
+export default Carousel
