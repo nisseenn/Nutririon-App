@@ -1,12 +1,11 @@
 import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
-import { Platform, ScrollView, View, TextInput, Keyboard, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
+import { Platform, ScrollView, View, TextInput, Keyboard, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Dimensions } from 'react-native'
 import { useDispatch } from 'react-redux'
 import firebase from 'firebase';
 import { login } from '../store/actions/auth'
 import { LinearGradient } from 'expo-linear-gradient'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
-import Animated from 'react-native-reanimated';
 //Importing the colors we are going to use
 import COLORS from '../constants/Colors'
 //Importing our customized, amazing component, which can be used in multiple other components
