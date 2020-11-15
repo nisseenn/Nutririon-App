@@ -1,8 +1,6 @@
-import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
-import { ScrollView, View, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
-import { fetchUserData } from '../store/actions/auth'
-import { fetchIngredients } from '../store/actions/nutrition'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+import { View, StyleSheet, Dimensions } from 'react-native'
+import { useDispatch } from 'react-redux'
 import CalendarStrip from 'react-native-calendar-strip';
 import COLORS from '../constants/Colors'
 import * as Animatable from 'react-native-animatable';
@@ -10,12 +8,11 @@ import * as Animatable from 'react-native-animatable';
 const {width,height} = Dimensions.get('window')
 
 const Calendar = (props) => {
-  const dispatch = useDispatch()
 
   //Returning the JSX code
   return(
     <Animatable.View
-      useNativeDriver
+      useNativeDriver={true}
       animation="fadeInDown"
       duration={200}
       delay={200}
