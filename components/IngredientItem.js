@@ -1,8 +1,7 @@
-import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
-import { ScrollView, View, TextInput, StyleSheet, FlatList, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
-import Colors from '../constants/Colors'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import React, { useState, useEffect } from 'react'
+import { View, StyleSheet, TouchableOpacity, Text, Dimensions } from 'react-native'
+import { useSelector } from 'react-redux'
+import { Ionicons } from '@expo/vector-icons';
 
 const {width,height} = Dimensions.get('window')
 
