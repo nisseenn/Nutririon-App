@@ -1,6 +1,3 @@
-import { AsyncStorage } from 'react-native'
-import firebase from 'firebase';
-
 import STRINGS from '../../constants/Strings'
 
 export const ADD_MEAL = 'ADD_MEAL'
