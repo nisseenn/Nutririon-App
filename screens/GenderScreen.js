@@ -1,11 +1,11 @@
 //Importing the react native and react components
-import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
-import { ScrollView, View, StyleSheet, Animated, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import React, { useRef } from 'react'
+import { View, StyleSheet, Animated, TouchableOpacity, Text, Dimensions } from 'react-native'
+import { MaterialIcons } from '@expo/vector-icons';
 
 //import constants
 import COLORS from '../constants/Colors'
-import {SEX, LABOR, ACTIVITY} from '../constants/Strings'
+import STRINGS from '../constants/Strings'
 
 const {width,height} = Dimensions.get('window')
 //Defining HomeScreen functional component
