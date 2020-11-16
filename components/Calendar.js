@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, StyleSheet, Dimensions } from 'react-native'
-import { useDispatch } from 'react-redux'
 import CalendarStrip from 'react-native-calendar-strip';
 import COLORS from '../constants/Colors'
 import * as Animatable from 'react-native-animatable';
