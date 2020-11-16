@@ -113,7 +113,7 @@ const LoginScreen = (props) => {
   //Calling the firebase method to sendPasswordResetEmail with argument, which is the user email
   firebase.auth().sendPasswordResetEmail(emailHolder2).then(function() {
 
-  }).catch(function(error) {
+  }).catch(function() {
     Alert.alert(
     'Email not found',
     '',
