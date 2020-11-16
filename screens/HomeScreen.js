@@ -4,8 +4,8 @@
 // 3. Suggestion carousel, which can be viewd as a list, then user will be taken to suggestionscreen
 
 //Importing the react native and react components
-import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
-import { ScrollView, View, Animated, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
+import { ScrollView, View, Animated, StyleSheet, TouchableOpacity, Text, ActivityIndicator, Image, Dimensions } from 'react-native'
 import { fetchUserData } from '../store/actions/auth'
 import { fetchIngredients } from '../store/actions/nutrition'
 import { fetchUserMeals } from '../store/actions/nutrition'
@@ -15,7 +15,7 @@ import Calendar from '../components/Calendar'
 import Carousel from '../components/Carousel'
 
 import ProgressCircle from 'react-native-progress-circle'
-import { Ionicons, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { ProgressBar } from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
 
@@ -44,7 +44,7 @@ const HomeScreen = (props) => {
   const [animation, setAnimation] = useState("slideInDown")
 
   const scrollY = useRef(new Animated.Value(0)).current;
-  const fade = useRef(new Animated.Value(0)).current;
+  //const fade = useRef(new Animated.Value(0)).current;
 
   const headerTranslateY = scrollY.interpolate({
     inputRange: [0, HEADER_SCROLL_DISTANCE * .99],
@@ -76,7 +76,7 @@ const HomeScreen = (props) => {
     extrapolate: 'clamp',
   });
 
-  const userNutrients = useSelector(state => state.nutrition.nutritientSuggestions)
+  //const userNutrients = useSelector(state => state.nutrition.nutritientSuggestions)
   const calorySuggestion = useSelector(state => state.nutrition.calorySuggestion)
   const caloryRef = useSelector(state => state.nutrition.caloryRef)
   const nutrients = useSelector(state => state.nutrition.nutrients)
