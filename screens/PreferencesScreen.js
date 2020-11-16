@@ -18,10 +18,6 @@ const PreferencesScreen = (props) => {
   const age = props.navigation.getParam("age")
   const weight = props.navigation.getParam("weight")
   const userHeight = props.navigation.getParam("height")
-  //Creating state for preferences
-  const [isVegeterianer, setVegeterianer] = useState(false)
-  const [isVeganer, setIsVeganer] = useState(false)
-  const [isPesc, setIsPesc] = useState(false)
   //State for the single select box
   const [preference, setPreference] = useState(null);
 
