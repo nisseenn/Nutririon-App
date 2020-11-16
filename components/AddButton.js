@@ -4,6 +4,8 @@ import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity, TouchableH
 import { FontAwesome5 } from '@expo/vector-icons';
 import COLORS from '../constants/Colors'
 import * as Haptics from 'expo-haptics';
+import TouchableWorkaround from '../components/TouchableOpacityWorkaround'
+
 
 const {width,height} = Dimensions.get('window')
 
@@ -11,6 +13,10 @@ const breakfast = require('../assets/breakfast.png')
 const lunch = require('../assets/lunchbox.png')
 const dinner = require('../assets/fast-food.png')
 const snacks = require('../assets/snacks.png')
+
+
+
+
 
 export default class AddButton extends React.Component {
   mode = new Animated.Value(0);
@@ -72,7 +78,7 @@ export default class AddButton extends React.Component {
             <Animated.View
               useNativeDriver={true}
               style={[styles.mealWrapper, {opacity: modalOpacity}]}>
-              <TouchableOpacity onPress={() => {
+              <TouchableWorkaround onPress={() => {
                 this.handlePress()
                 this.props.navigation.navigate("mealStart", {
                   meal: 'Breakfast'
@@ -80,13 +86,13 @@ export default class AddButton extends React.Component {
               }}>
                    <Image source={breakfast} style={styles.image}/>
                    <Text style={styles.mealTitle}>Breakfast</Text>
-              </TouchableOpacity>
+              </TouchableWorkaround>
              </Animated.View>
 
              <Animated.View
               useNativeDriver={true}
               style={[styles.mealWrapper, {opacity: modalOpacity}]}>
-              <TouchableOpacity onPress={() => {
+              <TouchableWorkaround onPress={() => {
                 this.handlePress()
                 this.props.navigation.navigate("mealStart", {
                   meal: 'Lunch'
@@ -94,7 +100,7 @@ export default class AddButton extends React.Component {
               }}>
                     <Image source={lunch} style={styles.image}/>
                     <Text style={styles.mealTitle}>Lunch</Text>
-                </TouchableOpacity>
+                </TouchableWorkaround>
               </Animated.View>
           </View>
 
@@ -102,7 +108,7 @@ export default class AddButton extends React.Component {
             <Animated.View
               useNativeDriver={true}
               style={[styles.mealWrapper, {opacity: modalOpacity}]}>
-              <TouchableOpacity onPress={() => {
+              <TouchableWorkaround onPress={() => {
                 this.handlePress()
                 this.props.navigation.navigate("mealStart", {
                   meal: 'Dinner'
@@ -110,13 +116,13 @@ export default class AddButton extends React.Component {
               }}>
                  <Image source={dinner} style={styles.image}/>
                  <Text style={styles.mealTitle}>Dinner</Text>
-               </TouchableOpacity>
+               </TouchableWorkaround>
              </Animated.View>
 
              <Animated.View
                useNativeDriver={true}
                style={[styles.mealWrapper, {opacity: modalOpacity}]}>
-               <TouchableOpacity onPress={() => {
+               <TouchableWorkaround onPress={() => {
                  this.handlePress()
                  this.props.navigation.navigate("mealStart", {
                    meal: 'Snacks'
@@ -124,7 +130,7 @@ export default class AddButton extends React.Component {
                }}>
                   <Image source={snacks} style={styles.image}/>
                   <Text style={styles.mealTitle}>Snacks</Text>
-                </TouchableOpacity>
+                </TouchableWorkaround>
               </Animated.View>
           </View>
 
@@ -184,6 +190,7 @@ const styles = StyleSheet.create({
   },
   modal: {
     position: "absolute",
-    backgroundColor: 'rgba(58,90,140,.96)'
+    backgroundColor: 'rgba(58,90,140,.96)',
+    elevation: 3
   }
 })
