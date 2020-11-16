@@ -102,4 +102,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Carousel
+export default CarouselComponent
