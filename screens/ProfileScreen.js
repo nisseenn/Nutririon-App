@@ -39,7 +39,6 @@ const ProfileScreen = (props) => {
 	//For the activity details
   const [labor, setLabor] = useState(null)
   const [activity, setActivity] = useState(null)
-  const [hours, setHours] = useState(null)
  
   const dispatch = useDispatch()
   //Getting the Redux state for the preference, labor and freetime
@@ -62,18 +61,6 @@ const ProfileScreen = (props) => {
       setToggleDrop(false)
     } catch (err) {
       // setError(err.message)
-    }
-  }
-  //Creating a funciton to delete the preferences
-  const deletePreferenceHandler = async() => {
-    try {
-      //Calling Redux function to handle edit of the preference.
-      //We pass null as the parameter for preference. It will therefore be deleted in Firebase
-      let objectReturn = await editPreference(null, labor, activity)
-      //Dispatching the obj from redux function to redux state
-      await dispatch(objectReturn)
-    } catch (error) {
-
     }
   }
 
