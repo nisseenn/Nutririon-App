@@ -117,13 +117,13 @@ const NewMeal = (props) => {
             props.navigation.navigate("detail", {
               name: itemData.item.name,
               id: itemData.item.id,
-              energi: itemData.item.Energi1,
-              fett: itemData.item.Fett,
-              protein: itemData.item.Protein,
-              karbo: itemData.item.Karbo,
-              fiber: itemData.item.Fiber,
-              sukker: itemData.item.Sukker,
-              porsjon: itemData.item.Portion
+              energi: itemData.item.energi1,
+              fett: itemData.item.fat,
+              protein: itemData.item.protein,
+              karbo: itemData.item.carbs,
+              fiber: itemData.item.fiber,
+              sukker: itemData.item.sugar,
+              porsjon: itemData.item.portion
             })
           }}
           onAddIngredient={() => {
