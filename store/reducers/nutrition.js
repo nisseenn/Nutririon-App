@@ -115,11 +115,12 @@ const nutritionReducer = (state = initialState, action) => {
         let dateString = `${timestamp.year}-${monthLetter}-${dayLetter}`
 
         if(now.isoWeek() == moment(dateString).isoWeek()){
+          console.log(ingredientList[0]);
           for(var ingredient = 0; ingredient < ingredientList.length; ingredient++){
-            const weeklyCalories = ingredientList[ingredient].Energi2.split('value')[1].split('=')[1].split('}')[0]
-            const weeklyFat = ingredientList[ingredient].Fett.split('value')[1].split('=')[1].split('}')[0]
-            const weeklyCarbs = ingredientList[ingredient].Karbo.split('value')[1].split('=')[1].split('}')[0]
-            const weeklyProtein = ingredientList[ingredient].Protein.split('value')[1].split('=')[1].split('}')[0]
+            const weeklyCalories = ingredientList.[ingredient].energi2.split('value')[1].split('=')[1].split('}')[0]
+            const weeklyFat = ingredientList.[ingredient].fat.split('value')[1].split('=')[1].split('}')[0]
+            const weeklyCarbs = ingredientList[ingredient].carbs.split('value')[1].split('=')[1].split('}')[0]
+            const weeklyProtein = ingredientList[ingredient].protein.split('value')[1].split('=')[1].split('}')[0]
             weekCals += parseInt(weeklyCalories)
             weekFat += parseInt(weeklyFat)
             weekCarbs += parseInt(weeklyCarbs)
@@ -129,10 +130,10 @@ const nutritionReducer = (state = initialState, action) => {
 
         if(timestamp.day == action.day && timestamp.month == action.month && timestamp.year == action.year){
           for(var ingredient = 0; ingredient < ingredientList.length; ingredient++){
-            const calories = ingredientList[ingredient].Energi2.split('value')[1].split('=')[1].split('}')[0]
-            const fat = ingredientList[ingredient].Fett.split('value')[1].split('=')[1].split('}')[0]
-            const carbs = ingredientList[ingredient].Karbo.split('value')[1].split('=')[1].split('}')[0]
-            const protein = ingredientList[ingredient].Protein.split('value')[1].split('=')[1].split('}')[0]
+            const calories = ingredientList[ingredient].energi2.split('value')[1].split('=')[1].split('}')[0]
+            const fat = ingredientList[ingredient].fat.split('value')[1].split('=')[1].split('}')[0]
+            const carbs = ingredientList[ingredient].carbs.split('value')[1].split('=')[1].split('}')[0]
+            const protein = ingredientList[ingredient].protein.split('value')[1].split('=')[1].split('}')[0]
             cals += parseInt(calories)
             nutrientsTotal = nutrientsTotal + parseInt(fat) + parseInt(carbs) + parseInt(protein)
             fatTotal += parseInt(fat)
