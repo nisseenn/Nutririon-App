@@ -1,6 +1,5 @@
 import React from 'react'
-import { View, Text, Dimensions } from 'react-native'
-import { useDispatch } from 'react-redux'
+import { View, Text } from 'react-native'
 
 //Defining HomeScreen functional component
 const NutrientDetailScreen = () => {
