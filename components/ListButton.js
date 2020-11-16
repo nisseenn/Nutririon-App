@@ -4,6 +4,7 @@ import { View, Text, FlatList, StyleSheet, Dimensions, TouchableOpacity, Animate
 import { MaterialIcons } from '@expo/vector-icons';
 import COLORS from '../constants/Colors'
 import * as Haptics from 'expo-haptics';
+import TouchableWorkaround from '../components/TouchableOpacityWorkaround'
 
 const {width,height} = Dimensions.get('window')
 
@@ -40,13 +41,13 @@ export default class ListButton extends React.Component {
           <Text style={styles.ingredientText}>
             {itemData.item.name}
           </Text>
-          <TouchableOpacity
+          <TouchableWorkaround
             onPress={() => {
               this.props.deleteIngredient(itemData.item.id)
             }}
             style={styles.iconWrap}>
             <MaterialIcons style={{}} color="white" size={30} name="close"/>
-          </TouchableOpacity>
+          </TouchableWorkaround>
         </View>
       </View>
     )
@@ -102,7 +103,9 @@ export default class ListButton extends React.Component {
     return(
       <View style={{position: 'absolute', bottom: 60, right: 70}}>
 
-        <Animated.View style={[styles.modal, {top: modalY, height: heightModal, width: widthModal, opacity: modalOpacity}]}>
+        <Animated.View 
+          useNativeDriver={true}
+          style={[styles.modal, {top: modalY, height: heightModal, width: widthModal, opacity: modalOpacity}]}>
           <View>
             <Text style={styles.ingredientTitle}>Ingredients</Text>
           </View>
@@ -123,11 +126,11 @@ export default class ListButton extends React.Component {
             />
           )}
           <View style={styles.doneWrap}>
-            <TouchableOpacity
+            <TouchableWorkaround
               onPress={this.props.handleSubmitMeal}
               style={styles.doneButton}>
               <Text style={styles.doneText}>ADD MEAL</Text>
-            </TouchableOpacity>
+            </TouchableWorkaround>
           </View>
 
         </Animated.View>
@@ -137,7 +140,9 @@ export default class ListButton extends React.Component {
             style={{width: "100%", height: '100%', justifyContent: 'center', alignItems: 'center'}}
             onPress={this.handlePress} underlayColor="transparent">
 
-              <Animated.View style={{ transform: [{ rotate: rotation }], opacity: iconOpacity, position: 'absolute'}}>
+              <Animated.View
+                  useNativeDriver={true}
+                  style={{ transform: [{ rotate: rotation }], opacity: iconOpacity, position: 'absolute'}}>
                   <MaterialIcons name="list" size={32} color="#000"/>
               </Animated.View>
 
