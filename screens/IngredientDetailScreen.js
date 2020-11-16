@@ -18,12 +18,12 @@ const IngredientDetailScreen = (props) => {
 
   const id = props.navigation.getParam("id")
   const name = props.navigation.getParam("name")
-  const porsjon = props.navigation.getParam("porsjon").replace(/[&\/\\#,+()$~%'":*?<>{}=@;]/g, '').split("value")[1]
+  //const porsjon = props.navigation.getParam("porsjon").replace(/[&\/\\#,+()$~%'":*?<>{}=@;]/g, '').split("value")[1]
   const protein = props.navigation.getParam("protein").replace(/[&\/\\#,+()$~%'":*?<>{}=@;]/g, '').split("value")[1]
   const fett = props.navigation.getParam("fett").replace(/[&\/\\#,+()$~%'":*?<>{}=@;]/g, '').split("value")[1]
   const fiber = props.navigation.getParam("fiber").replace(/[&\/\\#,+()$~%'":*?<>{}=@;]/g, '').split("value")[1]
   const karbo = props.navigation.getParam("karbo").replace(/[&\/\\#,+()$~%'":*?<>{}=@;]/g, '').split("value")[1]
-  const sukker = props.navigation.getParam("sukker").replace(/[&\/\\#,+()$~%'":*?<>{}=@;]/g, '').split("value")[1]
+  //const sukker = props.navigation.getParam("sukker").replace(/[&\/\\#,+()$~%'":*?<>{}=@;]/g, '').split("value")[1]
 
   //Returning the JSX code
   return(
