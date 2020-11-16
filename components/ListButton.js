@@ -135,7 +135,9 @@ export default class ListButton extends React.Component {
 
         </Animated.View>
 
-        <Animated.View style={[styles.button, {backgroundColor: COLORS.buttonColor}]}>
+        <Animated.View 
+          useNativeDriver={true}
+          style={[styles.button, {backgroundColor: COLORS.buttonColor}]}>
           <TouchableOpacity
             style={{width: "100%", height: '100%', justifyContent: 'center', alignItems: 'center'}}
             onPress={this.handlePress} underlayColor="transparent">
@@ -146,7 +148,9 @@ export default class ListButton extends React.Component {
                   <MaterialIcons name="list" size={32} color="#000"/>
               </Animated.View>
 
-              <Animated.View style={{ transform: [{ rotate: rotation2 }], opacity: iconOpacity2, position: 'absolute'}}>
+              <Animated.View
+                  useNativeDriver={true}
+                  style={{ transform: [{ rotate: rotation2 }], opacity: iconOpacity2, position: 'absolute'}}>
                   <MaterialIcons name="close" size={32} color="#000"/>
               </Animated.View>
 
