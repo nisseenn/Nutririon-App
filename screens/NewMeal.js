@@ -127,7 +127,7 @@ const NewMeal = (props) => {
             })
           }}
           onAddIngredient={() => {
-            console.log('heipådeg');
+            console.log(itemData.item);
             let objectReturn = addIngredient(itemData.item.id)
             dispatch(objectReturn)
           }}
@@ -196,6 +196,7 @@ const NewMeal = (props) => {
       {addAnimation ? (
         <View style={styles.animationPopWrap}>
           <Animatable.View
+            useNativeDriver={true}
             style={styles.popupWrap}
             ref={imageRef}
             >

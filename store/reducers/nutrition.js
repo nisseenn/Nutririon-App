@@ -53,41 +53,43 @@ const nutritionReducer = (state = initialState, action) => {
       const age = parseInt(action.age)
       const gender = action.gender
 
-      if(gender == 'male'){
+      refCals = 3865
+      /*
+      if(gender == 'Male'){
         if(age > 18 && age < 30){
-          if(work == 'beddriven' && freetime == 'lessactive'){
+          if(work == 'Bedridden/Inactive' && freetime == 'Less Active'){
             refCals = 2006
           }
-          if(work == 'sitting' && freetime == 'lessactive'){
+          if(work == 'Sedentary Work' && freetime == 'Less Active'){
             refCals = 2818
           }
-          if(work == 'sitting' && freetime == 'active'){
+          if(work == 'Sedentary Work' && freetime == 'Active'){
             refCals = 2901
           }
-          if(work == 'sitting' && freetime == 'veryactive'){
+          if(work == 'Sedentary Work' && freetime == 'Very Active'){
             refCals = 3228
           }
-          if(work == 'standing' && freetime == 'lessactive'){
+          if(work == 'Standing Work' && freetime == 'Less Active'){
             refCals = 3167
           }
-          if(work == 'standing' && freetime == 'active'){
+          if(work == 'Standing Work' && freetime == 'Active'){
             refCals = 3250
           }
-          if(work == 'standing' && freetime == 'veryactive'){
+          if(work == 'Standing Work' && freetime == 'Very Active'){
             refCals = 3577
           }
-          if(work == 'physical' && freetime == 'lessactive'){
+          if(work == 'Physical Hard Work' && freetime == 'Less Active'){
             refCals = 3865
           }
-          if(work == 'physical' && freetime == 'active'){
+          if(work == 'Physical Hard Work' && freetime == 'Active'){
             refCals = 3947
           }
-          if(work == 'physical' && freetime == 'veryactive'){
+          if(work == 'Physical Hard Work' && freetime == 'Very Active'){
             refCals = 4275
           }
         }
 
-      }
+      }*/
 
       let now = moment();
 
@@ -115,12 +117,14 @@ const nutritionReducer = (state = initialState, action) => {
         let dateString = `${timestamp.year}-${monthLetter}-${dayLetter}`
 
         if(now.isoWeek() == moment(dateString).isoWeek()){
-          console.log(ingredientList[0]);
           for(var ingredient = 0; ingredient < ingredientList.length; ingredient++){
-            const weeklyCalories = ingredientList.[ingredient].energi2.split('value')[1].split('=')[1].split('}')[0]
-            const weeklyFat = ingredientList.[ingredient].fat.split('value')[1].split('=')[1].split('}')[0]
-            const weeklyCarbs = ingredientList[ingredient].carbs.split('value')[1].split('=')[1].split('}')[0]
-            const weeklyProtein = ingredientList[ingredient].protein.split('value')[1].split('=')[1].split('}')[0]
+            //do one read operation from array per round
+            const item = ingredientList[ingredient]
+
+            const weeklyCalories = item.energi2.split(/[=}]/)[2]
+            const weeklyFat = item.fat.split(/[=}]/)[2]
+            const weeklyCarbs = item.carbs.split(/[=}]/)[2]
+            const weeklyProtein = item.protein.split(/[=}]/)[2]
             weekCals += parseInt(weeklyCalories)
             weekFat += parseInt(weeklyFat)
             weekCarbs += parseInt(weeklyCarbs)
@@ -130,10 +134,13 @@ const nutritionReducer = (state = initialState, action) => {
 
         if(timestamp.day == action.day && timestamp.month == action.month && timestamp.year == action.year){
           for(var ingredient = 0; ingredient < ingredientList.length; ingredient++){
-            const calories = ingredientList[ingredient].energi2.split('value')[1].split('=')[1].split('}')[0]
-            const fat = ingredientList[ingredient].fat.split('value')[1].split('=')[1].split('}')[0]
-            const carbs = ingredientList[ingredient].carbs.split('value')[1].split('=')[1].split('}')[0]
-            const protein = ingredientList[ingredient].protein.split('value')[1].split('=')[1].split('}')[0]
+            //do one read operation from array per round
+            const item = ingredientList[ingredient]
+
+            const calories = item.energi2.split(/[=}]/)[2]
+            const fat = item.fat.split(/[=}]/)[2]
+            const carbs = item.carbs.split(/[=}]/)[2]
+            const protein = item.protein.split(/[=}]/)[2]
             cals += parseInt(calories)
             nutrientsTotal = nutrientsTotal + parseInt(fat) + parseInt(carbs) + parseInt(protein)
             fatTotal += parseInt(fat)

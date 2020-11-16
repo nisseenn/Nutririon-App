@@ -85,6 +85,7 @@ const HomeScreen = (props) => {
 
   const percent1 = 1 - (calorySuggestion / caloryRef)
   const percent = Math.round(percent1 * 100)
+  console.log(caloryRef)
 
   const proteinPercent = nutrients.protein / nutrients.total
   const fatPercent = nutrients.fat / nutrients.total
