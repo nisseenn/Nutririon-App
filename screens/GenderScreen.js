@@ -198,7 +198,7 @@ const GenderScreen = (props) => {
           <TouchableOpacity style={styles.button} onPress={() => {
             //Calling the first animation function when gender is chosen
             //Also passing the gender which is chosen (because setting state fuckes up somehow)
-            const gender = moveView(STRINGS.sex[0]) //male
+            moveView(STRINGS.sex[0]) //male
           }}>
             <Text style={styles.buttonText}>
               {STRINGS.sex[0] /*male*/}
@@ -207,7 +207,7 @@ const GenderScreen = (props) => {
           <TouchableOpacity style={styles.button} onPress={async() => {
             //Calling the first animation function when gender is chosen
             //Also passing the gender which is chosen (because setting state fuckes up somehow)
-            const gender = moveView(STRINGS.sex[1]) //female
+            moveView(STRINGS.sex[1]) //female
           }}>
             <Text style={styles.buttonText}>
               {STRINGS.sex[1] /*female*/}
