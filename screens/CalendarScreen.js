@@ -1,5 +1,6 @@
 import React, { useState, useReducer } from 'react'
 import { View, StyleSheet, Dimensions } from 'react-native'
+import { useDispatch } from 'react-redux'
 import CalendarStrip from 'react-native-calendar-strip';
 
 const {width,height} = Dimensions.get('window')
