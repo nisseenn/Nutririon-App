@@ -168,7 +168,7 @@ useEffect(() => {
     <View style={styles.container}>
       {toggleDrop ? (
         <Animatable.View
-          useNativeDriver
+          useNativeDriver={true}
           duration={300}
           animation={animation}
           style={styles.modal}>
@@ -193,7 +193,9 @@ useEffect(() => {
 
         </View>
       )}
-      <Animated.View style={[styles.calendarWrap, {transform: [{translateX: dateTranslateX}]}]}>
+      <Animated.View 
+        useNativeDriver={true}
+        style={[styles.calendarWrap, {transform: [{translateX: dateTranslateX}]}]}>
         <TouchableOpacity
           onPress={() => {
             setToggleDrop(true)
@@ -211,6 +213,7 @@ useEffect(() => {
 
           <View style={styles.progressWrap}>
             <AnimatedCircle
+                useNativeDriver={true}
                 percent={percent}
                 radius={height / 10}
                 borderWidth={7}
@@ -226,12 +229,16 @@ useEffect(() => {
             </AnimatedCircle>
           </View>
 
-          <Animated.View style={[styles.progressText2, {transform: [{translateY: textTranslateY}]}]}>
+          <Animated.View 
+            useNativeDriver={true}
+            style={[styles.progressText2, {transform: [{translateY: textTranslateY}]}]}>
             <Animated.Text style={styles.totalCals}>{calorySuggestion}</Animated.Text>
             <Animated.Text style={styles.totalCalsDesc}>Calories left</Animated.Text>
           </Animated.View>
 
-          <Animated.View style={[{...styles.barWrap, opacity: barOpacity}]}>
+          <Animated.View 
+            useNativeDriver={true}
+            style={[{...styles.barWrap, opacity: barOpacity}]}>
             <View style={styles.nutrientWrap}>
               <View style={{flexDirection: 'row'}}>
                 <Text style={styles.nutritionText}>Protein</Text>
@@ -268,6 +275,7 @@ useEffect(() => {
       </Animated.View>
 
         <Animated.ScrollView
+          useNativeDriver={true}
           scrollEventThrottle={16}
           snapToInterval={height / 2}
           decelerationRate="fast"

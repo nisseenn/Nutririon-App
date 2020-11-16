@@ -187,7 +187,9 @@ const GenderScreen = (props) => {
           style={{width: '100%', height: height / 3.5, position: 'absolute', top: 0, zIndex: 10000, }}>
         </TouchableOpacity>
 
-      <Animated.View style={[{...styles.genderWrap, opacity: opacityGender}, top.getLayout()]}>
+      <Animated.View 
+        useNativeDriver={true}
+        style={[{...styles.genderWrap, opacity: opacityGender}, top.getLayout()]}>
         <Text style={{fontSize: 36, fontWeight: 'bold', marginBottom: 20}}>
           Hey!
         </Text>
@@ -216,7 +218,9 @@ const GenderScreen = (props) => {
         </View>
       </Animated.View>
 
-      <Animated.View style={[{...styles.genderWrap2, opacity: opacityWork}, bottom.getLayout()]}>
+      <Animated.View
+        useNativeDriver={true}
+        style={[{...styles.genderWrap2, opacity: opacityWork}, bottom.getLayout()]}>
         <Text style={{marginBottom: 30, fontWeight: 'bold', fontSize: 20}}>
           Level of activity at work
         </Text>
@@ -260,7 +264,9 @@ const GenderScreen = (props) => {
         </View>
       </Animated.View>
 
-      <Animated.View style={[{...styles.genderWrap3, opacity: opacityFreeTime}, last.getLayout()]}>
+      <Animated.View
+        useNativeDriver={true}
+        style={[{...styles.genderWrap3, opacity: opacityFreeTime}, last.getLayout()]}>
         <Text style={{marginBottom: 30, fontWeight: 'bold', fontSize: 20}}>
           Level of activity in free time
         </Text>

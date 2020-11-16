@@ -64,10 +64,14 @@ export default class AddButton extends React.Component {
     return(
       <View style={{position: 'absolute', alignItems: 'center', justifyContent: 'center'}}>
 
-        <Animated.View style={[styles.modal, {top: modalY, height: heightModal, width: widthModal, opacity: modalOpacity}]}>
+        <Animated.View 
+          useNativeDriver={true}
+          style={[styles.modal, {top: modalY, height: heightModal, width: widthModal, opacity: modalOpacity}]}>
 
           <View style={styles.rowWrap}>
-            <Animated.View style={[styles.mealWrapper, {opacity: modalOpacity}]}>
+            <Animated.View
+              useNativeDriver={true}
+              style={[styles.mealWrapper, {opacity: modalOpacity}]}>
               <TouchableOpacity onPress={() => {
                 this.handlePress()
                 this.props.navigation.navigate("mealStart", {
@@ -79,7 +83,9 @@ export default class AddButton extends React.Component {
               </TouchableOpacity>
              </Animated.View>
 
-             <Animated.View style={[styles.mealWrapper, {opacity: modalOpacity}]}>
+             <Animated.View
+              useNativeDriver={true}
+              style={[styles.mealWrapper, {opacity: modalOpacity}]}>
               <TouchableOpacity onPress={() => {
                 this.handlePress()
                 this.props.navigation.navigate("mealStart", {
@@ -93,7 +99,9 @@ export default class AddButton extends React.Component {
           </View>
 
           <View style={styles.rowWrap}>
-            <Animated.View style={[styles.mealWrapper, {opacity: modalOpacity}]}>
+            <Animated.View
+              useNativeDriver={true}
+              style={[styles.mealWrapper, {opacity: modalOpacity}]}>
               <TouchableOpacity onPress={() => {
                 this.handlePress()
                 this.props.navigation.navigate("mealStart", {
@@ -105,7 +113,9 @@ export default class AddButton extends React.Component {
                </TouchableOpacity>
              </Animated.View>
 
-             <Animated.View style={[styles.mealWrapper, {opacity: modalOpacity}]}>
+             <Animated.View
+               useNativeDriver={true}
+               style={[styles.mealWrapper, {opacity: modalOpacity}]}>
                <TouchableOpacity onPress={() => {
                  this.handlePress()
                  this.props.navigation.navigate("mealStart", {
@@ -120,7 +130,9 @@ export default class AddButton extends React.Component {
 
         </Animated.View>
 
-        <Animated.View style={[styles.button, {backgroundColor: COLORS.buttonColor}]}>
+        <Animated.View
+          useNativeDriver={true}
+          style={[styles.button, {backgroundColor: COLORS.buttonColor}]}>
           <TouchableHighlight
             style={{width: "100%", height: '100%', justifyContent: 'center', alignItems: 'center'}}
             onPress={this.handlePress} underlayColor="transparent">
