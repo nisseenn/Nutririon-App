@@ -12,8 +12,6 @@ const {width,height} = Dimensions.get('window')
 const CarouselComponent = (props) => {
 
 
-
-  const [activeSlide, setActiveSlide] = useState()
   const [activeTitle, setActiveTitle] = useState("Calories")
   const carouselRef = useRef()
 
