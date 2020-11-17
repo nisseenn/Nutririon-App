@@ -24,13 +24,14 @@ export const fetchUserData = () => {
       //Getting userid and token
       const userId = getState().auth.userId
       const token = getState().auth.token
+      console.log("userId ", userId);
+      console.log("token ", token);
 
       try {
         //Requesting data from Firebase with token and userid
       const response = await fetch(`https://nutrition-1cf49.firebaseio.com/users/${userId}.json?auth=${token}`);
       if (!response.ok) {
-        console.log('not ok');
-        throw new Error('Something went wrong');
+        throw new Error('fetchUserData > Something went wrong');
       }
       //transforming data from response
       const resData = await response.json();
@@ -65,7 +66,7 @@ export const editPreference = (preference, work, freetime, token, userId) => {
       });
 
     if(!response.ok) {
-      throw new Error("Something went wrong")
+      throw new Error("editPreference>Something went wrong")
     }
     //transforming data from response
     const resData = await response.json();
@@ -123,7 +124,7 @@ export const signup = (email, password, name, gender, age, weight, userHeight, p
     const userRecomendation = await fetch(`https://nutrition-1cf49.firebaseio.com/recommendations.json?auth=${idToken}`);
 
     if (!userRecomendation.ok) {
-      throw new Error('Something went wrong');
+      throw new Error('signup > Something went wrong');
     }
 
     const userReference = await userRecomendation.json()
