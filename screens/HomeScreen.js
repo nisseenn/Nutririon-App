@@ -234,7 +234,7 @@ useEffect(() => {
             useNativeDriver={true}
             style={[styles.progressText2, {transform: [{translateY: textTranslateY}]}]}>
             <Animated.Text style={styles.totalCals}>{calorySuggestion}</Animated.Text>
-            <Animated.Text style={styles.totalCalsDesc}>Calories left</Animated.Text>
+            <Animated.Text style={styles.totalCalsDesc}>kCals left</Animated.Text>
           </Animated.View>
 
           <Animated.View
