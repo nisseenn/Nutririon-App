@@ -146,7 +146,8 @@ const nutritionReducer = (state = initialState, action) => {
             fatTotal += parseInt(fat)
             carbsTotal += parseInt(carbs)
             proteinTotal += parseInt(protein)
-            // mealsOfDay[meals[meal].mealType] = meals[meal].mealTypeparseInt(calories)
+
+            mealsOfDay[meals[meal].mealType] = parseInt(calories)
           }
         }
       }
@@ -158,6 +159,8 @@ const nutritionReducer = (state = initialState, action) => {
         carbs: carbsTotal,
         protein: proteinTotal
       }
+
+      // console.log(mealsOfDay);
 
       const suggestedCals = refCals - cals
 
