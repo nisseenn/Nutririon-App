@@ -38,6 +38,7 @@ export const fetchUserData = () => {
       dispatch({ type: SET_PREFERENCE, token: token, userId: userId, preference: resData.preference, freetime: resData.freetime, work: resData.work, age: resData.age, gender: resData.gender })
 
     } catch (err) {
+      console.error(err);
       throw err;
     }
   }
@@ -70,6 +71,7 @@ export const editPreference = (preference, work, freetime, token, userId) => {
     const resData = await response.json();
 
   } catch (err) {
+    console.error(err);
     throw err;
   }
     //Dispatching the new state to Redux
