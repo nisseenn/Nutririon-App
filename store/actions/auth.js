@@ -121,22 +121,22 @@ export const signup = (email, password, name, gender, age, weight, userHeight, p
 
     await firebase.database().ref().update(updates)
 
-    const userRecomendation = await fetch(`https://nutrition-1cf49.firebaseio.com/recommendations.json?auth=${idToken}`);
+    // const userRecomendation = await fetch(`https://nutrition-1cf49.firebaseio.com/recommendations.json?auth=${idToken}`);
+    //
+    // if (!userRecomendation.ok) {
+    //   throw new Error('Something went wrong');
+    // }
 
-    if (!userRecomendation.ok) {
-      throw new Error('signup > Something went wrong');
-    }
+    // const userReference = await userRecomendation.json()
 
-    const userReference = await userRecomendation.json()
-
-    const filteredArray = userReference.filter(value => value !== null)
-    let filteredData = []
-
-    filteredArray.forEach((item, i) => {
-      if(item.sex.toLowerCase() == gender.toLowerCase() && item.labor.toLowerCase() == userWork.toLowerCase() && item.activity.toLowerCase() == userFreetime.toLowerCase()){
-        filteredData.push(item)
-      }
-    });
+    // const filteredArray = userReference.filter(value => value !== null)
+    // let filteredData = []
+    //
+    // filteredArray.forEach((item, i) => {
+    //   if(item.sex.toLowerCase() == gender.toLowerCase() && item.labor.toLowerCase() == userWork.toLowerCase() && item.activity.toLowerCase() == userFreetime.toLowerCase()){
+    //     filteredData.push(item)
+    //   }
+    // });
 
     dispatch(authenticate(user.uid, idToken))
     dispatch({ type: SET_PREFERENCE, preference: preference, work: userWork, freetime: userFreetime })
