@@ -295,9 +295,9 @@ useEffect(() => {
               <View>
                 <Text style={styles.cardTitle}>Breakfast</Text>
                 {todayMeal.Breakfast == undefined ? (
-                  <Text style={styles.cardDesc}>0 calories</Text>
+                  <Text style={styles.cardDesc}>0 kcals</Text>
                 ) : (
-                  <Text style={styles.cardDesc}>{todayMeal.Breakfast} calories</Text>
+                  <Text style={styles.cardDesc}>{todayMeal.Breakfast} kcals</Text>
                 )}
               </View>
             </TouchableOpacity>
@@ -307,9 +307,9 @@ useEffect(() => {
               <View>
                 <Text style={styles.cardTitle}>Lunch</Text>
                 {todayMeal.Lunch == undefined ? (
-                  <Text style={styles.cardDesc}>0 calories</Text>
+                  <Text style={styles.cardDesc}>0 kcals</Text>
                 ) : (
-                  <Text style={styles.cardDesc}>{todayMeal.Lunch} calories</Text>
+                  <Text style={styles.cardDesc}>{todayMeal.Lunch} kcals</Text>
                 )}
               </View>
             </TouchableOpacity>
@@ -319,9 +319,9 @@ useEffect(() => {
               <View>
                 <Text style={styles.cardTitle}>Dinner</Text>
                 {todayMeal.Dinner == undefined ? (
-                  <Text style={styles.cardDesc}>0 calories</Text>
+                  <Text style={styles.cardDesc}>0 kcals</Text>
                 ) : (
-                  <Text style={styles.cardDesc}>{todayMeal.Dinner} calories</Text>
+                  <Text style={styles.cardDesc}>{todayMeal.Dinner} kcals</Text>
                 )}
               </View>
             </TouchableOpacity>
@@ -335,10 +335,10 @@ useEffect(() => {
               ) : (
                 <Carousel
                   style={{zIndex: 30000, position: 'absolute', backgroundColor: 'red'}}
-                  cals={weekSummary[0].cals}
-                  carbs={weekSummary[0].carbs}
-                  protein={weekSummary[0].protein}
-                  fat={weekSummary[0].fat}
+                  cals={(weekSummary[0].cals).toString() + ' kcals'}
+                  carbs={(weekSummary[0].carbs).toString() + ' g'}
+                  protein={(weekSummary[0].protein).toString() + ' g'}
+                  fat={(weekSummary[0].fat).toString() + ' g'}
                 />
               )}
             </View>

@@ -26,7 +26,7 @@ const CarouselComponent = (props) => {
     return(
       <View style={styles.wrap}>
           <Image source={itemData.item.pic} style={styles.image}/>
-          <Text style={{fontSize: 30}}>{itemData.item.text}g</Text>
+          <Text style={{fontSize: 30}}>{itemData.item.text}</Text>
       </View>
     )
   }
