@@ -138,8 +138,8 @@ const AuthNavigator = createStackNavigator({
 //creating a switchnavigator which is temporary set to shop first,
 //auth will be on top in production
 const MainNavigator = createSwitchNavigator({
-    Start: StartUpScreen,
     Auth: AuthNavigator,
+    Start: StartUpScreen,
     Main: BottomNavigator,
 })
 //defining a var storing the main navigator
