@@ -487,7 +487,6 @@ const styles = StyleSheet.create({
     top: height / 2.6,
     width: '100%',
     zIndex: -1000,
-    width: '100%',
     alignItems: 'center',
   },
   card:{
