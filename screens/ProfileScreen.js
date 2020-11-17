@@ -118,18 +118,10 @@ const ProfileScreen = (props) => {
     setIsLoading(true)
     //Getting user from Firebase
     const user = await firebase.auth().currentUser
-    //Creating a new Obj to delete shit on RTDB
-    let message = {
-      age: null,
-      gender: null,
-      preference: null,
-      userHeight: null,
-      weight: null,
-      activity: null,
-      labor: null
-    }
+    
     //Updating RTDB with the new message, using userId ofc
-    firebase.database().ref('users').child(user.uid).update(message)
+    firebase.database().ref('users').child(user.uid).set(null)
+    firebase.database().ref('userMeals').child(user.uid).set(null)
     //Calling Redux logout function we created
     dispatch(logout())
     //Calling the Firebase function to delete user from the Authentication
@@ -144,8 +136,8 @@ const ProfileScreen = (props) => {
       // Profile menu - top of stack navigation
       <View style={styles.container}>
 
-          <View style={{zIndex: 1000, position: 'absolute', width: '100%', justifyContent: 'center', alignItems: 'center', top: 100}}>
-            <View style={{zIndex: 1000, backgroundColor: COLORS.accentColor, width: width / 3, height: width / 3, borderRadius: 300, alignItems: 'center', justifyContent: 'center'}}>
+          <View style={{zIndex: 100, position: 'absolute', width: '100%', justifyContent: 'center', alignItems: 'center', top: 100}}>
+            <View style={{zIndex: 100, backgroundColor: COLORS.accentColor, width: width / 3, height: width / 3, borderRadius: 300, alignItems: 'center', justifyContent: 'center'}}>
               <Text
                 style={styles.settingsText}>
                 {/* Displaying our beautiful character(s) */}
