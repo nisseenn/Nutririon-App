@@ -155,3 +155,7 @@ export const addMeal = (mealType) => {
 
   }
 }
+
+export const nutLogout = () => {
+  return { type: LOGOUT }
+}

@@ -3,6 +3,7 @@ import { View, StyleSheet, TouchableOpacity, Text, ActivityIndicator, Alert, Dim
 import { AsyncStorage } from 'react-native'
 
 import { logout } from '../store/actions/auth'
+import { nutLogout } from '../store/actions/nutrition'
 import { editPreference } from '../store/actions/auth'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -124,6 +125,7 @@ const ProfileScreen = (props) => {
     firebase.database().ref('userMeals').child(user.uid).set(null)
     //Calling Redux logout function we created
     dispatch(logout())
+    dispatch(nutLogout())
     //Calling the Firebase function to delete user from the Authentication
     await user.delete()
     //Navigating to Auth ofc
