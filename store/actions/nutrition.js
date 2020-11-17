@@ -6,6 +6,7 @@ export const SET_SUGGESTION = 'SET_SUGGESTION'
 export const SET_INGREDIENTS = 'SET_INGREDIENTS'
 export const ADD_INGREDIENT =  'ADD_INGREDIENT'
 export const DELETE_INGREDIENT = 'DELETE_INGREDIENT'
+export const LOGOUT = 'LOGOUT'
 
 export const fetchIngredients = () => {
   return async(dispatch, getState) => {
