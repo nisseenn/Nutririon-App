@@ -83,9 +83,9 @@ const HomeScreen = (props) => {
   const todayMeal = useSelector(state => state.nutrition.todayMeal)
   const weekSummary = useSelector(state => state.nutrition.weekSummary)
 
+  console.log(todayMeal);
   const percent1 = 1 - (calorySuggestion / caloryRef)
   const percent = Math.round(percent1 * 100)
-  console.log(caloryRef)
 
   const proteinPercent = nutrients.protein / nutrients.total
   const fatPercent = nutrients.fat / nutrients.total
@@ -194,7 +194,7 @@ useEffect(() => {
 
         </View>
       )}
-      <Animated.View 
+      <Animated.View
         useNativeDriver={true}
         style={[styles.calendarWrap, {transform: [{translateX: dateTranslateX}]}]}>
         <TouchableOpacity
@@ -230,14 +230,14 @@ useEffect(() => {
             </AnimatedCircle>
           </View>
 
-          <Animated.View 
+          <Animated.View
             useNativeDriver={true}
             style={[styles.progressText2, {transform: [{translateY: textTranslateY}]}]}>
             <Animated.Text style={styles.totalCals}>{calorySuggestion}</Animated.Text>
             <Animated.Text style={styles.totalCalsDesc}>Calories left</Animated.Text>
           </Animated.View>
 
-          <Animated.View 
+          <Animated.View
             useNativeDriver={true}
             style={[{...styles.barWrap, opacity: barOpacity}]}>
             <View style={styles.nutrientWrap}>
