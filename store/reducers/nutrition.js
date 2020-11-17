@@ -6,6 +6,7 @@ import { SET_SUGGESTION } from '../actions/nutrition'
 import { SET_INGREDIENTS } from '../actions/nutrition'
 import { ADD_INGREDIENT } from '../actions/nutrition'
 import { DELETE_INGREDIENT } from '../actions/nutrition'
+import { LOGOUT } from '../actions/nutrition'
 
 const initialState = {
   ingredients: [],
@@ -21,6 +22,10 @@ const initialState = {
 
 const nutritionReducer = (state = initialState, action) => {
   switch (action.type) {
+    
+    case LOGOUT:
+      return initialState;
+    
     case SET_INGREDIENTS:
 
       return { ...state, ingredients: action.ingredients, mealIngredients: action.mealIngredients }
