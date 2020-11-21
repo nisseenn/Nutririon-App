@@ -13,9 +13,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import COLORS from '../constants/Colors'
 import Calendar from '../components/Calendar'
 import Carousel from '../components/Carousel'
+import UserMealButton from '../components/UserMealButton'
 
 import ProgressCircle from 'react-native-progress-circle'
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { ProgressBar } from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
 
@@ -83,7 +84,6 @@ const HomeScreen = (props) => {
   const todayMeal = useSelector(state => state.nutrition.todayMeal)
   const weekSummary = useSelector(state => state.nutrition.weekSummary)
 
-  console.log(todayMeal);
   const percent1 = 1 - (calorySuggestion / caloryRef)
   const percent = Math.round(percent1 * 100)
 
@@ -205,6 +205,17 @@ useEffect(() => {
           <FontAwesome5 size={30} color="#fff" name="calendar-alt"/>
           <Text style={styles.calendarText}>{dateShown}</Text>
         </TouchableOpacity>
+      </Animated.View>
+
+      <Animated.View
+        useNativeDriver={true}
+        style={[{...styles.progressText3, opacity: barOpacity, transform: [{translateY: textTranslateY}]}]}>
+        <UserMealButton />
+        {/* <TouchableOpacity onPress={() => {
+
+        }}>
+          <MaterialCommunityIcons name="food-variant" size={36} color="white"/>
+        </TouchableOpacity> */}
       </Animated.View>
 
       <Animated.View
@@ -331,7 +342,8 @@ useEffect(() => {
             </View>
             <View style={{}}>
               {weekSummary.length == 0 ? (
-                <ActivityIndicator size="small" color={COLORS.primaryColor}></ActivityIndicator>
+                <Text>No weekly meals found</Text>
+                /* <ActivityIndicator size="small" color={COLORS.primaryColor}></ActivityIndicator> */
               ) : (
                 <Carousel
                   style={{zIndex: 30000, position: 'absolute', backgroundColor: 'red'}}
@@ -362,7 +374,7 @@ const styles = StyleSheet.create({
     top: 0,
     height: height / 2.6,
     backgroundColor: 'white',
-    zIndex: 6000,
+    zIndex: 8000,
   },
   modalButton:{
     paddingVertical: 10,
@@ -390,7 +402,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 60,
     left: 20,
-    zIndex: 9000,
+    zIndex: 6000,
   },
   titleWrap:{
     width: '90%',
@@ -449,7 +461,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     position: 'absolute',
     bottom: 70,
-    left: 55
+    left: 57
+  },
+  progressText3:{
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    zIndex: 7000,
   },
   barWrap:{
     justifyContent: 'flex-start',

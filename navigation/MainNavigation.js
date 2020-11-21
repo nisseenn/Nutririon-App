@@ -109,7 +109,7 @@ const BottomNavigator = createBottomTabNavigator(tabScreenConfig, {
     inactiveTintColor: Colors.iconColor,
     style: {
       backgroundColor: Colors.primaryColor,
-    }
+    },
   },
   initialRouteName: 'Home',
       //makes the sexy color change possible
@@ -138,8 +138,8 @@ const AuthNavigator = createStackNavigator({
 //creating a switchnavigator which is temporary set to shop first,
 //auth will be on top in production
 const MainNavigator = createSwitchNavigator({
-    Auth: AuthNavigator,
     Start: StartUpScreen,
+    Auth: AuthNavigator,
     Main: BottomNavigator,
 })
 //defining a var storing the main navigator
