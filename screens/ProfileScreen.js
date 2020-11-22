@@ -5,6 +5,8 @@ import { AsyncStorage } from 'react-native'
 import { logout } from '../store/actions/auth'
 import { nutLogout } from '../store/actions/nutrition'
 import { editPreference } from '../store/actions/auth'
+import { fetchUserData } from '../store/actions/auth'
+import { fetchUserMeals } from '../store/actions/nutrition'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { MaterialIcons } from '@expo/vector-icons';
@@ -13,6 +15,8 @@ import firebase from 'firebase';
 import * as Animatable from 'react-native-animatable';
 import Slider from '@react-native-community/slider';
 import { Switch } from 'react-native-switch';
+import * as FileSystem from "expo-file-system";
+import * as Sharing from "expo-sharing";
 
 //import constants
 import COLORS from '../constants/Colors'
@@ -134,6 +138,43 @@ const ProfileScreen = (props) => {
     setIsLoading(false)
   }
 
+ 
+
+  const gdprDataHandler = async () => {
+
+    setIsLoading(true)
+
+    var dbRef
+    var storedUser
+    var storedMeals
+
+    //Getting user from Firebase
+    const user = await firebase.auth().currentUser
+  
+    dbRef = firebase.database().ref('users').child(user.uid)
+    
+    await dbRef.once('value', snapshot => {
+      storedUser =  snapshot.val() 
+    });
+
+    dbRef = firebase.database().ref('userMeals').child(user.uid)
+    
+    await dbRef.on('value', snapshot => {
+      storedMeals =  snapshot.val()  
+    });
+
+    var outData = Object.assign({}, storedUser, storedMeals);
+
+    outData = JSON.stringify(outData, null, 4)
+
+    const fileUri = 'file://' + FileSystem.documentDirectory + 'nutrition_' + user.uid + '.json';
+      await FileSystem.writeAsStringAsync(fileUri, outData, { encoding: FileSystem.EncodingType.UTF8});
+      await Sharing.shareAsync(fileUri);
+ 
+    setIsLoading(false)
+
+  }
+
   return (
       // Profile menu - top of stack navigation
       <View style={styles.container}>
@@ -193,9 +234,11 @@ const ProfileScreen = (props) => {
     </View>
 
     <View style={styles.preferences}>
-      <TouchableOpacity style={styles.preferencesButton}>
+      <TouchableOpacity 
+        style={styles.preferencesButton}
+        onPress = {() => { gdprDataHandler() }}>
         <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-          View Privacy Policy
+          Download stored data
         </Text>
         <MaterialIcons name="navigate-next" size={26} color="#000"/>
       </TouchableOpacity>
