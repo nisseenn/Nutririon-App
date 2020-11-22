@@ -70,10 +70,11 @@ export default class AddButton extends React.Component {
     return(
       <View style={{position: 'absolute', alignItems: 'center', justifyContent: 'center'}}>
 
-        <Animated.View 
+        <Animated.View
           useNativeDriver={true}
           style={[styles.modal, {top: modalY, height: heightModal, width: widthModal, opacity: modalOpacity}]}>
 
+          <Text style={styles.modalTitle}>Add a meal</Text>
           <View style={styles.rowWrap}>
             <Animated.View
               useNativeDriver={true}
@@ -164,6 +165,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  modalTitle:{
+    fontSize: 22,
+    color: "#fff",
+    fontWeight: '600',
+    width: '100%',
+    textAlign: 'center',
+    marginTop: 20
+  },
   image:{
     width: 80,
     height: 80
@@ -191,6 +200,6 @@ const styles = StyleSheet.create({
   modal: {
     position: "absolute",
     backgroundColor: 'rgba(58,90,140,.96)',
-    elevation: 3
+    elevation: 3,
   }
 })

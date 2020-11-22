@@ -22,10 +22,10 @@ const initialState = {
 
 const nutritionReducer = (state = initialState, action) => {
   switch (action.type) {
-    
+
     case LOGOUT:
       return initialState;
-    
+
     case SET_INGREDIENTS:
 
       return { ...state, ingredients: action.ingredients, mealIngredients: action.mealIngredients }
@@ -164,8 +164,6 @@ const nutritionReducer = (state = initialState, action) => {
         carbs: carbsTotal,
         protein: proteinTotal
       }
-
-      // console.log(mealsOfDay);
 
       const suggestedCals = refCals - cals
 

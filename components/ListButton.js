@@ -103,7 +103,7 @@ export default class ListButton extends React.Component {
     return(
       <View style={{position: 'absolute', bottom: 60, right: 70}}>
 
-        <Animated.View 
+        <Animated.View
           useNativeDriver={true}
           style={[styles.modal, {top: modalY, height: heightModal, width: widthModal, opacity: modalOpacity}]}>
           <View>
@@ -135,10 +135,11 @@ export default class ListButton extends React.Component {
 
         </Animated.View>
 
-        <Animated.View 
+        <Animated.View
           useNativeDriver={true}
           style={[styles.button, {backgroundColor: COLORS.buttonColor}]}>
           <TouchableOpacity
+            activeOpacity={.7}
             style={{width: "100%", height: '100%', justifyContent: 'center', alignItems: 'center'}}
             onPress={this.handlePress} underlayColor="transparent">
 

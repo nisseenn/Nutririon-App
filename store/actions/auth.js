@@ -24,8 +24,6 @@ export const fetchUserData = () => {
       //Getting userid and token
       const userId = getState().auth.userId
       const token = getState().auth.token
-      console.log("userId ", userId);
-      console.log("token ", token);
 
       try {
         //Requesting data from Firebase with token and userid
