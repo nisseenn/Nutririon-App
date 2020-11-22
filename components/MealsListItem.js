@@ -38,7 +38,7 @@ const MealsListItem = (props) => {
             )}
 
             {props.mealType == "Lunch" ? (
-              <Image source={breakfast} style={styles.image}/>
+              <Image source={lunch} style={styles.image}/>
             ) : (
               <View></View>
             )}
@@ -60,10 +60,10 @@ const MealsListItem = (props) => {
 
               </View>
               <View style={{marginTop: 0, marginLeft: 30, marginBottom: 20}}>
-                <Text style={styles.cardDesc}>kcals: {props.data[0].split(".")[0]}</Text>
-                <Text style={styles.cardDesc}>fat: {props.data[1].split(".")[0]}g</Text>
-                <Text style={styles.cardDesc}>carbs: {props.data[2].split(".")[0]}g</Text>
-                <Text style={styles.cardDesc}>protein: {props.data[3].split(".")[0]}g</Text>
+                <Text style={styles.cardDesc}>kcals: {props.data[0]}</Text>
+                <Text style={styles.cardDesc}>fat: {props.data[1]}g</Text>
+                <Text style={styles.cardDesc}>carbs: {props.data[2]}g</Text>
+                <Text style={styles.cardDesc}>protein: {props.data[3]}g</Text>
               </View>
             </View>
 
@@ -91,7 +91,7 @@ const MealsListItem = (props) => {
             )}
 
             {props.mealType == "Lunch" ? (
-              <Image source={breakfast} style={styles.image}/>
+              <Image source={lunch} style={styles.image}/>
             ) : (
               <View></View>
             )}
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   card:{
-    backgroundColor: 'rgba(176,189,209,1)',
+    backgroundColor: 'rgba(246,247,248,1)',
     width: '95%',
     borderRadius: 5,
     marginVertical: 5,

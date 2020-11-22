@@ -21,9 +21,19 @@ const UserMealList = (props) => {
 
   const renderIngredients = (itemData) => {
     let data = []
-    itemData.item.ingredients.map(cals => {
-      data.push(cals.energi2.split(/[=}]/)[2], cals.fat.split(/[=}]/)[2], cals.carbs.split(/[=}]/)[2], cals.protein.split(/[=}]/)[2])
+    let calories = 0
+    let fat = 0;
+    let protein = 0;
+    let carbs = 0;
+    // console.log(itemData.item);
+    itemData.item.ingredients.map((cals, index) => {
+      calories += parseInt(cals.energi2.split(/[=}]/)[2])
+      fat += parseInt(cals.fat.split(/[=}]/)[2])
+      protein += parseInt(cals.protein.split(/[=}]/)[2])
+      carbs += parseInt(cals.carbs.split(/[=}]/)[2])
     })
+    // console.log(calories, fat, protein, carbs);
+    data.push(calories, fat, carbs, protein)
 
     return (
       <MealsListItem
@@ -69,41 +79,10 @@ const UserMealList = (props) => {
 }
 
 const styles = StyleSheet.create({
-  cardWrap:{
-    flexGrow: 1,
-    alignItems: 'center'
-  },
-  card:{
-    backgroundColor: 'rgba(176,189,209,1)',
-    width: '95%',
-    borderRadius: 5,
-    marginVertical: 5,
-    alignItems: 'center',
-    flexDirection: 'row',
-    shadowRadius: 2,
-    shadowOffset: {height:2},
-    shadowOpacity: 0.1,
-    zIndex: 1000,
-    flex:1,
-    height: "auto",
-  },
   image:{
     marginLeft: 20,
     width: 60,
     height: 60
-  },
-  cardTitle:{
-    fontSize: 20,
-    marginLeft: 30,
-    color:"#000",
-    fontWeight: 'bold',
-  },
-  cardDesc:{
-    fontSize: 16,
-    marginLeft: 30,
-    color:"#000",
-    fontWeight: '400',
-    marginTop: 5
   },
 })
 
