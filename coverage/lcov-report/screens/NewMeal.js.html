@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">5.88% </span>
+                <span class="strong">5.8% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/68</span>
+                <span class='fraction'>4/69</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">6.15% </span>
+                <span class="strong">6.06% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/65</span>
+                <span class='fraction'>4/66</span>
             </div>
         
             
@@ -354,7 +354,11 @@
 <a name='L295'></a><a href='#L295'>295</a>
 <a name='L296'></a><a href='#L296'>296</a>
 <a name='L297'></a><a href='#L297'>297</a>
-<a name='L298'></a><a href='#L298'>298</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L298'></a><a href='#L298'>298</a>
+<a name='L299'></a><a href='#L299'>299</a>
+<a name='L300'></a><a href='#L300'>300</a>
+<a name='L301'></a><a href='#L301'>301</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -444,6 +448,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -538,6 +543,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -651,22 +657,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
-import { ScrollView, View, TextInput, StyleSheet, FlatList, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState, useCallback, useEffect, useRef } from 'react'
+import { View, StyleSheet, FlatList, Text, ActivityIndicator, Dimensions } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import * as Animatable from 'react-native-animatable';
 import { SearchBar } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 &nbsp;
 import { fetchIngredients } from '../store/actions/nutrition'
+import { fetchUserMeals } from '../store/actions/nutrition'
 import { addIngredient } from '../store/actions/nutrition'
 import { deleteIngredient } from '../store/actions/nutrition'
 import { addMeal } from '../store/actions/nutrition'
 &nbsp;
 import ListButton from '../components/ListButton'
 import IngredientItem from '../components/IngredientItem'
-import Colors from '../constants/Colors'
+import COLORS from '../constants/Colors'
 &nbsp;
 const {width,height} = Dimensions.get('window')
 &nbsp;
@@ -738,9 +745,10 @@ const NewMeal = <span class="fstat-no" title="function not covered" >(p</span>ro
   }
 &nbsp;
   const submitHandler = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    console.log('hei');</span>
-<span class="cstat-no" title="statement not covered" >    await dispatch(addMeal())</span>
+<span class="cstat-no" title="statement not covered" >    await dispatch(addMeal(mealType))</span>
 <span class="cstat-no" title="statement not covered" >    handleAnimation()</span>
+<span class="cstat-no" title="statement not covered" >    dispatch(fetchIngredients())</span>
+<span class="cstat-no" title="statement not covered" >    dispatch(fetchUserMeals())</span>
   }
 &nbsp;
   const handleAnimation = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync() =&gt; {</span>
@@ -768,17 +776,17 @@ const NewMeal = <span class="fstat-no" title="function not covered" >(p</span>ro
 <span class="cstat-no" title="statement not covered" >            props.navigation.navigate("detail", {</span>
               name: itemData.item.name,
               id: itemData.item.id,
-              energi: itemData.item.Energi1,
-              fett: itemData.item.Fett,
-              protein: itemData.item.Protein,
-              karbo: itemData.item.Karbo,
-              fiber: itemData.item.Fiber,
-              sukker: itemData.item.Sukker,
-              porsjon: itemData.item.Portion
+              energi: itemData.item.energi1,
+              fett: itemData.item.fat,
+              protein: itemData.item.protein,
+              karbo: itemData.item.carbs,
+              fiber: itemData.item.fiber,
+              sukker: itemData.item.sugar,
+              porsjon: itemData.item.portion
             })
           }}
           onAddIngredient={<span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >            console.log('heipådeg');</span>
+<span class="cstat-no" title="statement not covered" >            console.log(itemData.item);</span>
             let objectReturn = <span class="cstat-no" title="statement not covered" >addIngredient(itemData.item.id)</span>
 <span class="cstat-no" title="statement not covered" >            dispatch(objectReturn)</span>
           }}
@@ -796,7 +804,7 @@ const NewMeal = <span class="fstat-no" title="function not covered" >(p</span>ro
 <span class="cstat-no" title="statement not covered" >  if(isLoading){</span>
 <span class="cstat-no" title="statement not covered" >    return (</span>
       &lt;View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}&gt;
-        &lt;ActivityIndicator size="large" color={Colors.iconColor} /&gt;
+        &lt;ActivityIndicator size="large" color={COLORS.iconColor} /&gt;
       &lt;/View&gt;
     );
   }
@@ -808,7 +816,7 @@ const NewMeal = <span class="fstat-no" title="function not covered" >(p</span>ro
           &lt;Text style={styles.mealText}&gt;{mealType}&lt;/Text&gt;
         &lt;/View&gt;
         &lt;LinearGradient
-            colors={[Colors.primaryColor, Colors.accentColor]}
+            colors={[COLORS.primaryColor, COLORS.accentColor]}
             style={{
               // flex:1,
               height: height / 3
@@ -823,7 +831,7 @@ const NewMeal = <span class="fstat-no" title="function not covered" >(p</span>ro
           placeholder="Search here..."
           onChangeText={<span class="fstat-no" title="function not covered" >te</span>xt =&gt; <span class="cstat-no" title="statement not covered" >searchIngredients(text)}</span>
           value={search}
-          searchIcon={{color: Colors.iconColor}}
+          searchIcon={{color: COLORS.iconColor}}
         /&gt;
       &lt;/View&gt;
       &lt;FlatList
@@ -847,6 +855,7 @@ const NewMeal = <span class="fstat-no" title="function not covered" >(p</span>ro
       {addAnimation ? (
         &lt;View style={styles.animationPopWrap}&gt;
           &lt;Animatable.View
+            useNativeDriver={true}
             style={styles.popupWrap}
             ref={imageRef}
             &gt;
@@ -906,7 +915,7 @@ const styles = StyleSheet.create({
   ingListButton:{
     paddingVertical: 15,
     borderRadius: 30,
-    backgroundColor: Colors.buttonColor,
+    backgroundColor: COLORS.buttonColor,
     paddingHorizontal: 15,
     shadowOffset: {
       width: 0,
@@ -955,7 +964,7 @@ export default NewMeal
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Oct 25 2020 21:29:04 GMT+0100 (GMT+01:00)
+                at Tue Dec 01 2020 16:15:36 GMT+0100 (Central European Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

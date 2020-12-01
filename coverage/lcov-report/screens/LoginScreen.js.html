@@ -516,9 +516,7 @@
 <a name='L457'></a><a href='#L457'>457</a>
 <a name='L458'></a><a href='#L458'>458</a>
 <a name='L459'></a><a href='#L459'>459</a>
-<a name='L460'></a><a href='#L460'>460</a>
-<a name='L461'></a><a href='#L461'>461</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L460'></a><a href='#L460'>460</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -978,16 +976,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
-import { Platform, ScrollView, View, TextInput, Keyboard, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
+import { Platform, ScrollView, View, TextInput, Keyboard, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Dimensions } from 'react-native'
 import { useDispatch } from 'react-redux'
 import firebase from 'firebase';
 import { login } from '../store/actions/auth'
 import { LinearGradient } from 'expo-linear-gradient'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
-import Animated from 'react-native-reanimated';
 //Importing the colors we are going to use
-import Colors from '../constants/Colors'
+import COLORS from '../constants/Colors'
 //Importing our customized, amazing component, which can be used in multiple other components
 import Input from '../components/Input'
 &nbsp;
@@ -1093,7 +1090,7 @@ const LoginScreen = (props) =&gt; {
   //Calling the firebase method to sendPasswordResetEmail with argument, which is the user email
 <span class="cstat-no" title="statement not covered" >  firebase.auth().sendPasswordResetEmail(emailHolder2).then(<span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
 &nbsp;
-  }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(error) {
+  }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction() {
 <span class="cstat-no" title="statement not covered" >    Alert.alert(</span>
     'Email not found',
     '',
@@ -1147,7 +1144,7 @@ const LoginScreen = (props) =&gt; {
       keyboardVerticalOffset={-200}
       style={styles.screen}&gt;
       &lt;LinearGradient
-          colors={[Colors.primaryColor, '#70ffe1']}
+          colors={[COLORS.primaryColor, '#70ffe1']}
           style={{
             position: 'absolute',
             left: 0,
@@ -1175,7 +1172,7 @@ const LoginScreen = (props) =&gt; {
           &lt;Text style={styles.inputTitle}&gt;Email&lt;/Text&gt;
           &lt;View style={styles.inputcontainer}&gt;
             &lt;View style={styles.iconcont}&gt;
-              &lt;MaterialIcons name="person-outline" size={30} color={Colors.iconColor}/&gt;
+              &lt;MaterialIcons name="person-outline" size={30} color={COLORS.iconColor}/&gt;
             &lt;/View&gt;
             &lt;Input
               id="email"
@@ -1199,7 +1196,7 @@ const LoginScreen = (props) =&gt; {
             &lt;/View&gt;
             &lt;View style={styles.inputcontainer}&gt;
               &lt;View style={styles.iconcont}&gt;
-                &lt;MaterialIcons name="lock-outline" size={30} color={Colors.iconColor}/&gt;
+                &lt;MaterialIcons name="lock-outline" size={30} color={COLORS.iconColor}/&gt;
               &lt;/View&gt;
                 &lt;Input
                   id="password"
@@ -1219,14 +1216,14 @@ const LoginScreen = (props) =&gt; {
             {isLoading ? (
 <span class="branch-0 cbranch-no" title="branch not covered" >              &lt;TouchableOpacity</span>
                 onPress={authHandler}
-                style={{...styles.button, backgroundColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}&gt;
+                style={{...styles.button, backgroundColor: COLORS.buttonColor, flexDirection: 'row', justifyContent: 'center'}}&gt;
                 &lt;ActivityIndicator size="small" color="black"/&gt;
               &lt;/TouchableOpacity&gt;
             )
             : (
             &lt;TouchableOpacity
               onPress={authHandler}
-              style={{...styles.button, backgroundColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}&gt;
+              style={{...styles.button, backgroundColor: COLORS.buttonColor, flexDirection: 'row', justifyContent: 'center'}}&gt;
               &lt;Text style={{fontSize: 20, fontWeight: 'bold', color: '#000'}}&gt;Log in&lt;/Text&gt;
               &lt;MaterialIcons name="navigate-next" size={26} color="#000"/&gt;
             &lt;/TouchableOpacity&gt;
@@ -1238,12 +1235,12 @@ const LoginScreen = (props) =&gt; {
               &lt;View&gt;
                 &lt;TouchableOpacity
                   style={{
-                    ...styles.button2, borderColor: Colors.buttonColor, borderWidth: 1, flexDirection: 'row', justifyContent: 'center'
+                    ...styles.button2, borderColor: COLORS.buttonColor, borderWidth: 1, flexDirection: 'row', justifyContent: 'center'
                   }}
                   onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; {
 <span class="cstat-no" title="statement not covered" >                    props.navigation.navigate("signup")</span>
                   }}&gt;
-                  &lt;Text style={{fontSize: 20, fontWeight: 'bold', color: Colors.buttonColor}}&gt;
+                  &lt;Text style={{fontSize: 20, fontWeight: 'bold', color: COLORS.buttonColor}}&gt;
                     Sign up
                   &lt;/Text&gt;
                 &lt;/TouchableOpacity&gt;
@@ -1263,7 +1260,7 @@ const LoginScreen = (props) =&gt; {
               &lt;View&gt;
                 &lt;Button
                 title='Sign Up'
-                color={Colors.iconColor}
+                color={COLORS.iconColor}
                 onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; {
 <span class="cstat-no" title="statement not covered" >                  props.navigation.navigate("signup")</span>
                 }}/&gt;
@@ -1444,7 +1441,7 @@ export default LoginScreen
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Oct 25 2020 21:29:04 GMT+0100 (GMT+01:00)
+                at Tue Dec 01 2020 16:15:36 GMT+0100 (Central European Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

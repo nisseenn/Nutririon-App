@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">19.05% </span>
+                <span class="strong">21.05% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/21</span>
+                <span class='fraction'>4/19</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">19.05% </span>
+                <span class="strong">21.05% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/21</span>
+                <span class='fraction'>4/19</span>
             </div>
         
             
@@ -342,13 +342,7 @@
 <a name='L283'></a><a href='#L283'>283</a>
 <a name='L284'></a><a href='#L284'>284</a>
 <a name='L285'></a><a href='#L285'>285</a>
-<a name='L286'></a><a href='#L286'>286</a>
-<a name='L287'></a><a href='#L287'>287</a>
-<a name='L288'></a><a href='#L288'>288</a>
-<a name='L289'></a><a href='#L289'>289</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L286'></a><a href='#L286'>286</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -368,12 +362,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -633,17 +627,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
-import { ScrollView, SafeAreaView, View, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
-&nbsp;
-import { fetchUserData } from '../store/actions/auth'
-import { fetchIngredients } from '../store/actions/nutrition'
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from 'react'
+import { ScrollView, View, StyleSheet, TextInput, TouchableOpacity, Text, Dimensions } from 'react-native'
 import { addIngredient } from '../store/actions/nutrition'
 &nbsp;
-import { useDispatch, useSelector } from 'react-redux'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { useDispatch } from 'react-redux'
+import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient'
-import Colors from '../constants/Colors'
+import COLORS from '../constants/Colors'
 import ProgressCircle from 'react-native-progress-circle'
 &nbsp;
 const {width,height} = Dimensions.get('window')
@@ -656,12 +647,12 @@ const IngredientDetailScreen = <span class="fstat-no" title="function not covere
 &nbsp;
   const id = <span class="cstat-no" title="statement not covered" >props.navigation.getParam("id")</span>
   const name = <span class="cstat-no" title="statement not covered" >props.navigation.getParam("name")</span>
-  const porsjon = <span class="cstat-no" title="statement not covered" >props.navigation.getParam("porsjon").replace(/[&amp;\/\\#,+()$~%'":*?&lt;&gt;{}=@;]/g, '').split("value")[1]</span>
+  //const porsjon = props.navigation.getParam("porsjon").replace(/[&amp;\/\\#,+()$~%'":*?&lt;&gt;{}=@;]/g, '').split("value")[1]
   const protein = <span class="cstat-no" title="statement not covered" >props.navigation.getParam("protein").replace(/[&amp;\/\\#,+()$~%'":*?&lt;&gt;{}=@;]/g, '').split("value")[1]</span>
   const fett = <span class="cstat-no" title="statement not covered" >props.navigation.getParam("fett").replace(/[&amp;\/\\#,+()$~%'":*?&lt;&gt;{}=@;]/g, '').split("value")[1]</span>
   const fiber = <span class="cstat-no" title="statement not covered" >props.navigation.getParam("fiber").replace(/[&amp;\/\\#,+()$~%'":*?&lt;&gt;{}=@;]/g, '').split("value")[1]</span>
   const karbo = <span class="cstat-no" title="statement not covered" >props.navigation.getParam("karbo").replace(/[&amp;\/\\#,+()$~%'":*?&lt;&gt;{}=@;]/g, '').split("value")[1]</span>
-  const sukker = <span class="cstat-no" title="statement not covered" >props.navigation.getParam("sukker").replace(/[&amp;\/\\#,+()$~%'":*?&lt;&gt;{}=@;]/g, '').split("value")[1]</span>
+  //const sukker = props.navigation.getParam("sukker").replace(/[&amp;\/\\#,+()$~%'":*?&lt;&gt;{}=@;]/g, '').split("value")[1]
 &nbsp;
   //Returning the JSX code
 <span class="cstat-no" title="statement not covered" >  return(</span>
@@ -727,7 +718,7 @@ const IngredientDetailScreen = <span class="fstat-no" title="function not covere
                 percent={protein}
                 radius={50}
                 borderWidth={10}
-                color={Colors.primaryColor}
+                color={COLORS.primaryColor}
                 shadowColor="#ccc"
                 bgColor="#fff"
             &gt;
@@ -741,7 +732,7 @@ const IngredientDetailScreen = <span class="fstat-no" title="function not covere
                 percent={fett}
                 radius={50}
                 borderWidth={10}
-                color={Colors.primaryColor}
+                color={COLORS.primaryColor}
                 shadowColor="#ccc"
                 bgColor="#fff"
             &gt;
@@ -755,7 +746,7 @@ const IngredientDetailScreen = <span class="fstat-no" title="function not covere
                 percent={karbo}
                 radius={50}
                 borderWidth={10}
-                color={Colors.primaryColor}
+                color={COLORS.primaryColor}
                 shadowColor="#ccc"
                 bgColor="#fff"
             &gt;
@@ -860,7 +851,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Colors.buttonColor
+    backgroundColor: COLORS.buttonColor
   },
   buttonText:{
     fontSize: 18,
@@ -928,7 +919,7 @@ export default IngredientDetailScreen
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Oct 25 2020 21:29:04 GMT+0100 (GMT+01:00)
+                at Tue Dec 01 2020 16:15:36 GMT+0100 (Central European Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

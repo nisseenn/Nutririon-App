@@ -233,9 +233,7 @@
 <a name='L174'></a><a href='#L174'>174</a>
 <a name='L175'></a><a href='#L175'>175</a>
 <a name='L176'></a><a href='#L176'>176</a>
-<a name='L177'></a><a href='#L177'>177</a>
-<a name='L178'></a><a href='#L178'>178</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L177'></a><a href='#L177'>177</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -411,17 +409,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState, useReducer, useCallback, useEffect, useRef } from 'react'
-import { ScrollView, View, StyleSheet, StatusBar, KeyboardAvoidingView, TouchableOpacity, Text, Button, ActivityIndicator, Alert, Image, Dimensions } from 'react-native'
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react'
+import { View, StyleSheet, TouchableOpacity, Text, Image, Dimensions } from 'react-native'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient'
 //Getting the width and height of the screen
 const {width,height} = Dimensions.get('window')
 //Creating a var for the logo based on the height of screen
 const height_logo = height * 0.6 * 0.4
 import Svg, { Path } from 'react-native-svg';
 &nbsp;
-import Colors from '../constants/Colors'
+import COLORS from '../constants/Colors'
 &nbsp;
 &nbsp;
 const StartScreen = (props) =&gt; {
@@ -448,7 +445,7 @@ const StartScreen = (props) =&gt; {
                 style={{position: 'absolute', top: height - 250, height: 300, width: width, backgroundColor: '#69a1ff'}}&gt;
               &lt;/View&gt;
               &lt;View
-                style={{position: 'absolute', zIndex: 100, top: height - 165, height: 300, width: width, backgroundColor: Colors.primaryColor}}&gt;
+                style={{position: 'absolute', zIndex: 100, top: height - 165, height: 300, width: width, backgroundColor: COLORS.primaryColor}}&gt;
               &lt;/View&gt;
               &lt;Svg
                 style={{position: 'absolute', bottom: 0, zIndex: 1000}}
@@ -462,7 +459,7 @@ const StartScreen = (props) =&gt; {
                 width="100%"
                 viewBox="0 0 1440 320"&gt;
                 &lt;Path
-                  fill={Colors.primaryColor}
+                  fill={COLORS.primaryColor}
                   d="M0,32L60,64C120,96,240,160,360,208C480,256,600,288,720,256C840,224,960,128,1080,80C1200,32,1320,32,1380,32L1440,32L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
                   /&gt;
               &lt;/Svg&gt;
@@ -492,7 +489,7 @@ const StartScreen = (props) =&gt; {
                 width="100%"
                 viewBox="0 0 1440 320"&gt;
                 &lt;Path
-                  fill={Colors.primaryColor}
+                  fill={COLORS.primaryColor}
                   d="M0,96L60,90.7C120,85,240,75,360,101.3C480,128,600,192,720,202.7C840,213,960,171,1080,165.3C1200,160,1320,192,1380,208L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
                   /&gt;
               &lt;/Svg&gt;
@@ -510,7 +507,7 @@ const StartScreen = (props) =&gt; {
                 onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; {
 <span class="cstat-no" title="statement not covered" >                  props.navigation.navigate("login")</span>
                 }}
-                style={{...styles.button, backgroundColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}&gt;
+                style={{...styles.button, backgroundColor: COLORS.buttonColor, flexDirection: 'row', justifyContent: 'center'}}&gt;
                 &lt;Text style={{fontSize: 20, fontWeight: 'bold', color: 'black'}}&gt;Log in&lt;/Text&gt;
                 &lt;MaterialIcons name="navigate-next" size={26} color="black"/&gt;
               &lt;/TouchableOpacity&gt;
@@ -518,7 +515,7 @@ const StartScreen = (props) =&gt; {
                 onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; {
 <span class="cstat-no" title="statement not covered" >                  props.navigation.navigate("signup")</span>
                 }}
-                style={{...styles.button, borderWidth: 2,backgroundColor: 'rgba(229,	103,	103, 0)', borderColor: Colors.buttonColor, flexDirection: 'row', justifyContent: 'center'}}&gt;
+                style={{...styles.button, borderWidth: 2,backgroundColor: 'rgba(229,	103,	103, 0)', borderColor: COLORS.buttonColor, flexDirection: 'row', justifyContent: 'center'}}&gt;
                 &lt;Text style={{fontSize: 20, fontWeight: '500', color: '#fff'}}&gt;Sign up&lt;/Text&gt;
                 &lt;MaterialIcons name="navigate-next" size={26} color="#fff"/&gt;
               &lt;/TouchableOpacity&gt;
@@ -595,7 +592,7 @@ export default StartScreen
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Oct 25 2020 21:29:04 GMT+0100 (GMT+01:00)
+                at Tue Dec 01 2020 16:15:36 GMT+0100 (Central European Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>
