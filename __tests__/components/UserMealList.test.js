@@ -3,33 +3,35 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store'
 import {Provider} from "react-redux";
+import thunk from 'redux-thunk';
 
-import IngredientItem from "../../components/IngredientItem"
-
-const initialState = {
-    "nutrition" : {
-        "mealIngredients" : ["food1", "food2"]
-    }
-}
+import UserMealList from "../../components/UserMealList"
 
 //create mockStore
-let mockStore;
+let initialState = {
+    "nutrition" : {
+        "nutrientSuggestion" : "testSuggestion"
+    }
+};
+
+let middlewares = [ thunk ];
+let mockStoreConf = configureStore(middlewares);
 //create Obj for config store
-const mockStoreConf = configureStore([]);
+
 
 jest.useFakeTimers();
 
-describe('IngredientItem', ()=>{
+describe('UserMealList', ()=>{
     it('renders the component', async () => {
 
-        //configure store (add states)
-        mockStore = mockStoreConf({});
+        let mockStore = mockStoreConf(initialState);
 
         const tree = await renderer.create(
         <Provider store={mockStore}>
-          <IngredientItem />
+          <UserMealList />
         </Provider>
       );
-        expect(tree).toMatchSnapshot();
+      
+      expect(tree).toMatchSnapshot();
     });
 });

@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserMealButton renders the component 1`] = `
+<View
+  style={Object {}}
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "rgba(58,90,140,.96)",
+        "elevation": 3,
+        "height": 0,
+        "justifyContent": "flex-start",
+        "opacity": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "width": 50,
+      }
+    }
+    useNativeDriver={true}
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "center",
+        }
+      }
+    >
+      <View>
+        <RCTScrollView
+          contentContainerStyle={
+            Object {
+              "marginTop": 130,
+              "paddingBottom": 444.6666666666667,
+              "width": 750,
+            }
+          }
+          disableVirtualization={false}
+          getItem={[Function]}
+          getItemCount={[Function]}
+          horizontal={false}
+          initialNumToRender={10}
+          keyExtractor={[Function]}
+          maxToRenderPerBatch={10}
+          onContentSizeChange={[Function]}
+          onEndReachedThreshold={2}
+          onLayout={[Function]}
+          onMomentumScrollEnd={[Function]}
+          onRefresh={[Function]}
+          onScroll={[Function]}
+          onScrollBeginDrag={[Function]}
+          onScrollEndDrag={[Function]}
+          refreshControl={
+            <RefreshControlMock
+              onRefresh={[Function]}
+              refreshing={false}
+            />
+          }
+          refreshing={false}
+          removeClippedSubviews={false}
+          renderItem={[Function]}
+          scrollEventThrottle={16}
+          stickyHeaderIndices={Array []}
+          updateCellsBatchingPeriod={50}
+          viewabilityConfigCallbackPairs={Array []}
+          windowSize={21}
+        >
+          <RCTRefreshControl />
+          <View />
+        </RCTScrollView>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#ffb944",
+        "borderRadius": 100,
+        "height": 55,
+        "justifyContent": "center",
+        "position": "absolute",
+        "right": 20,
+        "shadowOffset": Object {
+          "height": 5,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 5,
+        "top": 50,
+        "width": 55,
+      }
+    }
+    useNativeDriver={true}
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "height": "100%",
+          "justifyContent": "center",
+          "opacity": 1,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "opacity": 1,
+            "position": "absolute",
+            "transform": Array [
+              Object {
+                "rotate": "0deg",
+              },
+            ],
+          }
+        }
+        useNativeDriver={true}
+      >
+        <Text />
+      </View>
+      <View
+        style={
+          Object {
+            "opacity": 0,
+            "position": "absolute",
+            "transform": Array [
+              Object {
+                "rotate": "90deg",
+              },
+            ],
+          }
+        }
+        useNativeDriver={true}
+      >
+        <Text />
+      </View>
+    </View>
+  </View>
+</View>
+`;

@@ -14,6 +14,7 @@ exports[`AddButton renders the component 1`] = `
     style={
       Object {
         "backgroundColor": "rgba(58,90,140,.96)",
+        "elevation": 3,
         "height": 0,
         "opacity": 0,
         "position": "absolute",
@@ -21,7 +22,22 @@ exports[`AddButton renders the component 1`] = `
         "width": 50,
       }
     }
+    useNativeDriver={true}
   >
+    <Text
+      style={
+        Object {
+          "color": "#fff",
+          "fontSize": 22,
+          "fontWeight": "600",
+          "marginTop": 20,
+          "textAlign": "center",
+          "width": "100%",
+        }
+      }
+    >
+      Add a meal
+    </Text>
     <View
       style={
         Object {
@@ -40,6 +56,7 @@ exports[`AddButton renders the component 1`] = `
             "opacity": 0,
           }
         }
+        useNativeDriver={true}
       >
         <View
           accessible={true}
@@ -89,6 +106,7 @@ exports[`AddButton renders the component 1`] = `
             "opacity": 0,
           }
         }
+        useNativeDriver={true}
       >
         <View
           accessible={true}
@@ -149,6 +167,7 @@ exports[`AddButton renders the component 1`] = `
             "opacity": 0,
           }
         }
+        useNativeDriver={true}
       >
         <View
           accessible={true}
@@ -198,6 +217,7 @@ exports[`AddButton renders the component 1`] = `
             "opacity": 0,
           }
         }
+        useNativeDriver={true}
       >
         <View
           accessible={true}
@@ -260,6 +280,7 @@ exports[`AddButton renders the component 1`] = `
         "zIndex": 1000,
       }
     }
+    useNativeDriver={true}
   >
     <View
       accessible={true}

@@ -20,9 +20,7 @@ describe('AUTH REDUCER', () => {
 
 
     it('AUTHENTICATE should return token and userId from action', () => {
-    const action = {type: 'AUTHENTICATE',
-        token: 111,
-        userId:222};
+    const action = {type: 'AUTHENTICATE', token: 111, userId:222};
     
     expect(auth(state, action).token).toEqual(111);
     expect(auth(state, action).userId).toEqual(222);
@@ -53,8 +51,8 @@ describe('AUTH REDUCER', () => {
 
     const received = auth(state, action);
 
-    expect(received.token).toEqual(111);
-    expect(received.userId).toEqual(222);
+    expect(received.token).toEqual(state.token);
+    expect(received.userId).toEqual(state.userId);
     expect(received.preference).toEqual('new_pref');
     expect(received.freetime).toEqual('new_freetime');
     expect(received.work).toEqual('new_work');

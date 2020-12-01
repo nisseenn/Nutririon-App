@@ -6,8 +6,31 @@ import {Provider} from "react-redux";
 
 import HomeScreen from '../../screens/HomeScreen'
 
-//create mockStore
-let mockStore;
+//create state
+let initialState = {
+   "nutrition" : {
+     "caloryRef" : null,
+     "nutrients" : {
+       "protein" : null,
+       "fat" : null,
+       "carbs" : null
+     },
+     "todayMeal" : {
+       "Breakfast" : null,
+       "Lunch" : null,
+       "Dinner" : null,
+       "Snacks" : null
+     },
+     "nutrientSuggestions" : null,
+     "calorySuggestion" : null,
+     "weekSummary" : [{
+       "protein" : 0,
+       "fat" : 0,
+       "carbs" : 0,
+       "cals" : 0
+     }]
+   }
+}
 //create Obj for config store
 const mockStoreConf = configureStore([]);
 
@@ -16,7 +39,7 @@ jest.useFakeTimers();
 it('HomeScreen renders correctly', async () => {
 
   //configure store (add states)
-  mockStore = mockStoreConf({});
+  let mockStore = mockStoreConf(initialState);
 
   const tree = await renderer.create(
         <Provider store={mockStore}>

@@ -14,6 +14,7 @@ exports[`AddButton renders the component 1`] = `
     style={
       Object {
         "backgroundColor": "rgba(58,90,140,.96)",
+        "elevation": 3,
         "height": 0,
         "opacity": 0,
         "position": "absolute",
@@ -21,7 +22,22 @@ exports[`AddButton renders the component 1`] = `
         "width": 50,
       }
     }
+    useNativeDriver={true}
   >
+    <Text
+      style={
+        Object {
+          "color": "#fff",
+          "fontSize": 22,
+          "fontWeight": "600",
+          "marginTop": 20,
+          "textAlign": "center",
+          "width": "100%",
+        }
+      }
+    >
+      Add a meal
+    </Text>
     <View
       style={
         Object {
@@ -40,46 +56,56 @@ exports[`AddButton renders the component 1`] = `
             "opacity": 0,
           }
         }
+        useNativeDriver={true}
       >
-        <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
+        <RNGestureHandlerButton
+          collapsable={false}
+          onGestureEvent={[Function]}
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          onHandlerStateChange={[Function]}
+          rippleColor={0}
           style={
-            Object {
-              "opacity": 1,
-            }
+            Array [
+              Object {
+                "overflow": "hidden",
+              },
+              undefined,
+            ]
           }
         >
-          <Image
-            source={1}
+          <View
+            accessible={true}
             style={
               Object {
-                "height": 80,
-                "width": 80,
-              }
-            }
-          />
-          <Text
-            style={
-              Object {
-                "color": "#fff",
-                "fontSize": 18,
-                "fontWeight": "600",
-                "marginTop": 10,
-                "textAlign": "center",
+                "opacity": 1,
               }
             }
           >
-            Breakfast
-          </Text>
-        </View>
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 80,
+                  "width": 80,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#fff",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                  "marginTop": 10,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Breakfast
+            </Text>
+          </View>
+        </RNGestureHandlerButton>
       </View>
       <View
         style={
@@ -89,46 +115,56 @@ exports[`AddButton renders the component 1`] = `
             "opacity": 0,
           }
         }
+        useNativeDriver={true}
       >
-        <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
+        <RNGestureHandlerButton
+          collapsable={false}
+          onGestureEvent={[Function]}
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          onHandlerStateChange={[Function]}
+          rippleColor={0}
           style={
-            Object {
-              "opacity": 1,
-            }
+            Array [
+              Object {
+                "overflow": "hidden",
+              },
+              undefined,
+            ]
           }
         >
-          <Image
-            source={1}
+          <View
+            accessible={true}
             style={
               Object {
-                "height": 80,
-                "width": 80,
-              }
-            }
-          />
-          <Text
-            style={
-              Object {
-                "color": "#fff",
-                "fontSize": 18,
-                "fontWeight": "600",
-                "marginTop": 10,
-                "textAlign": "center",
+                "opacity": 1,
               }
             }
           >
-            Lunch
-          </Text>
-        </View>
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 80,
+                  "width": 80,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#fff",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                  "marginTop": 10,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Lunch
+            </Text>
+          </View>
+        </RNGestureHandlerButton>
       </View>
     </View>
     <View
@@ -149,46 +185,56 @@ exports[`AddButton renders the component 1`] = `
             "opacity": 0,
           }
         }
+        useNativeDriver={true}
       >
-        <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
+        <RNGestureHandlerButton
+          collapsable={false}
+          onGestureEvent={[Function]}
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          onHandlerStateChange={[Function]}
+          rippleColor={0}
           style={
-            Object {
-              "opacity": 1,
-            }
+            Array [
+              Object {
+                "overflow": "hidden",
+              },
+              undefined,
+            ]
           }
         >
-          <Image
-            source={1}
+          <View
+            accessible={true}
             style={
               Object {
-                "height": 80,
-                "width": 80,
-              }
-            }
-          />
-          <Text
-            style={
-              Object {
-                "color": "#fff",
-                "fontSize": 18,
-                "fontWeight": "600",
-                "marginTop": 10,
-                "textAlign": "center",
+                "opacity": 1,
               }
             }
           >
-            Dinner
-          </Text>
-        </View>
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 80,
+                  "width": 80,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#fff",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                  "marginTop": 10,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Dinner
+            </Text>
+          </View>
+        </RNGestureHandlerButton>
       </View>
       <View
         style={
@@ -198,46 +244,56 @@ exports[`AddButton renders the component 1`] = `
             "opacity": 0,
           }
         }
+        useNativeDriver={true}
       >
-        <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
+        <RNGestureHandlerButton
+          collapsable={false}
+          onGestureEvent={[Function]}
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          onHandlerStateChange={[Function]}
+          rippleColor={0}
           style={
-            Object {
-              "opacity": 1,
-            }
+            Array [
+              Object {
+                "overflow": "hidden",
+              },
+              undefined,
+            ]
           }
         >
-          <Image
-            source={1}
+          <View
+            accessible={true}
             style={
               Object {
-                "height": 80,
-                "width": 80,
-              }
-            }
-          />
-          <Text
-            style={
-              Object {
-                "color": "#fff",
-                "fontSize": 18,
-                "fontWeight": "600",
-                "marginTop": 10,
-                "textAlign": "center",
+                "opacity": 1,
               }
             }
           >
-            Snacks
-          </Text>
-        </View>
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 80,
+                  "width": 80,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#fff",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                  "marginTop": 10,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Snacks
+            </Text>
+          </View>
+        </RNGestureHandlerButton>
       </View>
     </View>
   </View>
@@ -260,6 +316,7 @@ exports[`AddButton renders the component 1`] = `
         "zIndex": 1000,
       }
     }
+    useNativeDriver={true}
   >
     <View
       accessible={true}
