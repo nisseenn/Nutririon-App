@@ -1,4 +1,6 @@
-### Nutrition App
+# Nutrition App
+
+### An application for tracking nutrition intake. The application is developed using React Native and Redux as front end. Backend using Firebase real time data base. The app is a school project for NTNU.
 
 ## First page
 <img src="https://user-images.githubusercontent.com/20997734/103454204-febbb880-4ce1-11eb-9716-9aff0ba21a96.PNG" width="30%" height="30%">
