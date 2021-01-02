@@ -1,7 +1,7 @@
 ### Nutrition App
 
 ## First page
-![IMG_0547](https://user-images.githubusercontent.com/20997734/103454204-febbb880-4ce1-11eb-9716-9aff0ba21a96.PNG)
+<img src="https://user-images.githubusercontent.com/20997734/103454204-febbb880-4ce1-11eb-9716-9aff0ba21a96.PNG" width="30%" height="30%">
 
 ## Basic info
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/20997734/103454228-29a60c80-4ce2-11eb-8ce8-3c09c67a8689.gif)
